@@ -56,6 +56,10 @@ h3 {
     text-align: left;
 }
 
+h4 {
+    color: var(--secondary-color);
+}
+
 .part {
     margin: .5rem 0 3rem;
     padding: .5rem 2rem 2rem;
@@ -77,6 +81,10 @@ li::marker {
 }
 
 a, b {
+    color: var(--secondary-color);
+}
+
+.green {
     color: var(--secondary-color);
 }
 
