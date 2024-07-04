@@ -6,19 +6,19 @@
     --color-secondary: #506352;
     --color-tertiary: #3a656e;
     --color-error: #ba1a1a;
-    /* use color-text-on for text/logos on the above colors*/
+    /* use color-text-on for text/logos on the above colors */
     --color-text-on: #ffffff;
 
     --color-background-white: #ffffff;
 
     --color-background: #f6fbf3;
-    /* dim for lower emphasis content*/
+    /* dim for lower emphasis content */
     --color-background-dim: #d7dbd4;
 
     --color-background-on: #181d18;
     --color-background-on-dim: #414941;
 
-    /* for containers and buttons that go on background*/
+    /* for containers and buttons that go on background */
     --color-container-primary: #b3f1be;
     --color-container-primary-on: #00210c;
 
@@ -40,7 +40,7 @@
 
     --color-container-inverse: #2d322d;
     --color-container-inverse-on: #eef2ea;
-    --color-container-inverse-on-link : #98d4a3;
+    --color-container-inverse-on-link: #98d4a3;
 
     /* fonts */
     --font-header: "Raleway", Arial, Helvetica, sans-serif;
@@ -51,11 +51,24 @@
 
 body {
     font-family: var(--font-body);
-    background: url('image/tropical-4187890_1920.jpg') no-repeat center center fixed;
-    background-size: cover;
-    opacity: 1;
+    margin: 0;
+    position: relative;
+    z-index: 1; /* Ensure body content is above the background image */
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../image/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.5; /* Adjust opacity as needed */
+    z-index: -1; /* Ensure the pseudo-element is below the body content */
+    pointer-events: none; /* Ensure the pseudo-element does not interfere with user interactions */
+}
 
 h1, h2 {
     font-family: var(--font-header);
@@ -76,7 +89,7 @@ h3 {
 .btn-round {
     border: 1px solid var(--color-background-dim);
     border-radius: 1rem;
-    color: var(--color-background-on)
+    color: var(--color-background-on);
 }
 
 .btn-primary {
@@ -104,14 +117,14 @@ h3 {
     color: var(--color-background-on-dim);
 }
 
-.color-filter-active  {
+.color-filter-active {
     border-radius: 6px;
     background-color: var(--color-container-secondary);
     color: var(--color-container-secondary-on);
 }
 
 .input-group-text {
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 5px 0 0 5px;
     background-color: transparent;
 }
 
@@ -153,7 +166,7 @@ div.card {
     opacity: 60%;
 }
 
-icon.size-12 {
+.icon.size-12 {
     font-size: 12px;
     font-weight: 600;
 }
