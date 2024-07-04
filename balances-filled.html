@@ -13,6 +13,12 @@
     <link href="css/styles.css" rel="stylesheet">
     <link rel="icon" type="image/svg+xml" href="image/favicon.svg">
     <title>Balances Filled</title>
+    <style>
+        .icon-center {
+            position: relative;
+            top: 7px; /* Adjust as necessary to align with text */
+        }
+    </style>
 </head>
 <body class="bg-light">
     <!-- insert <header></header> here -->
@@ -24,13 +30,25 @@
                 <div class="col-lg-6 mb-4">
                     <div class="card shadow-sm border-0">
                         <div class="card-body">
-                            <h2 class="card-title">Overall Status</h2>
-                            <p class="card-text">Here is the overall status of each person:</p>
+                            <h1 class="card-title">Overall Debt</h1>
+                            <p class="card-text">Here is the overall debt of each person:</p>
                             <ul class="list-group">
-                                <li class="list-group-item">Person A: <span class="badge bg-success">+ $50</span></li>
-                                <li class="list-group-item">Person B: <span class="badge bg-danger">- $30</span></li>
-                                <li class="list-group-item">Person C: <span class="badge bg-success">+ $70</span></li>
-                                <li class="list-group-item">Person D: <span class="badge bg-danger">- $10</span></li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Kara
+                                    <span class="badge bg-success rounded-pill">+ $50</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Josh
+                                    <span class="badge bg-danger rounded-pill">- $30</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Kevin
+                                    <span class="badge bg-success rounded-pill">+ $70</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Michelle
+                                    <span class="badge bg-danger rounded-pill">- $10</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -38,11 +56,15 @@
                 <div class="col-lg-6">
                     <div class="card shadow-sm border-0">
                         <div class="card-body">
-                            <h2 class="card-title">Balances</h2>
+                            <h1 class="card-title">Balances</h1>
                             <p class="card-text">Here are the current balances:</p>
                             <ul class="list-group">
-                                <li class="list-group-item">Person A owes Person B: $100</li>
-                                <li class="list-group-item">Person C owes Person D: $50</li>
+                                <li class="list-group-item">
+                                    Josh <span class="icon-center material-symbols-outlined">arrow_forward</span> owes Kara: $100
+                                </li>
+                                <li class="list-group-item">
+                                    Michelle <span class="icon-center material-symbols-outlined">arrow_forward</span> owes Kevin: $50
+                                </li>
                             </ul>
                         </div>
                     </div>
