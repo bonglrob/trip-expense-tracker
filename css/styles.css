@@ -9,6 +9,8 @@
     /* use color-text-on for text/logos on the above colors*/
     --color-text-on: #ffffff;
 
+    --color-background-white: #ffffff;
+
     --color-background: #f6fbf3;
     /* dim for lower emphasis content*/
     --color-background-dim: #d7dbd4;
@@ -42,6 +44,7 @@
 
     /* fonts */
     --font-header: "Raleway", Arial, Helvetica, sans-serif;
+    /* subheader also for buttons, navbar */
     --font-subheader: "Cabin", Noto, sans-serif;
     --font-body: "Roboto", Noto, sans-serif;
 }
@@ -58,6 +61,20 @@ h3 {
     font-family: var(--font-subheader);
 }
 
+.badge, .btn {
+    font-family: var(--font-subheader);
+}
+
+.badge {
+    font-size: 1rem;
+}
+
+.btn-round {
+    border: 1px solid var(--color-background-dim);
+    border-radius: 1rem;
+    color: var(--color-background-on)
+}
+
 .btn-primary {
     background-color: var(--color-container-primary);
     color: var(--color-container-primary-on);
@@ -71,7 +88,35 @@ h3 {
 }
 
 .color-primary {
-    color: var(--color-tertiary);
+    color: var(--color-primary);
+}
+
+.color-filter-secondary-on {
+    color: var(--color-container-secondary-on);
+}
+
+.color-filter-btn {
+    background-color: var(--color-background-dim);
+    color: var(--color-background-on-dim);
+}
+
+.color-filter-active  {
+    border-radius: 6px;
+    background-color: var(--color-container-secondary);
+    color: var(--color-container-secondary-on);
+}
+
+.input-group-text {
+    border-radius: 5px 0px 0px 5px;
+    background-color: transparent;
+}
+
+.fit-content {
+    height: fit-content;
+}
+
+.filter-name {
+    opacity: 90%;
 }
 
 div.card {
@@ -82,16 +127,7 @@ div.card {
     color: var(--color-secondary);
 }
 
-div.card-body {
-    background-color: var(--color-background);
-    border-radius: 6px;
-}
-
-div.card-body > p.card-text {
-    color: var(--color-background-on);
-} 
-
-icon.size-48 {
-    font-size: 2rem;
-    font-variation-settings: 'wght' 100, 'OPSZ' 2rem;
+icon.size-12 {
+    font-size: 12px;
+    font-weight: 600;
 }

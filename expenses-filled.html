@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Robert Bonglamphone">
+    <meta name="description" content="description of your page">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="image/favicon.svg">
+    <title>Korea Expenses</title>
+</head>
+<body>
+    <!-- insert <header></header> here -->
+    <main>
+        <!-- insert <nav></nav> here -->
+
+        <div class="container">
+            <h1 class="color-primary">Korea</h1>
+
+            <div class="d-flex mb-1 align-items-center">
+                <!-- filter button -->
+                <div>
+                    <span class="btn"><span class="material-symbols-outlined">tune</span></span>
+                </div>
+
+                <!-- applied filters -->
+                <div class="d-flex flex-wrap gap-1 fit-content">
+                    <div class="color-filter-active d-flex align-items-center">
+                        <span class="badge color-filter-secondary-on">7-18-24 to 7-25-24</span>
+                        <icon aria-label="remove filter" class="material-symbols-outlined size-12 me-2">close</icon>
+                    </div>
+                    <div class="color-filter-active d-flex align-items-center">
+                        <span class="badge color-filter-secondary-on">Kara</span>
+                        <icon class="material-symbols-outlined size-12 me-2">close</icon>
+                    </div>
+                    <div class="color-filter-active d-flex align-items-center">
+                        <span class="badge color-filter-secondary-on">Food</span>
+                        <icon class="material-symbols-outlined size-12 me-2">close</icon>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <form role="search">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><icon class="material-symbols-outlined">search</icon></span>
+                    </div>
+                    <input class="form-control" type="search" placeholder="Search for expenses" aria-label="Search">
+                </div>
+            </form>
+
+            <!-- expenses list view -->
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="left-start-align">
+                                <h2 class="card-title">Jajangmyeon Restaurant</h2>
+                                <p class="card-text">Kara paid for Josh, Kevin, Michelle</p>
+                            </div>
+                            <div class="right-align">
+                                <h2 class="card-title">₩55,423</h2>
+                                <p class="card-text">7-18-24</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- insert <footer></footer> here -->
+</body>
+</html>
