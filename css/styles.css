@@ -123,8 +123,30 @@ div.card {
     border-color: var(--color-outline-dim);
 }
 
-.card-title {
+.name-emphasis {
+    font-weight: 500;
     color: var(--color-secondary);
+}
+
+.card-title {
+    color: var(--color-background-on);
+    font-size: 1rem;
+}
+
+.card-dollar-amt {
+    font-family: "Roboto";
+    font-size: 1rem;
+    color: var(--color-primary);
+}
+
+.card-currency-amt {
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+}
+
+.card-date {
+    font-size: 0.8rem;
+    opacity: 60%;
 }
 
 icon.size-12 {
