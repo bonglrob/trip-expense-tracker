@@ -177,12 +177,20 @@ div.card {
 
 /* Landing Page */
 .landing-cover {
+    display: block;
     padding-top: 8rem;
     padding-bottom: 8rem;
     background-image: url('../image/plane.jpg');
     background-size: cover;
     background-color: var(--color-background-white);
     background-position: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.about-section {
+    background-color: var(--color-background);
+    padding: 1rem;
 }
 
 /* Icons */
@@ -197,11 +205,18 @@ div.card {
 .material-icons {
     position: relative;
     top: 5px;
+    font-size: 2rem;
+}
+
+.github {
+    max-width: 1.25rem;
+    max-height: 1.25rem;
 }
 
 /* Header */
 .logo {
     font-size: 2rem;
+    color: var(--color-text-on)
 }
 
 .header-nav {
@@ -215,11 +230,6 @@ div.card {
     font-size: 1.5rem;
 }
 
-#landing-header .header-nav {
-    color: var(--color-text-on);
-    background-color: var(--color-primary);
-}
-
 .nav {
     align-items: center;
 }
@@ -228,7 +238,20 @@ div.card {
     flex: 1;
 }
 
+/* Footer */
+footer {
+    /* bottom: 0; */
+    width: 100%;
+    color: var(--color-text-on);
+    background-color: var(--color-secondary);
+    padding: 1rem;
+    font-family: var(--font-body);
+}
+
 /* Main Navbar */
+#main-nav nav {
+    justify-content: space-between;
+}
 
 .header-btn {
     /* display: inline-block;    
@@ -240,7 +263,6 @@ div.card {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    
 
     font-weight: 400;
     color: #212529;
@@ -254,7 +276,7 @@ div.card {
     line-height: 1.5;
     border-radius: 0.25rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; */
-  }
+}
 
 @media (min-width: 576px) {
 

@@ -6,6 +6,7 @@
     <meta name="description" content="Landing page for tripSplit application.">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>TripSplit Landing Page</title>
+    <link rel="icon" type="image/svg+xml" href="image/favicon.svg">
     <!-- Google Fonts --> 
     <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <!-- Google Icons -->
@@ -18,11 +19,11 @@
     <header>
         <!-- Button to Landing Page / Logo Image of Trip Split in the stuck to the left corner -->
         <!-- Button to the MyTrips page / words include "Trips"-->
-        <!-- Button with icon of question mark -->
+        <!-- Button with question mark -->
         <nav class="header-nav">
             <ul class="nav">
                 <li class="nav-item px-3">
-                    <a href="#" class="logo"><span class="material-symbols-outlined material-icons" aria-label="Landing">Travel</span>TripSplit</a>
+                    <a href="#" class="btn logo"><span class="material-symbols-outlined material-icons" aria-label="Landing">Travel</span>TripSplit</a>
                 </li>
                 <li class="nav-item empty">
                 </li>
@@ -40,15 +41,16 @@
         <!-- words with "Share Expenses with your Group" with a background image stuck to the top -->
         <!-- button underneath "Create New Trip" -->
         <div class="landing-cover">
-            <h1>Share Expenses with<br>Your Group</h1>
+            <h1 class="justify-content-center">Share Travel Expenses<br>with Your Group</h1>
+            <a href="#" class="btn btn-primary justify-content-center">Create New Trip</a>
         </div>
 
         <!-- Navigation Bar -->
         <!-- Notes: figure out expansion for different size, nav vs. navbar-nav, button colors -->
-        <div class="container mt-3">
-            <nav class="card bg-light main-nav">
+        <div id="main-nav" class="container mt-3">
+            <nav class="card bg-light">
                 <div class="container-fluid">
-                    <ul class="nav justify-content-center">
+                    <ul class="nav">
                         <li class="nav-item">
                             <a class="nav-link active btn" aria-current="page" href="#">Expenses</a>
                         </li>
@@ -66,38 +68,20 @@
             </nav>
         </div>
 
-        <!-- <nav class="navbar navbar-expand-lg bg-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Navbar</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-        </nav> -->
+        <div class="about-section">
+            <h1>about</h1>
+            <p>Summary of what TripSplit does.</p>
+        </div>
 
     </main>
 
     <footer>
         <!-- Navigation Hyperlinks to "About TripSplit" and "Frequently Asked Questions" -->
         <!-- centered GitHub icon as hyperlink to our repository -->
-        <!-- Created by Robert Bonglamphone, Emma Esteban, and Nick Chiu -->
-        <!-- "Part of University of Washington course INFO 340" -->
+        <p>TripSplit</p>
+        <p>
+            <a href="#"><img class="github" src="image/github-icon.svg" alt="github icon"></a> Created by Robert Bonglamphone, Emma Esteban, and Nick Chiu<br>Part of University of Washington course INFO 340
+        </p>
     </footer>
 </body>
 </html>
