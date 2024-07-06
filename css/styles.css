@@ -65,7 +65,7 @@ body::before {
     height: 100%;
     background: url('../image/background.jpg') no-repeat center center fixed;
     background-size: cover;
-    opacity: 0.5; /* Adjust opacity as needed */
+    opacity: 0.2; /* Adjust opacity as needed */
     z-index: -1; /* Ensure the pseudo-element is below the body content */
     pointer-events: none; /* Ensure the pseudo-element does not interfere with user interactions */
 }
@@ -108,8 +108,17 @@ h3 {
     color: var(--color-primary);
 }
 
+.color-error {
+    color: var(--color-error);
+}
+
 .color-filter-secondary-on {
     color: var(--color-container-secondary-on);
+}
+
+.form-check-input:checked {
+    background-color: var(--color-tertiary);
+    border-color: var(--color-tertiary);
 }
 
 .color-filter-btn {
@@ -125,7 +134,7 @@ h3 {
 
 .input-group-text {
     border-radius: 5px 0 0 5px;
-    background-color: transparent;
+    background-color: var(--color-container-inverse-on);
 }
 
 .fit-content {
