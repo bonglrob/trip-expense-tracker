@@ -108,6 +108,18 @@ h3 {
     border-color: var(--color-container-primary);
 }
 
+.btn-delete {
+    background-color: var(--color-error);
+    color: var(--color-container-error);
+    border-color: var(--color-container-error);
+}
+
+.btn-delete:hover {
+    background-color: var(--color-error);
+    color: var(--color-container-primary-on);
+    border-color: var(--color-container-error);
+}
+
 .color-primary {
     color: var(--color-primary);
 }
@@ -184,6 +196,16 @@ div.card {
     font-weight: 600;
 }
 
+/* Create Trip */
+#create-trip input {
+    max-width: 50%;
+}
+
+#create-trip img {
+    max-height: 10%;
+    border-radius: var(--bs-border-radius) var(--bs-border-radius) 0 0;
+}
+
 /* Landing Page */
 .landing-cover {
     display: block;
@@ -228,13 +250,17 @@ div.card {
     color: var(--color-text-on)
 }
 
+.logo:hover {
+    color:var(--color-container-primary)
+}
+
 .header-nav {
     position: static;
     top: 0;
     width: 100%;
     color: var(--color-text-on);
     background-color: var(--color-primary);
-    padding: .5rem;
+    padding: .5rem 3rem .5rem 1rem;
     font-family: var(--font-header);
     font-size: 1.5rem;
 }
@@ -255,6 +281,10 @@ footer {
     background-color: var(--color-secondary);
     padding: 1rem;
     font-family: var(--font-body);
+}
+
+.footer-links {
+
 }
 
 /* Main Navbar */
