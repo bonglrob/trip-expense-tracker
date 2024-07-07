@@ -213,7 +213,8 @@ div.card {
     flex: 0 0 300px;
     margin: .5rem;
     font-size: 1rem;
-    color: var(--color-background-on-dim)
+    color: var(--color-background-on-dim);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 01px 3px rgba(0, 0, 0, 0.23);
 }
 
 .trip-card .card-title {
@@ -237,6 +238,7 @@ div.card {
     background-color: var(--color-container-primary);
     color: var(--color-container-primary-on);
     border-color: var(--color-container-primary);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 01px 3px rgba(0, 0, 0, 0.23);
 }
 
 .create-trip-card:hover {
