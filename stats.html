@@ -15,10 +15,51 @@
     <title>Stats Page</title>
 </head>
 <body class="bg-light">
+    <header>
+        <nav class="header-nav">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="#" class="btn logo"><span class="material-symbols-outlined material-icons" aria-label="Landing">Travel</span>TripSplit</a>
+                </li>
+                <li class="nav-item empty">
+                </li>
+                <li class="nav-item py-1 px-2">
+                    <a href="my-trips.html" class="btn btn-primary header-btn">Trips</a>
+                </li>
+                <li class="nav-item py-1 px-2">
+                    <a href="#" class="btn  btn-primary header-btn">?</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
         <div class="container mt-5">
-            <h1 class="color-primary">Stats</h1>
+            <h1 class="color-primary">Korea</h1>
             <div class="row">
+
+                <!-- Navbar -->
+                <div class="main-nav container mb-3">
+                    <nav class="card bg-light">
+                        <div class="container-fluid">
+                            <ul class="nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.html">Expenses</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="balances-filled.html">Balances</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active btn" href="#">Stats</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link">Settings</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
                 <div class="col-md-6 mb-4">
                     <div class="card shadow-sm border-0">
                         <div class="card-body">
@@ -80,5 +121,22 @@
             </div>
         </div>
     </main>
+
+    <footer class="mt-5">
+        <div class="d-flex flex-column align-items-center">
+            <div class="footer-links">
+                <p>
+                    <a href="#" aria-label="Home" class="px-1">Home</a>
+                    <a href="#" aria-label="About"class="px-1">About</a>
+                    <a href="#" aria-label="FAQ" class="px-1">Frequently Asked Questions</a>
+                </p>         
+            </div>
+            <p>TripSplit <a href="https://github.com/info340-su24/travel-expenses-B7"><img class="github" src="image/github-icon.svg" alt="github icon"></a></p>
+            <p class="text-center">
+                Created by Robert Bonglamphone, Emma Esteban, and Nick Chiu<br>
+                Part of University of Washington course INFO 340
+            </p>            
+        </div>
+    </footer>
 </body>
 </html>
