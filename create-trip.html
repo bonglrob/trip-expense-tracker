@@ -52,14 +52,22 @@
                                     <!-- trip name -->
                                     <div class="row px-0">
                                         <div class="card-title">Name</div>
-                                        <input class="form-control" id="" name="Name" placeholder="Korea"></input>
+                                        <div>
+                                            <input class="form-control" id="" name="Name" placeholder="Korea"></input>
+                                        </div>
                                     </div>
 
                                     <!-- people -->
                                     <div class="row px-0">
                                         <div class="card-title">Members</div>
-                                        <input class="form-control" id="" name="member" placeholder="Gabriella"></input>
-                                        <input class="form-control" id="" name="member" placeholder="Troy"></input>
+                                        <div class="d-flex">
+                                            <input class="form-control" id="" name="member" placeholder="Gabriella"></input>
+                                            <span class="material-symbols-outlined">delete</span>
+                                        </div>
+                                        <div class="d-flex">
+                                            <input class="form-control" id="" name="member" placeholder="Troy"></input>
+                                            <span class="material-symbols-outlined">delete</span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -79,10 +87,6 @@
                                 </a>
                                 <a href="#" aria-label="to-trips" class="btn btn-cancel">Cancel</a>
                             </div>
-
-                            <!-- <h2 class="card-title">No Expenses Yet</h2>
-                            <p class="card-text">Get started by adding your first expense!</p>
-                            <a href="#" aria-label="Create Expense" class="btn btn-primary d-flex align-items-center"><icon class="material-symbols-outlined me-2">checkbook</icon>Create Expense</a> -->
                         </div>
                     </form>
                 </div>
@@ -90,7 +94,7 @@
         </div>
     </main>
 
-    <footer>
+    <footer class="mt-5">
         <div class="d-flex flex-column align-items-center">
             <div class="footer-links">
                 <p>
