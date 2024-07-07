@@ -25,7 +25,7 @@
                 <li class="nav-item empty">
                 </li>
                 <li class="nav-item py-1 px-2">
-                    <a href="#" class="btn btn-primary header-btn">My Trips</a>
+                    <a href="#" class="btn btn-primary header-btn">Trips</a>
                 </li>
                 <li class="nav-item py-1 px-2">
                     <a href="#" class="btn  btn-primary header-btn">?</a>
@@ -41,7 +41,7 @@
             <!-- Box -->
             <div class="row">
                 <div class="col">
-                    <form class="card" id="create-trip">
+                    <form class="card create-trip">
                         <img src="image/group-trip-cropped.jpg" alt="Friends hugging and sitting toward the water." class="create-trip-img"></img>
                         <div class="card-body">
 
@@ -68,12 +68,34 @@
                                             <input class="form-control" id="" name="member" placeholder="Troy"></input>
                                             <span class="material-symbols-outlined">delete</span>
                                         </div>
+                                        <div class=" flex-row mx-0 d-flex">
+                                            <button class="btn btn-tertiary" type="button">Add</button>    
+                                        </div>                                        
                                     </div>
                                 </div>
 
-                                <!-- currency -->
+                                <!-- start date and currency -->
                                 <div class="col">
-                                    <div class="card-title">Currency of Home Country</div>
+                                    <div class="row px-0">
+                                        <div class="card-title">Start Date</div>
+                                        <div>
+                                            <input class="form-control" id="" name="Start-Date" type="date"></input>
+                                        </div>
+                                    </div>
+                                    <div class="row px-0">
+                                        <div class="card-title">Currency of Home Country</div>
+                                        <div class="dropdown">
+                                            <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                              Currency
+                                            </a>
+                            
+                                            <ul class="dropdown-menu">
+                                              <li><a class="dropdown-item" href="#">$</a></li>
+                                              <li><a class="dropdown-item" href="#">--</a></li>
+                                              <li><a class="dropdown-item" href="#">--</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
