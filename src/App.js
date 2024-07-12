@@ -1,11 +1,17 @@
-function App() {
+import { Routes, Route } from 'react-router-dom';
+import EmptyExpenses from './components/EmptyExpenses.js';
+
+export default function App() {
   return (
     <div>
-      <header>
-        <h1>Header 1</h1>
-      </header>
+      {/* <Header> goes here */}
+      <main>
+        <Routes>
+          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/emptyexpenses" element={<EmptyExpenses />} />
+        </Routes>
+      </main>
+      {/* <Footer> goes here */}
     </div>
   );
 }
-
-export default App;
