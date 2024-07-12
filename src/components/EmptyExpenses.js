@@ -1,4 +1,5 @@
-// import Navbar from "component" jaja
+// import Navbar from "component" jaja jdijjfidf
+// hahaha
 
 export default function EmptyExpenses() {
     return (
