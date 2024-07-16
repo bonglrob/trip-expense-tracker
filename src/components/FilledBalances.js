@@ -1,4 +1,4 @@
-export default function BalancesFilled() {
+export default function FilledBalances() {
     return (
       <div className="bg-light">
         <header>
