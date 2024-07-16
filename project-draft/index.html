@@ -2,25 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="author" content="Robert Bonglamphone">
-    <meta name="description" content="list of expenses for Korea group">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="css/styles.css" rel="stylesheet">
+    <meta name="author" content="Emma Esteban">
+    <meta name="description" content="Landing page for tripSplit application.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TripSplit Landing Page</title>
     <link rel="icon" type="image/svg+xml" href="image/favicon.svg">
-    <title>Korea Expenses</title>
+    <!-- Google Fonts --> 
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- Google Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Style -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-    
+<body class="blank-background">
     <header>
         <nav class="header-nav">
             <ul class="nav">
                 <li class="nav-item">
-                    <a href="landing.html" class="btn logo"><span class="material-symbols-outlined material-icons" aria-label="Landing">Travel</span>TripSplit</a>
+                    <a href="index.html" class="btn logo"><span class="material-symbols-outlined material-icons" aria-label="Landing">Travel</span>TripSplit</a>
                 </li>
                 <li class="nav-item empty">
                 </li>
@@ -33,139 +33,23 @@
             </ul>
         </nav>
     </header>
-    
+
     <main>
-        <div class="container mt-4">
-            <h1 class="color-primary">Korea</h1>
-            
-            <div class="row">
-                <!-- Navigation Bar -->
-                <div class="main-nav container mb-3">
-                    <nav class="card bg-light">
-                        <div class="container-fluid">
-                            <ul class="nav">
-                                <li class="nav-item">
-                                    <a class="nav-link active btn" aria-current="page" href="#">Expenses</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="balances-filled.html">Balances</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="stats.html">Stats</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link">Settings</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-
-            <div class="d-flex mb-1 align-items-center">
-                <!-- filter button -->
-                <div>
-                    <a href="expenses-filter.html"><span class="btn"><span class="material-symbols-outlined">tune</span></span></a>
-                </div>
-
-                <!-- applied filters -->
-                <div class="d-flex flex-wrap gap-1 fit-content">
-                    <div class="color-filter-active d-flex align-items-center">
-                        <span class="badge color-filter-secondary-on">7-12-24 to 7-18-24</span>
-                        <icon aria-label="remove filter" class="material-symbols-outlined size-12 me-2">close</icon>
-                    </div>
-                    <div class="color-filter-active d-flex align-items-center">
-                        <span class="badge color-filter-secondary-on">Kara</span>
-                        <icon class="material-symbols-outlined size-12 me-2">close</icon>
-                    </div>
-                    <div class="color-filter-active d-flex align-items-center">
-                        <span class="badge color-filter-secondary-on">Food</span>
-                        <icon class="material-symbols-outlined size-12 me-2">close</icon>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Search Bar -->
-            <form role="search">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><icon class="material-symbols-outlined">search</icon></span>
-                    </div>
-                    <input class="form-control" type="search" placeholder="Search for expenses" aria-label="Search">
-                </div>
-            </form>
-
-            <!-- Create new expense -->
-            <div class="d-flex align-items-center justify-content-end mb-3">
-                <a class="text-decoration-none" href="create-expense.html"><button class="d-flex btn btn-primary me-3" type="menu">Add New Expense<icon class="material-symbols-outlined ms-1">add</icon></button></a>
-            </div>
-
-            <!-- expenses list view -->
-            <div class="row">
-                <div class="col">
-                    <div class="card mb-2">
-                        <div class="card-body d-flex justify-content-between">
-                            <div>
-                                <h2 class="card-title">Jajangmyeon Restaurant</h2>
-                                <p class="card-text"><span class="name-emphasis">Kara</span> paid for <span class="name-emphasis">Everyone</span></p>
-                            </div>
-                            <div class="text-end align-self-end">
-                                <h2 class="card-dollar-amt">$40.09</h2>
-                                <p class="card-currency-amt">(₩55,423)</p>
-                                <p class="card-date">Jul 18, 2024</p>
-                            </div>
-                        </div>
-                    </div>
-                <div class="col">
-                    <div class="card mb-2">
-                        <div class="card-body d-flex justify-content-between">
-                            <div>
-                                <h2 class="card-title">Ttbeokki</h2>
-                                <p class="card-text"><span class="name-emphasis">Kara</span> paid for <span class="name-emphasis">Michelle</span></p>
-                            </div>
-                            <div class="text-end align-self-end">
-                                <h2 class="card-dollar-amt">$5.08</h2>
-                                <p class="card-currency-amt">(₩7,000)</p2>
-                                <p class="card-date">Jul 17, 2024</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card mb-2">
-                        <div class="card-body d-flex justify-content-between">
-                            <div>
-                                <h2 class="card-title">Mangwon Market</h2>
-                                <p class="card-text"><span class="name-emphasis">Kara</span> paid for <span class="name-emphasis">Kevin, Michelle</span></p>
-                            </div>
-                            <div class="text-end align-self-end">
-                                <h2 class="card-dollar-amt">$13.58</h2>
-                                <p class="card-currency-amt">(₩18,700)</p>
-                                <p class="card-date">Jul 15, 2024</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card mb-2">
-                        <div class="card-body d-flex justify-content-between">
-                            <div>
-                                <h2 class="card-title">Airbnb grocery haul</h2>
-                                <p class="card-text"><span class="name-emphasis">Kara</span> paid for <span class="name-emphasis">Everyone</span></p>
-                            </div>
-                            <div class="text-end align-self-end">
-                                <h2 class="card-dollar-amt">$16.12</h2>
-                                <p class="card-currency-amt">(₩22,200)</p>
-                                <p class="card-date">Jul 12, 2024</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- words with "Share Expenses with your Group" with a background image stuck to the top -->
+        <!-- button underneath "Create New Trip" -->
+        <div class="landing-cover">
+            <h1 class="justify-content-center">Share Travel Expenses<br>with Your Group</h1>
+            <a href="create-trip.html" class="btn btn-primary justify-content-center">Create New Trip</a>
         </div>
+
+        <div class="about-section">
+            <h1>about</h1>
+            <p>Summary of what TripSplit does.</p>
+        </div>
+
     </main>
-    
-    <footer class="mt-5">
+
+    <footer>
         <div class="d-flex flex-column align-items-center">
             <div class="footer-links">
                 <p>
