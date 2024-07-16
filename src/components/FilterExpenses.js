@@ -1,44 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="author" content="Robert Bonglamphone">
-    <meta name="description" content="apply filters for expenses">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="css/styles.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="image/favicon.svg">
-    <title>Korea Expenses Filters</title>
-</head>
-<body>
-    <header>
-        <nav class="header-nav">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a href="index.html" class="btn logo"><span class="material-symbols-outlined material-icons" aria-label="Landing">Travel</span>TripSplit</a>
-                </li>
-                <li class="nav-item empty">
-                </li>
-                <li class="nav-item py-1 px-2">
-                    <a href="#" class="btn btn-primary header-btn">Trips</a>
-                </li>
-                <li class="nav-item py-1 px-2">
-                    <a href="#" class="btn  btn-primary header-btn">?</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-         <div class="container mt-4">
+export default function FilterExpenses() {
+    return (
+        <div class="container mt-4">
             <h1>Filters</h1>
 
             <div class="row">
-                <!-- paid for -->
+                {/* <!-- paid for --> */}
                 <div class="col-md-4">
                     <label for="paidFor" class="form-label">Paid for</label>
                     <div class="form-check" id="paidFor">
@@ -50,7 +16,7 @@
                             type="checkbox"
                             value="Kara"
                             id="paidForKara"
-                            aria-checked="false">
+                            aria-checked="false"/>
                     </div>
                     <div class="form-check" id="paidFor">
                         <label class="form-check-label" for="paidForJosh">
@@ -61,7 +27,7 @@
                             type="checkbox"
                             value="Josh"
                             id="paidForJosh"
-                            aria-checked="false">
+                            aria-checked="false"/>
                     </div>
                     <div class="form-check" id="paidForKevin">
                         <label class="form-check-label" for="paidForKevin">
@@ -72,7 +38,7 @@
                             type="checkbox"
                             value="Kevin"
                             id="paidForKevin"
-                            aria-checked="false">
+                            aria-checked="false"/>
                     </div>
                     <div class="form-check" id="paidFor">
                         <label class="form-check-label" for="paidForMichelle">
@@ -83,11 +49,11 @@
                             type="checkbox"
                             value="Michelle"
                             id="paidForMichelle"
-                            aria-checked="false">
+                            aria-checked="false"/>
                     </div>
                 </div>
     
-                <!-- paid by -->
+                {/* <!-- paid by --> */}
                 <div class="col-md-4">
                     <label for="paidFor" class="form-label">Paid for</label>
                     <div class="form-check" id="paidFor">
@@ -100,7 +66,7 @@
                             value="Kara"
                             id="paidForKara"
                             aria-checked="true"
-                            checked>
+                            checked/>
                     </div>
                     <div class="form-check" id="paidFor">
                         <label class="form-check-label" for="paidForJosh">
@@ -111,7 +77,7 @@
                             type="checkbox"
                             value="Josh"
                             id="paidForJosh"
-                            aria-checked="false">
+                            aria-checked="false"/>
                     </div>
                     <div class="form-check" id="paidForKevin">
                         <label class="form-check-label" for="paidForKevin">
@@ -122,7 +88,7 @@
                             type="checkbox"
                             value="Kevin"
                             id="paidForKevin"
-                            aria-checked="false">
+                            aria-checked="false"/>
                     </div>
                     <div class="form-check" id="paidFor">
                         <label class="form-check-label" for="paidForMichelle">
@@ -133,11 +99,11 @@
                             type="checkbox"
                             value="Michelle"
                             id="paidForMichelle"
-                            aria-checked="false">
+                            aria-checked="false"/>
                     </div>
                 </div>
 
-                <!-- date filter -->
+                {/* <!-- date filter --> */}
                 <div class="col-md-5 mb-4">
                     <label for="date" class="form-label">Date</label>
                     <div class="input-group" id="date">
@@ -151,7 +117,7 @@
                     </div>
                 </div>
 
-                <!-- category select -->
+                {/* <!-- category select --> */}
                 <div class="col-md-3 mb-4">
                     <label for="categorySelect" class="form-label">Category</label>
                     <select class="form-select" id="categorySelect" aria-label="select category">
@@ -165,32 +131,13 @@
                     </select>
                 </div>     
 
-                <!-- apply filters button -->
+                {/* <!-- apply filters button --> */}
                 <div class="d-flex justify-content-end align-items-center col-12">
                     <button class="btn btn-primary me-2" type="submit">Apply</button>
                     <button class="btn btn-primary me-2" type="submit">Clear</button>
                     <a href="index.html"><span class="me-2" type="submit">Cancel</span></a>
                 </div>
-
             </div>
          </div>
-    </main>
-    
-    <footer class="mt-5">
-        <div class="d-flex flex-column align-items-center">
-            <div class="footer-links">
-                <p>
-                    <a href="#" aria-label="Home" class="px-1">Home</a>
-                    <a href="#" aria-label="About"class="px-1">About</a>
-                    <a href="#" aria-label="FAQ" class="px-1">Frequently Asked Questions</a>
-                </p>         
-            </div>
-            <p>TripSplit <a href="https://github.com/info340-su24/travel-expenses-B7"><img class="github" src="image/github-icon.svg" alt="github icon"></a></p>
-            <p class="text-center">
-                Created by Robert Bonglamphone, Emma Esteban, and Nick Chiu<br>
-                Part of University of Washington course INFO 340
-            </p>            
-        </div>
-    </footer>
-</body>
-</html>
+    )
+}

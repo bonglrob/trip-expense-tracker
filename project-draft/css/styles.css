@@ -225,6 +225,7 @@ div.card {
     background-color: var(--color-primary);
     color: var(--color-text-on);
     border-color: var(--color-text-on);
+    box-shadow: none;
 
     .card-title {
         color: inherit;
@@ -245,6 +246,7 @@ div.card {
     background-color: var(--color-container-primary-bright);
     color: var(--color-container-primary-on);
     border-color: var(--color-container-primary);
+    box-shadow: none;
 }
 
 .create-trip-card .card-title {
