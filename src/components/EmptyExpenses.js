@@ -10,7 +10,7 @@ export default function EmptyExpenses() {
                         <div class="card-body">
                             <h2 class="card-title">No Expenses Yet</h2>
                             <p class="card-text">Get started by adding your first expense!</p>
-                            <a href="#" aria-label="Create Expense" class="btn btn-primary d-flex align-items-center"><icon class="material-symbols-outlined me-2">checkbook</icon>Create Expense</a>
+                            <a href="#" class="btn btn-primary d-flex align-items-center"><icon class="material-symbols-outlined me-2">checkbook</icon>Create Expense</a>
                         </div>
                     </div>
                 </div>

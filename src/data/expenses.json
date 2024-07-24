@@ -1,0 +1,38 @@
+[
+    {
+        "expenseName": "Jajangmyeon Restaurant",
+        "category": "food",
+        "cost": 40.09,
+        "altCurrencyCost": 55423,
+        "date": "7/18/24",
+        "paidByName": "Kara",
+        "paidForName": ["Kevin", "Michelle", "Josh", "Kara"]
+    },
+    {
+        "expenseName": "Ttbeokki",
+        "category": "food",
+        "cost": 5.08,
+        "altCurrencyCost": 7000,
+        "date": "7/17/24",
+        "paidByName": "Kara",
+        "paidForName": ["Michelle"]
+    },
+    {
+        "expenseName": "Mangwon Market",
+        "category": "food",
+        "cost": 13.58,
+        "altCurrencyCost": 18700,
+        "date": "7/15/24",
+        "paidByName": "Kara",
+        "paidForName": ["Kevin", "Michelle"]
+    },
+    {
+        "expenseName": "Airbnb grocery haul",
+        "category": "food",
+        "cost": 16.12,
+        "altCurrencyCost": 22200,
+        "date": "7/12/24",
+        "paidByName": "Kara",
+        "paidForName": ["Kevin", "Michelle", "Josh", "Kara"]
+    }
+]
