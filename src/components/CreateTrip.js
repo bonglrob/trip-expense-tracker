@@ -1,41 +1,37 @@
+import React, { useState } from 'react';
+
+// Main CreateTrip component
 export default function CreateTrip(props) {
     return (
         <div className="container mt-4">
             <h1 className="color-primary">Create Trip</h1>
             
-            {/* Box */}
             <div className="row">
                 <div className="col">
                     <form className="card create-trip">
-                        {/* image */}
-                        <img src="image/group-trip-cropped.jpg" alt="Friends hugging and sitting toward the water." className="create-trip-img"></img>
+                        {/* Image */}
+                        <img src="image/group-trip-cropped.jpg" alt="Friends hugging and sitting toward the water." className="create-trip-img" />
                         
-                        {/* form */}
                         <div className="card-body">
-
-                            {/* trip inputs */}
                             <div className="row mx-0">
-
-                                {/* trip name and members */}
                                 <div className="col">
+                                    {/* TripName component */}
                                     <TripName />
+                                    
+                                    {/* Members component */}
                                     <Members />
                                 </div>
-
-                                {/* start date and currency */}
                                 <div className="col">
+                                    {/* StartDate component */}
                                     <StartDate />
+                                    
+                                    {/* Currency component */}
                                     <Currency />
                                 </div>
-
                             </div>
                             
-                            {/* create, cancel */}
+                            {/* Finish buttons for Create and Cancel */}
                             <FinishButtons />
-                            
-                            {/* // save, delete, cancel
-                            <SettingsFinishButtons /> */}
-
                         </div>
                     </form>
                 </div>
@@ -44,9 +40,8 @@ export default function CreateTrip(props) {
     );
 }
 
+// Component for Trip Name input field
 function TripName(props) {
-
-
     return (
         <div className="row px-0">
             <div className="card-title">Name</div>
@@ -57,28 +52,67 @@ function TripName(props) {
     );
 }
 
+// Members component to manage members input fields
 function Members(props) {
-    
+    // State to manage the list of members
+    const [members, setMembers] = useState(['Gabriella', 'Troy']);
+
+    // Function to add a new member input field
+    const handleAddMember = () => {
+        setMembers([...members, '']);
+    };
+
+    // Function to remove a member input field by index
+    const handleRemoveMember = (index) => {
+        const newMembers = members.filter((_, memberIndex) => memberIndex !== index);
+        setMembers(newMembers);
+    };
+
+    // Function to update the member name based on user input
+    const handleMemberChange = (index, event) => {
+        const newMembers = members.map((member, memberIndex) => {
+            if (index === memberIndex) {
+                return event.target.value;
+            }
+            return member;
+        });
+        setMembers(newMembers);
+    };
+
     return (
         <div className="row px-0">
             <div className="card-title">Members</div>
-            <div className="d-flex">
-                <input className="form-control" id="" name="member" placeholder="Gabriella"></input>
-                <span className="material-symbols-outlined">delete</span>
+            {/* Render each member input field */}
+            {members.map((member, index) => (
+                <div className="d-flex mb-2" key={index}>
+                    <input
+                        className="form-control"
+                        id=""
+                        name="member"
+                        value={member}
+                        onChange={(e) => handleMemberChange(index, e)}
+                        placeholder={`Member ${index + 1}`}
+                    />
+                    {/* Delete icon to remove member input */}
+                    <span
+                        className="material-symbols-outlined"
+                        onClick={() => handleRemoveMember(index)}
+                        style={{ cursor: 'pointer' }}
+                    >
+                        delete
+                    </span>
+                </div>
+            ))}
+            {/* Add button to add new member input */}
+            <div className="flex-row mx-0 d-flex">
+                <button className="btn btn-tertiary" type="button" onClick={handleAddMember}>Add</button>
             </div>
-            <div className="d-flex">
-                <input className="form-control" id="" name="member" placeholder="Troy"></input>
-                <span className="material-symbols-outlined">delete</span>
-            </div>
-            <div className=" flex-row mx-0 d-flex">
-                <button className="btn btn-tertiary" type="button">Add</button>    
-            </div>                                        
         </div>
     );
 }
 
+// Component for Start Date input field
 function StartDate(props) {
-    
     return (
         <div className="row px-0">
             <div className="card-title">Start Date</div>
@@ -89,8 +123,8 @@ function StartDate(props) {
     );
 }
 
+// Component for Currency dropdown
 function Currency(props) {
-    
     return (
         <div className="row px-0">
             <div className="card-title">Currency of Home Country</div>
@@ -98,7 +132,6 @@ function Currency(props) {
                 <a className="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Currency
                 </a>
-
                 <ul className="dropdown-menu">
                     <li><a className="dropdown-item" href="#">$</a></li>
                     <li><a className="dropdown-item" href="#">--</a></li>
@@ -109,8 +142,8 @@ function Currency(props) {
     );
 }
 
+// Component for Finish buttons (Create and Cancel)
 function FinishButtons(props) {
-
     return (
         <div className="flex-row mx-0 d-flex justify-content-end">
             <a href="expenses-filled.html" aria-label="to-expenses">
@@ -119,18 +152,4 @@ function FinishButtons(props) {
             <a href="my-trips.html" aria-label="to-trips" className="btn btn-cancel">Cancel</a>
         </div>
     );
-} 
-
-// function SettingsFinishButtons(props) {
-//     return (
-//         <div className="flex-row mx-0 d-flex justify-content-end">
-//             <a href="#" aria-label="to-expenses">
-//                 <button className="btn btn-primary" type="submit">Save</button>
-//             </a>
-//             <a href="my-trips.html" aria-label="to-trips">
-//                 <button className="btn btn-delete" type="button">Delete</button>
-//             </a>
-//             <a href="settings.html" aria-label="to-trips" className="btn btn-cancel">Cancel</a>
-//         </div>
-//     );
-// }
+}
