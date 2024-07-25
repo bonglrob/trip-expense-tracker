@@ -28,6 +28,7 @@ export default function CreateTrip(props) {
                                     
                                     {/* Currency component */}
                                     <Currency />
+                                    
                                     <AltCurrency />
                                 </div>
                             </div>

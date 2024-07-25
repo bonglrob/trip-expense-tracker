@@ -69,7 +69,7 @@ export default function MyTrips() {
         </main>    
     ); 
 }
-/*
+
 function TripCard(props) {
 
     return (
@@ -86,4 +86,3 @@ function TripCard(props) {
         </a>
     );
 }
-    */
