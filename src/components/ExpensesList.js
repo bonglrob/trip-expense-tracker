@@ -13,7 +13,6 @@ export default function ExpensesList({expensesData}) {
 }
 
 function ExpenseCard({expense}) {
-    console.log("data", expense);
     const {expenseName, paidForName, paidByName, cost, altCurrencyCost, date} = expense;
     const paidByNameString = paidForName.join(", ");
 
