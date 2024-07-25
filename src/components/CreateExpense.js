@@ -1,4 +1,4 @@
-export default function CreateExpense() {
+export default function CreateExpense(props) {
     return (
         <div class="container mt-4">
             <div class="d-flex align-items-center"><h1>New Expense</h1></div>
@@ -121,7 +121,7 @@ export default function CreateExpense() {
                 <textarea class="form-control" id="notes"></textarea>
             </div>
 
-            {/* <!-- submit button --> */}
+            {/* <!-- submit form button --> */}
             <div class="d-flex align-items-center col-12">
               <button class="btn btn-primary me-3" type="submit">Create</button>
               <a href="index.html" class="text-decoration-none"><span class="me-2" type="submit">Cancel</span></a>

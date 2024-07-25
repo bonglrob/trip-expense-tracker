@@ -89,17 +89,17 @@ export default function MyTrips() {
 
 // function TripCard(props) {
 
-//     return (
-//         <div className="card trip-card">
-//             <a href="expenses-filled.html">
-//                 <div className="card-body">
-//                     <div className="card-title">{tripName}</div>
-//                     <div className="row">
-//                         <div className="col card-text">{numMembers}</div>
-//                         <div className="col card-text text-end">{startDate}</div>
-//                     </div>
-//                 </div>
-//             </a>
-//         </div>
-//     );
-// }
+    return (
+        <div className="card trip-card">
+            <a href="expenses-filled.html">
+                <div className="card-body">
+                    <div className="card-title">{{/*tripName*/}}</div> 
+                    <div className="row">
+                        <div className="col card-text">{/*numMembers*/}</div>
+                        <div className="col card-text text-end">{/*startDate*/}</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    );
+}
