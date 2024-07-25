@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 export default function CreateTrip(props) {
+
     return (
         <div className="container mt-4">
             <h1 className="color-primary">Create Trip</h1>
@@ -26,6 +29,7 @@ export default function CreateTrip(props) {
                                 <div className="col">
                                     <StartDate />
                                     <Currency />
+                                    <AltCurrency />
                                 </div>
 
                             </div>
@@ -90,21 +94,32 @@ function StartDate(props) {
 }
 
 function Currency(props) {
+
+    const [mainCurrency, setMainCurrency] = useState("$");
     
     return (
-        <div className="row px-0">
-            <div className="card-title">Currency of Home Country</div>
-            <div className="dropdown">
-                <a className="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Currency
-                </a>
+        <div className="col-6 px-0">
+            <label for="mainCurrency" class="form-label">Currency of Home Country</label>
+            <select class="form-select" id="categorySelect">
+                <option disabled value="">Choose...</option>
+                <option selected value={mainCurrency}>$</option>
+                <option value="$">$</option>
+            </select>
+        </div>
+    );
+}
+function AltCurrency(props) {
 
-                <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">$</a></li>
-                    <li><a className="dropdown-item" href="#">--</a></li>
-                    <li><a className="dropdown-item" href="#">--</a></li>
-                </ul>
-            </div>
+    const [altCurrency, setAltCurrency] = useState("₩");
+    
+    return (
+        <div className="col-6 px-0">
+            <label for="mainCurrency" class="form-label">Currency of Visiting Country</label>
+            <select class="form-select" id="categorySelect">
+                <option disabled value="">Choose...</option>
+                <option selected value={altCurrency}>{altCurrency}</option>
+                <option value="¥">¥</option>
+            </select>
         </div>
     );
 }

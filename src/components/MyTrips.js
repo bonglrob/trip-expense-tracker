@@ -76,10 +76,10 @@ function TripCard(props) {
         <a href="expenses-filled.html">
             <div className="card trip-card">
                 <div className="card-body">
-                    <div className="card-title">{tripName}</div>
+                    <div className="card-title">{{/*tripName*/}}</div> 
                     <div className="row">
-                        <div className="col card-text">{numMembers}</div>
-                        <div className="col card-text text-end">{startDate}</div>
+                        <div className="col card-text">{/*numMembers*/}</div>
+                        <div className="col card-text text-end">{/*startDate*/}</div>
                     </div>
                 </div>
             </div>
