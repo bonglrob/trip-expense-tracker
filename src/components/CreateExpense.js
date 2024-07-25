@@ -1,4 +1,4 @@
-export default function CreateExpense() {
+export default function CreateExpense(props) {
     return (
         <div class="container mt-4">
             <div class="d-flex align-items-center"><h1>New Expense</h1></div>

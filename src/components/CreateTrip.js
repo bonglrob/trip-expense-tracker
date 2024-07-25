@@ -19,7 +19,6 @@ export default function CreateTrip(props) {
                                     {/* TripName component */}
                                     <TripName />
                                     
-                                    {/* Members component */}
                                     <Members />
                                 </div>
                                 <div className="col">
@@ -28,7 +27,7 @@ export default function CreateTrip(props) {
                                     
                                     {/* Currency component */}
                                     <Currency />
-                                    
+
                                     <AltCurrency />
                                 </div>
                             </div>
@@ -130,14 +129,19 @@ function StartDate(props) {
 function Currency(props) {
 
     const [mainCurrency, setMainCurrency] = useState("$");
+
+    function handleSelectChange(event) {
+        console.log("ive been selected", event.target.value);
+        return event.target.value;
+    }
     
     return (
         <div className="col-6 px-0">
             <label for="mainCurrency" class="form-label">Currency of Home Country</label>
-            <select class="form-select" id="categorySelect">
+            <select class="form-select" id="categorySelect" onClick={handleSelectChange}>
                 <option disabled value="">Choose...</option>
                 <option selected value={mainCurrency}>$</option>
-                <option value="$">$</option>
+                <option value="Yen">Yen</option>
             </select>
         </div>
     );
