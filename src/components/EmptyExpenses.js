@@ -3,8 +3,6 @@ export default function EmptyExpenses() {
         <div class="container mt-4">
             <h1 class="color-primary">Korea</h1>
             <div class="row">
-
-        {/* <Navbar /> */}
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
