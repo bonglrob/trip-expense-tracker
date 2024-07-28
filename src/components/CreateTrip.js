@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { CurrencySelect } from "./CurrencySelect.js";
+import { AltCurrencySelect } from './AltCurrencySelect.js';
 
 // Main CreateTrip component
-export default function CreateTrip(props) {
+export default function CreateTrip({ currencyNames, mainCurrency, mainCurrencyCallback, altCurrency, altCurrencyCallback }) {
 
     return (
         <div className="container mt-4">
@@ -25,10 +27,13 @@ export default function CreateTrip(props) {
                                     {/* StartDate component */}
                                     <StartDate />
                                     
-                                    {/* Currency component */}
-                                    <Currency />
+                                    <div className="col-7 px-0">
+                                        <CurrencySelect currencyNames={currencyNames} mainCurrency={mainCurrency} mainCurrencyCallback={mainCurrencyCallback} />
+                                    </div>
 
-                                    <AltCurrency />
+                                    <div className="col-7 px-0">
+                                        <AltCurrencySelect currencyNames={currencyNames} altCurrency={altCurrency} altCurrencyCallback={altCurrencyCallback}/>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -125,42 +130,6 @@ function StartDate(props) {
     );
 }
 
-// Component for Currency dropdown
-function Currency(props) {
-
-    const [mainCurrency, setMainCurrency] = useState("$");
-
-    function handleSelectChange(event) {
-        console.log("ive been selected", event.target.value);
-        return event.target.value;
-    }
-    
-    return (
-        <div className="col-6 px-0">
-            <label for="mainCurrency" class="form-label">Currency of Home Country</label>
-            <select class="form-select" id="categorySelect" onClick={handleSelectChange}>
-                <option disabled value="">Choose...</option>
-                <option selected value={mainCurrency}>$</option>
-                <option value="Yen">Yen</option>
-            </select>
-        </div>
-    );
-}
-function AltCurrency(props) {
-
-    const [altCurrency, setAltCurrency] = useState("₩");
-    
-    return (
-        <div className="col-6 px-0">
-            <label for="mainCurrency" class="form-label">Currency of Visiting Country</label>
-            <select class="form-select" id="categorySelect">
-                <option disabled value="">Choose...</option>
-                <option selected value={altCurrency}>{altCurrency}</option>
-                <option value="¥">¥</option>
-            </select>
-        </div>
-    );
-}
 
 // Component for Finish buttons (Create and Cancel)
 function FinishButtons(props) {
