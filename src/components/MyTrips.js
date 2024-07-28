@@ -2,7 +2,22 @@ export default function MyTrips() {
     return (
         <main className="flex-grow-1">
             <div className="container mt-4">
-                <h1 className="color-primary">Trips</h1>
+                
+                {/* Title and Create Trip Button */}
+                <div class="row">
+                    <div class="col">
+                        <h1 class="color-primary">Trips</h1>
+                    </div>
+                    <div class="col">
+                        <div class="card create-trip-card">
+                            <a href="create-trip.html">
+                                <div class="card-body d-flex justify-content-center  align-items-center">
+                                    <div class="card-title m-0">Create Trip +</div>
+                                </div>
+                            </a>
+                        </div>                    
+                    </div>
+                </div>
                 
                 {/* Box */}
                 <div className="row">
@@ -14,8 +29,8 @@ export default function MyTrips() {
                         <TripCard tripObj=""/>
                          */}
 
-                        <a href="expenses-filled.html">
-                            <div className="card trip-card">
+                        <div className="card trip-card">
+                            <a href="expenses-filled.html">
                                 <div className="card-body">
                                     <div className="card-title">Korea</div>
                                     <div className="row">
@@ -23,17 +38,19 @@ export default function MyTrips() {
                                         <div className="col card-text text-end">12/20/2023</div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
 
                         <div className="card trip-card">
-                            <div className="card-body">
-                                <div className="card-title">London</div>
-                                <div className="row">
-                                    <div className="col card-text">2 Members</div>
-                                    <div className="col card-text text-end">12/20/2023</div>
+                            <a href="expenses-filled.html">
+                                <div className="card-body">
+                                    <div className="card-title">London</div>
+                                    <div className="row">
+                                        <div className="col card-text">2 Members</div>
+                                        <div className="col card-text text-end">12/20/2023</div>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
 
                         <div className="card trip-card">
@@ -70,11 +87,11 @@ export default function MyTrips() {
     ); 
 }
 
-function TripCard(props) {
+// function TripCard(props) {
 
     return (
-        <a href="expenses-filled.html">
-            <div className="card trip-card">
+        <div className="card trip-card">
+            <a href="expenses-filled.html">
                 <div className="card-body">
                     <div className="card-title">{{/*tripName*/}}</div> 
                     <div className="row">
@@ -82,7 +99,7 @@ function TripCard(props) {
                         <div className="col card-text text-end">{/*startDate*/}</div>
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
     );
 }

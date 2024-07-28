@@ -1,0 +1,31 @@
+[
+    {
+        "tripName": "Korea",
+        "members": ["Kevin", "Michelle", "Josh", "Kara"],
+        "startDate": "12/20/2023",
+        "currency": ["$"]
+
+    },
+    {
+        "tripName": "London",
+        "members": ["Kevin", "Noel", "Joseph"],
+        "startDate": "11/20/2022",
+        "currency": ["$"]
+
+    },
+    {
+        "tripName": "Seattle | Portland",
+        "members": ["Kevin", "Michelle", "Joel", "Tracy"],
+        "startDate": "12/15/2023",
+        "currency": ["$", "¥"]
+
+    },
+    {
+        "tripName": "Mexico",
+        "members": ["Kevin", "Josh"],
+        "startDate": "10/25/2024",
+        "currency": ["$"]
+
+    }
+
+]
