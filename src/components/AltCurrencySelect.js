@@ -1,4 +1,4 @@
-export function AltCurrencySelect({ currencyNames, altCurrency, altCurrencyCallback }) {
+export function AltCurrencySelect({ currencyOptions, altCurrency, altCurrencyCallback }) {
 
     // set alt currency for the trip
     function handleChange(event) {
@@ -6,8 +6,8 @@ export function AltCurrencySelect({ currencyNames, altCurrency, altCurrencyCallb
     }
 
     // populate currency select options
-    const optionElems = Object.keys(currencyNames).map(currencyName => {
-        return <option key={currencyName} selected={(currencyName === "KRW")} value={currencyName}>{currencyName}: {currencyNames[currencyName]}</option>
+    const optionElems = Object.keys(currencyOptions).map(currencyName => {
+        return <option key={currencyName} selected={(currencyName === "KRW")} value={currencyName}>{currencyName}: {currencyOptions[currencyName]}</option>
     });
     
     return (

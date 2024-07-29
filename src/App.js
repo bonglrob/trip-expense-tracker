@@ -32,8 +32,8 @@ export default function App({expenses, currencyNames}) {
           <Route path="/emptybalances" element={<EmptyBalances />} />
           <Route path="/filledbalances" element={<FilledBalances />} />
           <Route path="/stats" element={<Stats />} />
-          <Route path="/createexpense" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} />
           <Route path="/expenses" element={<Expenses expensesData={expensesData} />} />
+          <Route path="/expenses/create" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} />
           <Route path="/filterexpenses" element={<FilterExpenses />} />
           <Route path="/mytrips" element={<MyTrips />} />
           <Route path="/createtrip" element={<CreateTrip currencyNames={currencyNames} mainCurrencyCallback={mainCurrencySet} altCurrency={altCurrency} altCurrencyCallback={altCurrencySet} />} />

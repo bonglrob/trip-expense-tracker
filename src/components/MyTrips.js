@@ -87,8 +87,7 @@ export default function MyTrips() {
     ); 
 }
 
-// function TripCard(props) {
-
+function TripCard(props) {
     return (
         <div className="card trip-card">
             <a href="expenses-filled.html">

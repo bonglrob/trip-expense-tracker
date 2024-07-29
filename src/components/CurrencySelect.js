@@ -1,4 +1,4 @@
-export function CurrencySelect({ currencyNames, mainCurrency, mainCurrencyCallback }) {
+export function CurrencySelect({ currencyOptions, mainCurrency, mainCurrencyCallback }) {
 
     // set main currency for the trip
     function handleChange(event) {
@@ -6,8 +6,8 @@ export function CurrencySelect({ currencyNames, mainCurrency, mainCurrencyCallba
     }
 
     // populate currency select options
-    const optionElems = Object.keys(currencyNames).map(currencyName => {
-        return <option key={currencyName} selected={(currencyName === "USD")} value={currencyName}>{currencyName}: {currencyNames[currencyName]}</option>
+    const optionElems = Object.keys(currencyOptions).map(currencyName => {
+        return <option key={currencyName} selected={(currencyName === "USD")} value={currencyName}>{currencyName}: {currencyOptions[currencyName]}</option>
     });
     
     return (

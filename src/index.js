@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 import CURRENCIES_NAMES from "./data/currencyNames.json";
-import SAMPLE_EXPENSES from "./data/expenses.json";
+import SAMPLE_EXPENSES from "./data/emptyExpenses.json";
 
   // Fetch Frankfurther API: https://github.com/hakanensari/frankfurter
   // const host = 'api.frankfurter.app';

@@ -28,11 +28,11 @@ export default function CreateTrip({ currencyNames, mainCurrency, mainCurrencyCa
                                     <StartDate />
                                     
                                     <div className="col-7 px-0">
-                                        <CurrencySelect currencyNames={currencyNames} mainCurrency={mainCurrency} mainCurrencyCallback={mainCurrencyCallback} />
+                                        <CurrencySelect currencyOptions={currencyNames} mainCurrency={mainCurrency} mainCurrencyCallback={mainCurrencyCallback} />
                                     </div>
 
                                     <div className="col-7 px-0">
-                                        <AltCurrencySelect currencyNames={currencyNames} altCurrency={altCurrency} altCurrencyCallback={altCurrencyCallback}/>
+                                        <AltCurrencySelect currencyOptions={currencyNames} altCurrency={altCurrency} altCurrencyCallback={altCurrencyCallback}/>
                                     </div>
                                 </div>
                             </div>
