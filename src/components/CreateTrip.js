@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CurrencySelect } from "./CurrencySelect.js";
 import { AltCurrencySelect } from './AltCurrencySelect.js';
+import { useNavigate, Link } from 'react-router-dom';
 
 // Main CreateTrip component
 export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCurrencyCallback, setMembersCallback }) {
@@ -10,6 +11,14 @@ export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCur
         const members = []; // Example members data
         setMembersCallback(members); // Call the callback with members data
     };
+    
+    function handleSubmit(event) {
+        event.preventDefault();
+        // submit currency
+        // submit altcurrency
+        // submit members
+        // addExpense(currency, altCurrency, members);
+    }
 
     return (
         <div className="container mt-4">
@@ -17,7 +26,7 @@ export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCur
             
             <div className="row">
                 <div className="col">
-                    <form className="card create-trip">
+                    <form className="card create-trip" onSubmit={handleSubmit}>
                         {/* Image */}
                         <img src="image/group-trip-cropped.jpg" alt="Friends hugging and sitting toward the water." className="create-trip-img" />
                         
@@ -44,7 +53,7 @@ export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCur
                             </div>
                             
                             {/* Finish buttons for Create and Cancel */}
-                            <FinishButtons handleCreateTrip={handleCreateTrip} />
+                            <FinishButtons handleCreateTrip={handleCreateTrip} sendTripDataCallback={sendTripDataCallback} />
                         </div>
                     </form>
                 </div>
@@ -55,11 +64,17 @@ export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCur
 
 // Component for Trip Name input field
 function TripName(props) {
+    const [tripName, setTripName] = useState('');
+
+    const handleNameChange = (event) => {
+        setTripName(event.target.value);
+    };
+
     return (
         <div className="row px-0">
             <div className="card-title">Name</div>
             <div>
-                <input className="form-control" id="" name="Name" placeholder="Korea"></input>
+                <input className="form-control" id="" name="Name" placeholder="Korea" onChange={handleNameChange} value={tripName}></input>
             </div>
         </div>
     );
@@ -126,11 +141,19 @@ function Members(props) {
 
 // Component for Start Date input field
 function StartDate(props) {
+
+    const [startDate, setStartDate] = useState('');
+    console.log(startDate);
+
+    const handleStartDateChange = (event) => {
+        setStartDate(event.target.value);
+    };
+
     return (
         <div className="row px-0">
             <div className="card-title">Start Date</div>
             <div>
-                <input className="form-control" id="" name="Start-Date" type="date"></input>
+                <input className="form-control" id="" name="Start-Date" type="date" onChange={handleStartDateChange} value={startDate}></input>
             </div>
         </div>
     );
@@ -138,11 +161,21 @@ function StartDate(props) {
 
 
 // Component for Finish buttons (Create and Cancel)
-function FinishButtons({ handleCreateTrip }) {
+function FinishButtons({ sendTripDataCallback, handleCreateTrip }) {
+    const navigate = useNavigate();
+
+    function handleSubmit(event) {
+        console.log(event);
+        event.preventDefault();
+        // sendTripDataCallback(currency, altCurrency);
+
+        navigate("/expenses");
+    }
+
     return (
         <div className="flex-row mx-0 d-flex justify-content-end">
-            <button className="btn btn-primary" type="submit" onClick={handleCreateTrip}>Create</button>
-            <a href="my-trips.html" aria-label="to-trips" className="btn btn-cancel">Cancel</a>
+            <button id="submitButton" type="submit" className="btn btn-primary" onClick={handleSubmit}>Create</button>
+            <Link to="/mytrips" className="btn btn-cancel">Cancel</Link>
         </div>
     );
 }

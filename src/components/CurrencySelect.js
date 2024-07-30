@@ -29,7 +29,7 @@ export function CurrencySelect({ currencyOptions, mainCurrencyCallback }) {
     
     return (
         <>
-            <label for="mainCurrency" className="form-label">Currency of Home Country</label>
+            <label htmlFor="mainCurrency" className="form-label">Currency of Home Country</label>
             <Select 
                 id="mainCurrency"
                 defaultValue={options[29]}

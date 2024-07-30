@@ -1,4 +1,4 @@
-export default function ExpensesList({expensesData}) {
+export default function ExpensesList({ expensesData }) {
     let expenseCardArray = expensesData.map((expense) => {
         const transformed = (
             <ExpenseCard expense={expense}/>
@@ -12,7 +12,7 @@ export default function ExpensesList({expensesData}) {
     )
 }
 
-function ExpenseCard({expense}) {
+function ExpenseCard({ expense }) {
     const {expenseName, paidForName, paidByName, cost, altCurrencyCost, date} = expense;
     const paidByNameString = paidForName.join(", ");
 
