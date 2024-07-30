@@ -3,7 +3,13 @@ import { CurrencySelect } from "./CurrencySelect.js";
 import { AltCurrencySelect } from './AltCurrencySelect.js';
 
 // Main CreateTrip component
-export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCurrencyCallback }) {
+export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCurrencyCallback, setMembersCallback }) {
+
+    const handleCreateTrip = () => {
+        // Collect members data
+        const members = []; // Example members data
+        setMembersCallback(members); // Call the callback with members data
+    };
 
     return (
         <div className="container mt-4">
@@ -38,7 +44,7 @@ export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCur
                             </div>
                             
                             {/* Finish buttons for Create and Cancel */}
-                            <FinishButtons />
+                            <FinishButtons handleCreateTrip={handleCreateTrip} />
                         </div>
                     </form>
                 </div>
@@ -132,12 +138,10 @@ function StartDate(props) {
 
 
 // Component for Finish buttons (Create and Cancel)
-function FinishButtons(props) {
+function FinishButtons({ handleCreateTrip }) {
     return (
         <div className="flex-row mx-0 d-flex justify-content-end">
-            <a href="expenses-filled.html" aria-label="to-expenses">
-                <button className="btn btn-primary" type="submit">Create</button>
-            </a>
+            <button className="btn btn-primary" type="submit" onClick={handleCreateTrip}>Create</button>
             <a href="my-trips.html" aria-label="to-trips" className="btn btn-cancel">Cancel</a>
         </div>
     );

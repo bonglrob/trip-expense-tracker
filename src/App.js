@@ -15,8 +15,12 @@ export default function App({expenses, currencyNames}) {
 
   const [mainCurrency, setMainCurrency] = useState("USD");
   const [altCurrency, setAltCurrency] = useState("KRW");
+  const [members, setMembers] = useState([]); // New state to hold members array
+  const numMembers = members.length
+
   console.log(mainCurrency);
   console.log(altCurrency);
+  console.log(members); // Add this to log the members array
 
   function mainCurrencySet(currency) {
     setMainCurrency(currency);
@@ -39,8 +43,8 @@ export default function App({expenses, currencyNames}) {
             {/* <Route path="/expenses/:expenseId" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} /> */}
           </Route>
           <Route path="/expenses/create" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} />
-          <Route path="/mytrips" element={<MyTrips />} />
-          <Route path="/createtrip" element={<CreateTrip currencyNames={currencyNames} mainCurrencyCallback={mainCurrencySet} altCurrencyCallback={altCurrencySet} />} />
+          <Route path="/mytrips" element={<MyTrips numMembers={numMembers}/>} />
+          <Route path="/createtrip" element={<CreateTrip currencyNames={currencyNames} mainCurrencyCallback={mainCurrencySet} altCurrencyCallback={altCurrencySet} setMembersCallback={setMembers} />} />
           <Route path="/*" element={<Navigate to="/expenses" />} />
         </Routes>
       </main>
