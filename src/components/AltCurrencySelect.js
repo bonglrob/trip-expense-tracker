@@ -28,7 +28,7 @@ export function AltCurrencySelect({ currencyOptions, altCurrencyCallback }) {
     
     return (
         <>
-            <label for="altCurrency" className="form-label">Currency of Visiting Country</label>
+            <label htmlFor="altCurrency" className="form-label">Currency of Visiting Country</label>
             <Select 
                 id="altCurrency"
                 defaultValue={options[17]}

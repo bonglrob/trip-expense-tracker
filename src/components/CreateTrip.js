@@ -57,11 +57,17 @@ export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCur
 
 // Component for Trip Name input field
 function TripName(props) {
+    const [tripName, setTripName] = useState('');
+
+    const handleNameChange = (event) => {
+        setTripName(event.target.value);
+    };
+
     return (
         <div className="row px-0">
             <div className="card-title">Name</div>
             <div>
-                <input className="form-control" id="" name="Name" placeholder="Korea"></input>
+                <input className="form-control" id="" name="Name" placeholder="Korea" onChange={handleNameChange} value={tripName}></input>
             </div>
         </div>
     );
@@ -128,11 +134,19 @@ function Members(props) {
 
 // Component for Start Date input field
 function StartDate(props) {
+
+    const [startDate, setStartDate] = useState('');
+    console.log(startDate);
+
+    const handleStartDateChange = (event) => {
+        setStartDate(event.target.value);
+    };
+
     return (
         <div className="row px-0">
             <div className="card-title">Start Date</div>
             <div>
-                <input className="form-control" id="" name="Start-Date" type="date"></input>
+                <input className="form-control" id="" name="Start-Date" type="date" onChange={handleStartDateChange} value={startDate}></input>
             </div>
         </div>
     );

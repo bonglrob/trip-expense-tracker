@@ -6,13 +6,13 @@ export function CreateExpenseForm({ mainCurrency, altCurrency }) {
 
         <form className="row g-3">
             <div className="col-md-4">
-              <label for="expenseName" className="form-label">Name</label>
+              <label htmlFor="expenseName" className="form-label">Name</label>
               <input id="expenseName" type="text" className="form-control" placeholder="Jajangmyeon Restaurant" required/>
             </div>
 
             {/* <!-- date select field --> */}
             <div className="col-md-4">
-                <label for="date" className="form-label">Date</label>
+                <label htmlFor="date" className="form-label">Date</label>
                 <div className="input-group" id="date">
                     <input
                         type="text"
@@ -26,7 +26,7 @@ export function CreateExpenseForm({ mainCurrency, altCurrency }) {
 
             {/* <!-- category dropdown --> */}
             <div className="col-md-3">
-                <label for="categorySelect" className="form-label">Category</label>
+                <label htmlFor="categorySelect" className="form-label">Category</label>
                 <select id="categorySelect" className="form-select" aria-label="expense category selector">
                   <option disabled value="">Choose...</option>
                   <option selected value="Food & Drink">Food & Drinks</option>
@@ -40,7 +40,7 @@ export function CreateExpenseForm({ mainCurrency, altCurrency }) {
            
             {/* cost input */}
             <div className="col-md-4">
-              <label for="cost" className="form-label">Cost</label>
+              <label htmlFor="cost" className="form-label">Cost</label>
               <div className="input-group" id="cost">
                 <select className="form-select" aria-label="currency selector">
                     <option value={mainCurrency} selected>{mainCurrency}</option>
@@ -52,7 +52,7 @@ export function CreateExpenseForm({ mainCurrency, altCurrency }) {
 
             {/* <!-- paid by dropdown --> */}
             <div className="col-md-3">
-                <label for="paidBySelect" className="form-label">Paid by</label>
+                <label htmlFor="paidBySelect" className="form-label">Paid by</label>
                 <select id="paidBySelect" className="form-select" aria-label="select paid by">
                   <option selected value="Kara">Kara</option>
                   <option value="Josh">Josh</option>
@@ -63,9 +63,9 @@ export function CreateExpenseForm({ mainCurrency, altCurrency }) {
 
             {/* <!-- paid for checklist --> */}
             <div className="col-md-6">
-                <label for="paidFor" className="form-label">Paid for</label>
+                <label htmlFor="paidFor" className="form-label">Paid for</label>
                 <div id="paidFor" className="form-check">
-                    <label className="form-check-label" for="paidForKara">
+                    <label className="form-check-label" htmlFor="paidForKara">
                       Kara
                     </label>
                     <input 
@@ -77,7 +77,7 @@ export function CreateExpenseForm({ mainCurrency, altCurrency }) {
                         checked/>
                 </div>
                 <div className="form-check" id="paidFor">
-                    <label className="form-check-label" for="paidForJosh">
+                    <label className="form-check-label" htmlFor="paidForJosh">
                       Josh
                     </label>
                     <input 
@@ -89,7 +89,7 @@ export function CreateExpenseForm({ mainCurrency, altCurrency }) {
                         checked/>
                 </div>
                 <div className="form-check" id="paidForKevin">
-                    <label className="form-check-label" for="paidForKevin">
+                    <label className="form-check-label" htmlFor="paidForKevin">
                       Kevin
                     </label>
                     <input 
@@ -101,7 +101,7 @@ export function CreateExpenseForm({ mainCurrency, altCurrency }) {
                         checked/>
                 </div>
                 <div className="form-check" id="paidFor">
-                    <label className="form-check-label" for="paidForMichelle">
+                    <label className="form-check-label" htmlFor="paidForMichelle">
                       Michelle
                     </label>
                     <input 
@@ -116,7 +116,7 @@ export function CreateExpenseForm({ mainCurrency, altCurrency }) {
 
             {/* <!-- notes text input --> */}
             <div className="col-12">
-                <label for="notes" className="form-label">Notes</label>
+                <label htmlFor="notes" className="form-label">Notes</label>
                 <textarea className="form-control" id="notes"></textarea>
             </div>
 
