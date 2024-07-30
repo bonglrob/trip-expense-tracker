@@ -45,7 +45,7 @@ export default function FilterExpensesForm(props) {
 
 
             <div class="input-group">
-                <label for="paidFor" className="form-label">Paid For</label>
+                <label htmlhtmlFor="paidFor" className="form-label">Paid For</label>
                 <Select
                     id="paidFor"
                     options={paidForOptions}
@@ -60,9 +60,9 @@ export default function FilterExpensesForm(props) {
             <div class="row">
                 {/* <!-- paid for --> */}
                 <div class="col-md-4">
-                    <label for="paidFor" class="form-label">Paid for</label>
+                    <label htmlFor="paidFor" class="form-label">Paid for</label>
                     <div class="form-check" id="paidFor">
-                        <label class="form-check-label" for="paidForKara">
+                        <label class="form-check-label" htmlFor="paidForKara">
                           Kara
                         </label>
                         <input
@@ -73,7 +73,7 @@ export default function FilterExpensesForm(props) {
                             aria-checked="false"/>
                     </div>
                     <div class="form-check" id="paidFor">
-                        <label class="form-check-label" for="paidForJosh">
+                        <label class="form-check-label" htmlFor="paidForJosh">
                           Josh
                         </label>
                         <input
@@ -84,7 +84,7 @@ export default function FilterExpensesForm(props) {
                             aria-checked="false"/>
                     </div>
                     <div class="form-check" id="paidForKevin">
-                        <label class="form-check-label" for="paidForKevin">
+                        <label class="form-check-label" htmlFor="paidForKevin">
                           Kevin
                         </label>
                         <input
@@ -95,7 +95,7 @@ export default function FilterExpensesForm(props) {
                             aria-checked="false"/>
                     </div>
                     <div class="form-check" id="paidFor">
-                        <label class="form-check-label" for="paidForMichelle">
+                        <label class="form-check-label" htmlFor="paidForMichelle">
                           Michelle
                         </label>
                         <input
@@ -109,9 +109,9 @@ export default function FilterExpensesForm(props) {
     
                 {/* <!-- paid by --> */}
                 <div class="col-md-4">
-                    <label for="paidFor" class="form-label">Paid for</label>
+                    <label htmlFor="paidFor" class="form-label">Paid for</label>
                     <div class="form-check" id="paidFor">
-                        <label class="form-check-label" for="paidForKara">
+                        <label class="form-check-label" htmlFor="paidForKara">
                           Kara
                         </label>
                         <input
@@ -123,7 +123,7 @@ export default function FilterExpensesForm(props) {
                             checked/>
                     </div>
                     <div class="form-check" id="paidFor">
-                        <label class="form-check-label" for="paidForJosh">
+                        <label class="form-check-label" htmlFor="paidForJosh">
                           Josh
                         </label>
                         <input
@@ -134,7 +134,7 @@ export default function FilterExpensesForm(props) {
                             aria-checked="false"/>
                     </div>
                     <div class="form-check" id="paidForKevin">
-                        <label class="form-check-label" for="paidForKevin">
+                        <label class="form-check-label" htmlFor="paidForKevin">
                           Kevin
                         </label>
                         <input
@@ -145,7 +145,7 @@ export default function FilterExpensesForm(props) {
                             aria-checked="false"/>
                     </div>
                     <div class="form-check" id="paidFor">
-                        <label class="form-check-label" for="paidForMichelle">
+                        <label class="form-check-label" htmlFor="paidForMichelle">
                           Michelle
                         </label>
                         <input
@@ -159,7 +159,7 @@ export default function FilterExpensesForm(props) {
 
                 {/* <!-- date filter --> */}
                 <div class="col-md-5 mb-4">
-                    <label for="date" class="form-label">Date</label>
+                    <label htmlFor="date" class="form-label">Date</label>
                     <div class="input-group" id="date">
                         <input
                             type="text"
@@ -173,7 +173,7 @@ export default function FilterExpensesForm(props) {
 
                 {/* <!-- category select --> */}
                 <div class="col-md-3 mb-4">
-                    <label for="categorySelect" class="form-label">Category</label>
+                    <label htmlFor="categorySelect" class="form-label">Category</label>
                     <select class="form-select" id="categorySelect" aria-label="select category">
                       <option disabled value="">Choose...</option>
                       <option selected value="Food & Drink">Food & Drinks</option>
