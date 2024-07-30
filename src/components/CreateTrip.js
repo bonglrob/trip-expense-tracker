@@ -3,7 +3,7 @@ import { CurrencySelect } from "./CurrencySelect.js";
 import { AltCurrencySelect } from './AltCurrencySelect.js';
 
 // Main CreateTrip component
-export default function CreateTrip({ currencyNames, mainCurrency, mainCurrencyCallback, altCurrency, altCurrencyCallback }) {
+export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCurrencyCallback }) {
 
     return (
         <div className="container mt-4">
@@ -28,11 +28,11 @@ export default function CreateTrip({ currencyNames, mainCurrency, mainCurrencyCa
                                     <StartDate />
                                     
                                     <div className="col-7 px-0">
-                                        <CurrencySelect currencyOptions={currencyNames} mainCurrency={mainCurrency} mainCurrencyCallback={mainCurrencyCallback} />
+                                        <CurrencySelect currencyOptions={currencyNames} mainCurrencyCallback={mainCurrencyCallback} />
                                     </div>
 
                                     <div className="col-7 px-0">
-                                        <AltCurrencySelect currencyOptions={currencyNames} altCurrency={altCurrency} altCurrencyCallback={altCurrencyCallback}/>
+                                        <AltCurrencySelect currencyOptions={currencyNames} altCurrencyCallback={altCurrencyCallback} />
                                     </div>
                                 </div>
                             </div>

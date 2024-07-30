@@ -1,7 +1,61 @@
-export default function FilterExpenses() {
+import Select from "react-select"
+
+export default function FilterExpensesForm(props) {
+    
+    // Todo: Pass members array here (hardcoded for now)
+    const members = ["Kevin", "Michelle", "Josh", "Kara"]; 
+
+    function handleChange() {
+        // update state variable ExpensesData to filter for expeneses that meet filter criteria
+    }
+
+    // currency select option color styles
+    const selectedStyles = {
+        multiValue: (provided) => ({
+            ...provided,
+            backgroundColor: "#b3f1be",
+        }),
+        multiValueLabel: (provided) => ({
+            ...provided,
+            color: "#00210c",
+        }),
+        multiValueRemove: (provided) => ({
+            ...provided,
+            color: "#00210c",
+            ":hover": {
+                backgroundColor: "#bdf3c6",
+            },
+        }),
+    }
+
+    // populate with options of "paid for" group members 
+    // Todo: replace members variable with passed props 
+    const paidForOptions = members.map((member) => ({
+        value: member,
+        label: member,
+    }));
+
     return (
         <div class="container mt-4">
-            <h1>Filters</h1>
+
+            {/* <!-- filter button --> */}
+            <div>
+                <span className="btn"><span className="material-symbols-outlined">tune</span></span>
+            </div>
+
+
+            <div class="input-group">
+                <label for="paidFor" className="form-label">Paid For</label>
+                <Select
+                    id="paidFor"
+                    options={paidForOptions}
+                    isSearchable
+                    onChange={handleChange}
+                    styles={selectedStyles}
+                    isMulti
+                />
+            </div>
+
 
             <div class="row">
                 {/* <!-- paid for --> */}

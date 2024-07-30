@@ -4,17 +4,19 @@ import EmptyBalances from './components/EmptyBalances';
 import FilledBalances from './components/FilledBalances';
 import Stats from './components/Stats';
 import { CreateExpenseForm } from './components/CreateExpenseForm.js';
-import FilterExpenses from './components/FilterExpenses.js';
+import FilterExpensesForm from './components/FiltersExpensesForm.js';
 import Expenses from './components/Expenses.js';
 import MyTrips from './components/MyTrips.js';
 import CreateTrip from './components/CreateTrip.js';
-
+import { Navigate } from 'react-router-dom';
 
 export default function App({expenses, currencyNames}) {
   const expensesData = expenses;
 
   const [mainCurrency, setMainCurrency] = useState("USD");
   const [altCurrency, setAltCurrency] = useState("KRW");
+  console.log(mainCurrency);
+  console.log(altCurrency);
 
   function mainCurrencySet(currency) {
     setMainCurrency(currency);
@@ -32,11 +34,14 @@ export default function App({expenses, currencyNames}) {
           <Route path="/emptybalances" element={<EmptyBalances />} />
           <Route path="/filledbalances" element={<FilledBalances />} />
           <Route path="/stats" element={<Stats />} />
-          <Route path="/expenses" element={<Expenses expensesData={expensesData} />} />
+          <Route path="/expenses" element={<Expenses expensesData={expensesData} />} >
+            <Route index element={<FilterExpensesForm />}></Route>
+            {/* <Route path="/expenses/:expenseId" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} /> */}
+          </Route>
           <Route path="/expenses/create" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} />
-          <Route path="/filterexpenses" element={<FilterExpenses />} />
           <Route path="/mytrips" element={<MyTrips />} />
-          <Route path="/createtrip" element={<CreateTrip currencyNames={currencyNames} mainCurrencyCallback={mainCurrencySet} altCurrency={altCurrency} altCurrencyCallback={altCurrencySet} />} />
+          <Route path="/createtrip" element={<CreateTrip currencyNames={currencyNames} mainCurrencyCallback={mainCurrencySet} altCurrencyCallback={altCurrencySet} />} />
+          <Route path="/*" element={<Navigate to="/expenses" />} />
         </Routes>
       </main>
       {/* <Footer> goes here */}
