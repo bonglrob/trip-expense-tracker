@@ -19,7 +19,7 @@ import SAMPLE_EXPENSES from "./data/expenses.json";
   //   }
   // );
 
-  // get currencies
+  // get currency names
   // fetch(`https://${host}/currencies`) 
   //   .then(resp => resp.json())
   //   .then((data) => {

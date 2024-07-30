@@ -10,7 +10,7 @@ import MyTrips from './components/MyTrips.js';
 import CreateTrip from './components/CreateTrip.js';
 import { Navigate } from 'react-router-dom';
 
-export default function App({expenses, currencyNames}) {
+export default function App({ expenses, currencyNames }) {
   const expensesData = expenses;
 
   const [mainCurrency, setMainCurrency] = useState("USD");
@@ -24,6 +24,11 @@ export default function App({expenses, currencyNames}) {
 
   function altCurrencySet(currency) {
     setAltCurrency(currency);
+  }
+
+  function sendTripData(currency, altCurrency) {
+    setMainCurrency(currency);
+    setAltCurrency(altCurrency);
   }
 
   return (
@@ -40,7 +45,7 @@ export default function App({expenses, currencyNames}) {
           </Route>
           <Route path="/expenses/create" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} />
           <Route path="/mytrips" element={<MyTrips />} />
-          <Route path="/createtrip" element={<CreateTrip currencyNames={currencyNames} mainCurrencyCallback={mainCurrencySet} altCurrencyCallback={altCurrencySet} />} />
+          <Route path="/createtrip" element={<CreateTrip currencyNames={currencyNames} mainCurrencyCallback={mainCurrencySet} altCurrencyCallback={altCurrencySet} sendTripDataCallback={sendTripData} />} />
           <Route path="/*" element={<Navigate to="/expenses" />} />
         </Routes>
       </main>

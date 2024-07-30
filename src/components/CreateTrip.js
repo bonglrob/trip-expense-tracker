@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import { CurrencySelect } from "./CurrencySelect.js";
 import { AltCurrencySelect } from './AltCurrencySelect.js';
+import { useNavigate, Link } from 'react-router-dom';
 
 // Main CreateTrip component
-export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCurrencyCallback }) {
+export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCurrencyCallback, sendTripDataCallback }) {
+    function handleSubmit(event) {
+        event.preventDefault();
+        // submit currency
+        // submit altcurrency
+        // submit members
+        // addExpense(currency, altCurrency, members);
+    }
 
     return (
         <div className="container mt-4">
@@ -11,7 +19,7 @@ export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCur
             
             <div className="row">
                 <div className="col">
-                    <form className="card create-trip">
+                    <form className="card create-trip" onSubmit={handleSubmit}>
                         {/* Image */}
                         <img src="image/group-trip-cropped.jpg" alt="Friends hugging and sitting toward the water." className="create-trip-img" />
                         
@@ -38,7 +46,7 @@ export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCur
                             </div>
                             
                             {/* Finish buttons for Create and Cancel */}
-                            <FinishButtons />
+                            <FinishButtons sendTripDataCallback={sendTripDataCallback} />
                         </div>
                     </form>
                 </div>
@@ -132,13 +140,21 @@ function StartDate(props) {
 
 
 // Component for Finish buttons (Create and Cancel)
-function FinishButtons(props) {
+function FinishButtons({ sendTripDataCallback }) {
+    const navigate = useNavigate();
+
+    function handleSubmit(event) {
+        console.log(event);
+        event.preventDefault();
+        // sendTripDataCallback(currency, altCurrency);
+
+        navigate("/expenses");
+    }
+
     return (
         <div className="flex-row mx-0 d-flex justify-content-end">
-            <a href="expenses-filled.html" aria-label="to-expenses">
-                <button className="btn btn-primary" type="submit">Create</button>
-            </a>
-            <a href="my-trips.html" aria-label="to-trips" className="btn btn-cancel">Cancel</a>
+            <button id="submitButton" type="submit" className="btn btn-primary" onClick={handleSubmit}>Create</button>
+            <Link to="/mytrips" className="btn btn-cancel">Cancel</Link>
         </div>
     );
 }
