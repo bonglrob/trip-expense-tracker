@@ -4,7 +4,7 @@ import { AltCurrencySelect } from './AltCurrencySelect.js';
 import { useNavigate, Link } from 'react-router-dom';
 
 // Main CreateTrip component
-export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCurrencyCallback, setMembersCallback }) {
+export default function CreateTrip({ currencyNames, mainCurrencyCallback, altCurrencyCallback, setMembersCallback, sendTripDataCallback}) {
 
     const handleCreateTrip = () => {
         // Collect members data
