@@ -274,7 +274,7 @@ div.card {
   display: block;
   padding-top: 8rem;
   padding-bottom: 8rem;
-  /* background-image: url('../image/plane.jpg'); */
+  background-image: url('../public/image/plane.jpg');
   background-size: cover;
   background-color: var(--color-background-white);
   background-position: center;

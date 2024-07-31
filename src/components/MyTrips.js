@@ -1,5 +1,6 @@
-export default function MyTrips({ tripsDataArray, members }) { // Receive members as a prop
-    console.log(members); // Log members to verify data
+import { Link } from 'react-router-dom';
+
+export default function MyTrips({ tripsDataArray }) { // Receive members as a prop
 
     const tripsCardArray = tripsDataArray.map((tripObj) => {
         const transformed = (
@@ -94,11 +95,12 @@ export default function MyTrips({ tripsDataArray, members }) { // Receive member
 
 function TripCard({ tripObj }) {
     
+    console.log(tripObj.members); // Log members to verify data
     const numMembers = tripObj.members.length;
 
     return (
         <div className="card trip-card">
-            <a href="expenses-filled.html">
+            <Link to="/expenses">
                 <div className="card-body">
                     <div className="card-title">{tripObj.tripName}</div> 
                     <div className="row">
@@ -106,7 +108,7 @@ function TripCard({ tripObj }) {
                         <div className="col card-text text-end">{tripObj.startDate}</div>
                     </div>
                 </div>
-            </a>
+            </Link>
         </div>        
     );
 }
