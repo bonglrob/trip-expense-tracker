@@ -1,4 +1,7 @@
-export function CreateExpenseForm({ mainCurrency, altCurrency }) {
+export function CreateExpenseForm(props) {
+
+    // Todo: Change inputs into a controlled form  https://youtu.be/fBILD_NqP08?si=cN-rCzvx77r31sbu&t=478
+    // Todo: Handle Form Submission Data https://youtu.be/fBILD_NqP08?si=LPfLTx7gDZda42FT&t=920
 
     return (
         <div className="container mt-4">
@@ -43,8 +46,8 @@ export function CreateExpenseForm({ mainCurrency, altCurrency }) {
               <label htmlFor="cost" className="form-label">Cost</label>
               <div className="input-group" id="cost">
                 <select className="form-select" aria-label="currency selector">
-                    <option value={mainCurrency} selected>{mainCurrency}</option>
-                    <option value={altCurrency}>{altCurrency}</option>
+                    <option value="USD" selected>USD</option>
+                    <option value="KRW">KRW</option>
                 </select>
                 <input id="cost" type="text" className="form-control" placeholder="55,423" required/>
               </div>

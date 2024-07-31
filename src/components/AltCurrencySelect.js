@@ -1,11 +1,6 @@
 import Select from 'react-select';
 
-export function AltCurrencySelect({ currencyOptions, altCurrencyCallback }) {
-
-    // set alt currency for the trip
-    function handleChange({ value }) {
-        altCurrencyCallback(value);
-    }
+export function AltCurrencySelect({ altCurrency, currencyOptions, handleChange }) {
 
     // populate currency select options
     const options = Object.keys(currencyOptions).map((currencySymbol) => ({
@@ -20,21 +15,33 @@ export function AltCurrencySelect({ currencyOptions, altCurrencyCallback }) {
             backgroundColor: state.isSelected ? '#b3f1be' : state.isFocused ? '#d3e8d3' : null,
             color: state.isSelected ? '#181d18' : '#00210c',
         }),
-        singleValue: (provided) => ({
+        multiValue: (provided) => ({
             ...provided,
-            color: '#333',
+            backgroundColor: "#d3e8d3",
+        }),
+        multiValueLabel: (provided) => ({
+            ...provided,
+            color: "#0e1f12",
+        }),
+        multiValueRemove: (provided) => ({
+            ...provided,
+            color: "#0e1f12",
+            ":hover": {
+                backgroundColor: "#bdf3c6",
+            },
         }),
     };
     
     return (
         <>
-            <label htmlFor="altCurrency" className="form-label">Currency of Visiting Country</label>
+            <label htmlFor="altCurrency" className="form-label">Currency of Visiting Countries</label>
             <Select 
                 id="altCurrency"
-                defaultValue={options[17]}
+                value={altCurrency}
+                onChange={handleChange}
                 options={options}
                 isSearchable
-                onChange={handleChange}
+                isMulti
                 styles={selectedStyles}
                 maxMenuHeight={140}
             />

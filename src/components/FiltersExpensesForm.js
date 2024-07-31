@@ -13,15 +13,15 @@ export default function FilterExpensesForm(props) {
     const selectedStyles = {
         multiValue: (provided) => ({
             ...provided,
-            backgroundColor: "#b3f1be",
+            backgroundColor: "#d3e8d3",
         }),
         multiValueLabel: (provided) => ({
             ...provided,
-            color: "#00210c",
+            color: "#0e1f12",
         }),
         multiValueRemove: (provided) => ({
             ...provided,
-            color: "#00210c",
+            color: "#0e1f12",
             ":hover": {
                 backgroundColor: "#bdf3c6",
             },

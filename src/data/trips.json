@@ -3,29 +3,42 @@
         "tripName": "Korea",
         "members": ["Kevin", "Michelle", "Josh", "Kara"],
         "startDate": "12/20/2023",
-        "currency": ["$"]
+        "currency": 
+            { 
+                "main": { "value": "USD", "label": "USD - United States Dollar" },
+                "alt": [{ "value": "KRW", "label": "KRW - South Korean Won" }, { "value": "JPY", "label": "JPY - Japanese Yen" }]
+            }
 
     },
     {
         "tripName": "London",
         "members": ["Kevin", "Noel", "Joseph"],
         "startDate": "11/20/2022",
-        "currency": ["$"]
-
+        "currency":
+            { 
+                "main": { "value": "EUR", "label": "EUR - European Euros" },
+                "alt": [{ "value": "GBP", "label": "GBP - Great Britain Pound" }, { "value": "USD", "label": "USD - United States Dollar" }]
+            }
     },
     {
-        "tripName": "Seattle | Portland",
+        "tripName": "Seattle / Portland",
         "members": ["Kevin", "Michelle", "Joel", "Tracy"],
         "startDate": "12/15/2023",
-        "currency": ["$", "¥"]
+        "currency":
+            {
+                "main": { "value": "USD", "label": "USD - United States Dollar" },
+                "alt": [{ "value": "USD", "label": "USD - United States Dollar" }]
+            }
 
     },
     {
         "tripName": "Mexico",
         "members": ["Kevin", "Josh"],
         "startDate": "10/25/2024",
-        "currency": ["$"]
-
+        "currency":
+            {
+                "main": { "value": "USD", "label": "USD - United States Dollar" },
+                "alt": [{ "value": "MXN", "label": "MXN - Mexican Pesos" }]
+            }
     }
-
 ]

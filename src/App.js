@@ -7,53 +7,53 @@ import { CreateExpenseForm } from './components/CreateExpenseForm.js';
 import FilterExpensesForm from './components/FiltersExpensesForm.js';
 import Expenses from './components/Expenses.js';
 import MyTrips from './components/MyTrips.js';
-import CreateTrip from './components/CreateTrip.js';
+import { CreateTripForm } from './components/CreateTripForm.js';
 import { Navigate } from 'react-router-dom';
 
 export default function App({ expenses, currencyNames }) {
   const expensesData = expenses;
 
-  const [mainCurrency, setMainCurrency] = useState("USD");
-  const [altCurrency, setAltCurrency] = useState("KRW");
-  const [members, setMembers] = useState([]); // New state to hold members array
-  const numMembers = members.length
+  // example TripsDataArray[0] data: 
+  // [
+  //   { 
+  //   tripName: "Korea", 
+  //   members: ["Kevin", "Michelle", "Josh", "Kara"], 
+  //   startDate: "12/20/2023", 
+  //   currency: {
+  //     "main": { value: "USD", label: "USD - United States Dollar" } 
+  //     "alt": [{ value: "KRW", label: "KRW - South Korean Won" }, { value: "JPY", label: "JPY - Japanese Yen" }]
+  //     } 
+  //   },
+  // ]
 
-  console.log(mainCurrency);
-  console.log(altCurrency);
-  console.log(members); // Add this to log the members array
+  /// An array of trip objects
+  const [tripsDataArray, setTripsDataArray] = useState([]);
+  console.log(tripsDataArray); // Use this to debug and make sure you are getting trips data
 
-  function mainCurrencySet(currency) {
-    setMainCurrency(currency);
-  }
+  function handleTripFormSubmit(tripFormData) {
+    const updatedTripsDataArray = [...tripsDataArray, tripFormData];
+    setTripsDataArray(updatedTripsDataArray);
+  };
 
-  function altCurrencySet(currency) {
-    setAltCurrency(currency);
-  }
-
-  function sendTripData(currency, altCurrency) {
-    setMainCurrency(currency);
-    setAltCurrency(altCurrency);
-  }
+  // const numMembers = tripsDataArray.members.length;
 
   return (
     <div>
-      {/* <Header> goes here */}
       <main>
         <Routes>
           <Route path="/emptybalances" element={<EmptyBalances />} />
           <Route path="/filledbalances" element={<FilledBalances />} />
           <Route path="/stats" element={<Stats />} />
           <Route path="/expenses" element={<Expenses expensesData={expensesData} />} >
-            <Route index element={<FilterExpensesForm />}></Route>
+            {/* <Route index element={<FilterExpensesForm />}></Route> */}
             {/* <Route path="/expenses/:expenseId" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} /> */}
           </Route>
-          <Route path="/expenses/create" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} />
-          <Route path="/mytrips" element={<MyTrips numMembers={numMembers}/>} />
-          <Route path="/createtrip" element={<CreateTrip currencyNames={currencyNames} mainCurrencyCallback={mainCurrencySet} altCurrencyCallback={altCurrencySet} setMembersCallback={setMembers} sendTripDataCallback={sendTripData} />} />
-          <Route path="/*" element={<Navigate to="/expenses" />} />
+          <Route path="/expenses/create" element={<CreateExpenseForm />} />
+          <Route path="/mytrips" element={<MyTrips tripsDataArray={tripsDataArray} /*numMembers={numMembers}*/ />} />
+          <Route path="/createtrip" element={<CreateTripForm onSubmit={handleTripFormSubmit} currencyNames={currencyNames} />} />
+          <Route path="/*" element={<Navigate to="/createtrip" />} />
         </Routes>
       </main>
-      {/* <Footer> goes here */}
     </div>
   );
 }

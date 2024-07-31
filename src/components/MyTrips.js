@@ -1,4 +1,4 @@
-export default function MyTrips({ members }) { // Receive members as a prop
+export default function MyTrips({ tripsDataArray, members }) { // Receive members as a prop
     console.log(members); // Log members to verify data
 
     return (
