@@ -35,8 +35,6 @@ export default function App({ expenses, currencyNames }) {
     setTripsDataArray(updatedTripsDataArray);
   };
 
-  // const numMembers = tripsDataArray.members.length;
-
   return (
     <div>
       <main>
@@ -49,7 +47,7 @@ export default function App({ expenses, currencyNames }) {
             {/* <Route path="/expenses/:expenseId" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} /> */}
           </Route>
           <Route path="/expenses/create" element={<CreateExpenseForm />} />
-          <Route path="/mytrips" element={<MyTrips tripsDataArray={tripsDataArray} /*numMembers={numMembers}*/ />} />
+          <Route path="/mytrips" element={<MyTrips tripsDataArray={tripsDataArray} />} />
           <Route path="/createtrip" element={<CreateTripForm onSubmit={handleTripFormSubmit} currencyNames={currencyNames} />} />
           <Route path="/*" element={<Navigate to="/createtrip" />} />
         </Routes>

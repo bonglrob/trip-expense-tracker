@@ -1,6 +1,13 @@
 export default function MyTrips({ tripsDataArray, members }) { // Receive members as a prop
     console.log(members); // Log members to verify data
 
+    const tripsCardArray = tripsDataArray.map((tripObj) => {
+        const transformed = (
+            <TripCard tripObj={tripObj} />
+        );
+        return transformed;
+    });
+
     return (
         <main className="flex-grow-1">
             <div className="container mt-4">
@@ -25,11 +32,7 @@ export default function MyTrips({ tripsDataArray, members }) { // Receive member
                 <div className="row">
                     <div className="col d-flex flex-wrap trip-cards">
                         
-                        {/* 
-                        <TripCard tripObj=""/>
-                        <TripCard tripObj=""/>
-                        <TripCard tripObj=""/>
-                         */}
+                        {tripsCardArray}
 
                         <div className="card trip-card">
                             <a href="expenses-filled.html">
@@ -90,17 +93,20 @@ export default function MyTrips({ tripsDataArray, members }) { // Receive member
 }
 
 function TripCard({ tripObj }) {
+    
+    const numMembers = tripObj.members.length;
+
     return (
         <div className="card trip-card">
             <a href="expenses-filled.html">
                 <div className="card-body">
                     <div className="card-title">{tripObj.tripName}</div> 
                     <div className="row">
-                        <div className="col card-text">{tripObj.numMembers}</div>
+                        <div className="col card-text">{numMembers} members</div>
                         <div className="col card-text text-end">{tripObj.startDate}</div>
                     </div>
                 </div>
             </a>
-        </div>
+        </div>        
     );
 }
