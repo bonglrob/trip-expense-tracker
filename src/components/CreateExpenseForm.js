@@ -1,55 +1,121 @@
+import Select from 'react-select';
+
 export function CreateExpenseForm(props) {
 
+    // Todo: Pass tripsDataArray here and accept only needed data
     // Todo: Change inputs into a controlled form  https://youtu.be/fBILD_NqP08?si=cN-rCzvx77r31sbu&t=478
+      // expenseCategory input
     // Todo: Handle Form Submission Data https://youtu.be/fBILD_NqP08?si=LPfLTx7gDZda42FT&t=920
+
+    const categoryOptions = [
+      { "value": "Food & Drinks", "label": "Food & Drinks" },
+      { "value": "Hotel & Lodging", "label": "Hotel & Lodging" },
+      { "value": "Flight", "label": "Flight" },
+      { "value": "Transportation", "label": "Transportation" },
+      { "value": "Entertainment", "label": "Entertainment" },
+      { "value": "Other", "label": "Other" }
+    ];
+
+    // Todo pass tripsDataArray currencies here:
+    const currencyOptions = [
+      { "value": "USD", "label": "USD" },
+      { "value": "KRW", "label": "KRW" },
+    ]
+
+    // styles for <Select> category options 
+    const selectedStyles = {
+      option: (provided, state) => ({
+        ...provided,
+        backgroundColor: state.isSelected ? '#b3f1be' : state.isFocused ? '#d3e8d3' : null,
+        color: state.isSelected ? '#181d18' : '#00210c',
+      })
+    };
+
+    // styles for <Select> currency options 
+    const selectedCurrencyStyles = {
+      control: (provided) => ({
+        ...provided,
+        borderRadius: "5px 0px 0px 5px"
+      }),
+      indicatorSeparator: () => ({
+        display: "none"
+      }),
+      option: (provided, state) => ({
+        ...provided,
+        backgroundColor: state.isSelected ? '#b3f1be' : state.isFocused ? '#d3e8d3' : null,
+        color: state.isSelected ? '#181d18' : '#00210c',
+      })
+    };
 
     return (
         <div className="container mt-4">
             <div className="d-flex align-items-center"><h1>New Expense</h1></div>
 
-        <form className="row g-3">
+        <form id="create-expense" className="row g-3">
+
+            {/* exepenseName input */}
             <div className="col-md-4">
               <label htmlFor="expenseName" className="form-label">Name</label>
-              <input id="expenseName" type="text" className="form-control" placeholder="Jajangmyeon Restaurant" required/>
+              <input
+                id="expenseName"
+                name="expenseName"
+                type="text"
+                className="form-control"
+                placeholder="Jajangmyeon Restaurant"
+                required
+              />
             </div>
 
-            {/* <!-- date select field --> */}
+            {/* date input */}
             <div className="col-md-4">
                 <label htmlFor="date" className="form-label">Date</label>
-                <div className="input-group" id="date">
+                <div className="input-group">
                     <input
-                        type="text"
-                        className="form-control"
-                        placeholder="7/18/2024"/>
+                      id="date"
+                      type="text"
+                      className="form-control"
+                      placeholder="7/18/2024"
+                    />
                     <span className="input-group-text">
                         <span className="material-symbols-outlined">calendar_today</span>
                     </span>
                 </div>
             </div>
 
-            {/* <!-- category dropdown --> */}
-            <div className="col-md-3">
-                <label htmlFor="categorySelect" className="form-label">Category</label>
-                <select id="categorySelect" className="form-select" aria-label="expense category selector">
-                  <option disabled value="">Choose...</option>
-                  <option selected value="Food & Drink">Food & Drinks</option>
-                  <option value="Hotel & Lodging">Hotel & Lodging</option>
-                  <option value="Flight">Flight</option>
-                  <option value="Transportation">Transportation</option>
-                  <option value="Entertainment">Entertainment</option>
-                  <option value="Other">Other</option>
-                </select>
-            </div>                 
+            {/* <!-- expenseCategory dropdown --> */}
+            <div className="col-md-4">
+              <label htmlFor="expenseCategory" className="form-label">Category</label>
+              <Select 
+                  id="expenseCategory"
+                  value={categoryOptions[0]}
+                  onChange=""
+                  options={categoryOptions}
+                  isSearchable
+                  styles={selectedStyles}
+                  maxMenuHeight={140}
+              />
+            </div>               
            
             {/* cost input */}
             <div className="col-md-4">
               <label htmlFor="cost" className="form-label">Cost</label>
-              <div className="input-group" id="cost">
-                <select className="form-select" aria-label="currency selector">
-                    <option value="USD" selected>USD</option>
-                    <option value="KRW">KRW</option>
-                </select>
-                <input id="cost" type="text" className="form-control" placeholder="55,423" required/>
+              <div className="input-group">
+                <Select
+                  id="cost"
+                  value=""
+                  onChange=""
+                  options={currencyOptions}
+                  styles={selectedCurrencyStyles}
+                  maxMenuHeight={140}
+                  aria-label="currency selector"
+                />
+                <input
+                  id="cost"
+                  type="text"
+                  className="form-control"
+                  placeholder="55,423"
+                  required
+                />
               </div>
             </div>
 
