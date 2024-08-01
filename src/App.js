@@ -9,6 +9,9 @@ import Expenses from './components/Expenses.js';
 import MyTrips from './components/MyTrips.js';
 import { CreateTripForm } from './components/CreateTripForm.js';
 import { Navigate } from 'react-router-dom';
+import Header from './components/Header.js';
+import Footer from './components/Footer.js';
+import Landing from './components/Landing.js';
 
 export default function App({ expenses, currencyNames }) {
   const expensesData = expenses;
@@ -37,8 +40,10 @@ export default function App({ expenses, currencyNames }) {
 
   return (
     <div>
+      <Header />
       <main>
         <Routes>
+          <Route path="/landing" element={<Landing />} />
           <Route path="/emptybalances" element={<EmptyBalances />} />
           <Route path="/filledbalances" element={<FilledBalances />} />
           <Route path="/stats" element={<Stats />} />
@@ -52,6 +57,7 @@ export default function App({ expenses, currencyNames }) {
           <Route path="/*" element={<Navigate to="/createtrip" />} />
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }
