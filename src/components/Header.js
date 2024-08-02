@@ -12,11 +12,11 @@ export default function Header(props) {
                     <li className="nav-item empty">
                     </li>
                     <li className="nav-item py-1 px-2">
-                        <Link to="/mytrips" className="btn btn-primary header-btn">Trips</Link>
+                        <Link to="/mytrips" className="btn my-trips-btn">My Trips</Link>
                     </li>
-                    <li className="nav-item py-1 px-2">
+                    {/* <li className="nav-item py-1 px-2">
                         <Link to="#" className="btn  btn-primary header-btn">?</Link>
-                    </li>
+                    </li> */}
                 </ul>
             </nav>
         </header>

@@ -63,7 +63,7 @@ export function CreateExpenseForm(props) {
 
           <form id="create-expense" className="row g-3">
 
-              <div class="card">
+              <section class="card">
                 <div class="card-body">
                   <div class="row">
 
@@ -144,32 +144,33 @@ export function CreateExpenseForm(props) {
                     </div>
                   </div>
                 </div>
-              </div>   
+              </section>   
 
-              <div class="card">
+              <section class="card">
                 <div className="card-body col-md-6">
 
                   {/* paidForNames */}
-                  <label htmlFor="paid-for" className="form-label">Paid for</label>
-                  <div className="d-flex align-items-center form-check">
-                      <div className='me-5'>
-                        <label className="form-check-label" htmlFor="paidForKara">Kara</label>
-                        <input
-                            id="paid-for-kara"
-                            className="form-check-input"
-                            type="checkbox"
-                            value="Kara"
-                        />
-                      </div>
-                      <div className='ms-auto'>
-                        <input
-                          id="cost-for-kara"
-                          type="text"
-                          className="form-control bottom-border-only"
-                          placeholder="13855"
-                        />
-                  </div>
-                  </div>
+                  <div class="mb-4">
+                    <label htmlFor="paid-for" className="form-label">Paid for</label>
+                    <div className="d-flex align-items-center form-check">
+                        <div className='me-5'>
+                          <label className="form-check-label" htmlFor="paidForKara">Kara</label>
+                          <input
+                              id="paid-for-kara"
+                              className="form-check-input"
+                              type="checkbox"
+                              value="Kara"
+                          />
+                        </div>
+                        <div className='ms-auto'>
+                          <input
+                            id="cost-for-kara"
+                            type="text"
+                            className="form-control bottom-border-only"
+                            placeholder="13855"
+                          />
+                        </div>
+                    </div>
                     <div className="d-flex align-items-center form-check">
                         <div className='me-5'>
                           <label className="form-check-label" htmlFor="paidForKara">Josh</label>
@@ -227,27 +228,32 @@ export function CreateExpenseForm(props) {
                           />
                         </div>
                     </div>
-              </div>
+                  </div>
 
-              {/* splitMethod select */}
-              <div className="col-md-4 card-body">
-                <label htmlFor="splitMethod" className="form-label">Split Method</label>
-                <Select 
-                    id="split-method"
-                    value=""
-                    onChange=""
-                    options={splitMethodOptions}
-                    styles={selectedStyles}
-                />
-              </div> 
-                  
-              </div>
+                  {/* splitMethod select */}
+                  <div className="col-md-4">
+                    <label htmlFor="splitMethod" className="form-label">Split Method</label>
+                    <Select 
+                        id="split-method"
+                        value=""
+                        onChange=""
+                        options={splitMethodOptions}
+                        styles={selectedStyles}
+                    />
+                  </div> 
+                
+                </div>
+              </section>
 
               {/* notes text input */}
-              <div className="col-12">
-                  <label htmlFor="notes" className="form-label">Notes</label>
-                  <textarea className="form-control" id="notes"></textarea>
-              </div>
+              <section class="card">
+                <div class="card-body">
+                  <div className="col-12">
+                      <label htmlFor="notes" className="form-label">Notes</label>
+                      <textarea className="form-control" id="notes"></textarea>
+                  </div>
+                </div>
+              </section>
 
               {/* submit form button */}
               <div className="d-flex align-items-center col-12">
