@@ -15,10 +15,10 @@ export default function MyTrips({ tripsDataArray }) { // Receive members as a pr
                 
                 {/* Title and Create Trip Button */}
                 <div className="row">
-                    <div className="col">
+                    <div className="col col-sm-3">
                         <h1 className="color-primary">Trips</h1>
                     </div>
-                    <div className="col d-flex justify-content-end me-4">
+                    <div className="col ms-lg-auto col-sm-11 col-lg-3">
                         <div className="card create-trip-card">
                             <a href="create-trip.html">
                                 <div className="card-body d-flex justify-content-center align-items-center">
