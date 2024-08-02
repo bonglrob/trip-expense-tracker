@@ -139,32 +139,30 @@ function TripName({ tripName, handleChange }) {
 
 // Members component to manage members input fields
 function Members({ members, handleAddMember, handleRemoveMember, handleChange }) {
+    // Extracted map function into variable
+    const memberInputs = members.map((member, index) => (
+        <div className="d-flex mb-2" key={index}>
+            <input
+                className="form-control"
+                name="member"
+                value={member}
+                onChange={(e) => handleChange(index, e)}
+                placeholder={`Member ${index + 1}`}
+            />
+            <span
+                className="material-symbols-outlined"
+                onClick={() => handleRemoveMember(index)}
+                style={{ cursor: 'pointer' }}
+            >
+                delete
+            </span>
+        </div>
+    ));
 
     return (
         <>
             <div className="card-title">Members</div>
-            {/* Render each member input field */}
-            {members.map((member, index) => ( // Todo: Put this in a variable instead: https://info340.github.io/code-style-guide.html#mapping-data
-                <div className="d-flex mb-2" key={index}>
-                    <input
-                        className="form-control"
-                        id=""
-                        name="member"
-                        value={member}
-                        onChange={(e) => handleChange(index, e)}
-                        placeholder={`Member ${index + 1}`}
-                    />
-                    {/* Delete icon to remove member input */}
-                    <span
-                        className="material-symbols-outlined"
-                        onClick={() => handleRemoveMember(index)}
-                        style={{ cursor: 'pointer' }}
-                    >
-                        delete
-                    </span>
-                </div>
-            ))}
-            {/* Add button to add new member input */}
+            {memberInputs}
             <div className="flex-row mx-0 d-flex">
                 <button className="btn btn-tertiary" type="button" onClick={handleAddMember}>Add</button>
             </div>

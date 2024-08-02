@@ -15,10 +15,10 @@ export default function MyTrips({ tripsDataArray }) { // Receive members as a pr
                 
                 {/* Title and Create Trip Button */}
                 <div className="row">
-                    <div className="col">
+                    <div className="col col-sm-3">
                         <h1 className="color-primary">Trips</h1>
                     </div>
-                    <div className="col">
+                    <div className="col ms-lg-auto col-sm-11 col-lg-3">
                         <div className="card create-trip-card">
                             <a href="create-trip.html">
                                 <div className="card-body d-flex justify-content-center align-items-center">
@@ -35,7 +35,7 @@ export default function MyTrips({ tripsDataArray }) { // Receive members as a pr
                         
                         {tripsCardArray}
 
-                        <div className="card trip-card">
+                        {/* <div className="card trip-card">
                             <a href="expenses-filled.html">
                                 <div className="card-body">
                                     <div className="card-title">Korea</div>
@@ -77,15 +77,7 @@ export default function MyTrips({ tripsDataArray }) { // Receive members as a pr
                                     <div className="col card-text text-end">12/20/2023</div>
                                 </div>   
                             </div>
-                        </div>
-
-                        <a href="create-trip.html">
-                            <div className="card create-trip-card">
-                                <div className="card-body d-flex justify-content-center align-items-center">
-                                    <div className="card-title m-0">Create Trip +</div>
-                                </div>
-                            </div>
-                        </a>
+                        </div> */}
                     </div>
                 </div>
             </div>

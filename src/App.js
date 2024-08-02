@@ -48,7 +48,7 @@ export default function App({ expenses, currencyNames }) {
           <Route path="/filledbalances" element={<FilledBalances />} />
           <Route path="/stats" element={<Stats />} />
           <Route path="/expenses" element={<Expenses expensesData={expensesData} />} >
-            {/* <Route index element={<FilterExpensesForm />}></Route> */}
+            {/* {<Route index element={<FilterExpensesForm />}></Route>} */}
             {/* <Route path="/expenses/:expenseId" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} /> */}
           </Route>
           <Route path="/expenses/create" element={<CreateExpenseForm />} />
