@@ -78,14 +78,6 @@ export default function MyTrips({ tripsDataArray }) { // Receive members as a pr
                                 </div>   
                             </div>
                         </div>
-
-                        {/* <a href="create-trip.html">
-                            <div className="card create-trip-card">
-                                <div className="card-body d-flex justify-content-center align-items-center">
-                                    <div className="card-title m-0">Create Trip +</div>
-                                </div>
-                            </div>
-                        </a> */}
                     </div>
                 </div>
             </div>

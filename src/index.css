@@ -240,8 +240,9 @@ div.card {
 }
 .create-trip-card {
   flex: 0 0 300px;
-  height: 57px;
-  margin: .5rem;
+  height: 55px;
+  width: 140px;
+  margin: 1rem;
   font-size: 1rem;
   background-color: var(--color-container-primary);
   color: var(--color-container-primary-on);
@@ -322,6 +323,15 @@ font-variation-settings:
   color:var(--color-container-primary)
 }
 
+.my-trips-btn {
+  font-size: 1.5rem;
+  color: var(--color-text-on)
+}
+
+.my-trips-btn:hover {
+  color:var(--color-container-primary)
+}
+
 .header-nav {
   position: static;
   top: 0;
@@ -349,6 +359,14 @@ footer {
   background-color: var(--color-secondary);
   padding: 1rem;
   font-family: var(--font-body);
+}
+
+.footer-links a {
+  color: var(--color-text-on);
+}
+
+.footer-links a:hover {
+  color: var(--color-container-primary)
 }
 
 /* Main Navbar */
