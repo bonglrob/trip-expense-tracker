@@ -15,6 +15,12 @@ export function CreateExpenseForm(props) {
       { "value": "Entertainment", "label": "Entertainment" },
       { "value": "Other", "label": "Other" }
     ];
+    
+    const splitMethodOptions = [
+      { "value": "Evenly", "label": "Evenly" },
+      { "value": "By Percentage", "label": "By Percentage" },
+      { "value": "By amount", "label": "By amount" }
+    ]
 
     // Todo pass tripsDataArray currencies here:
     const currencyOptions = [
@@ -33,6 +39,10 @@ export function CreateExpenseForm(props) {
 
     // styles for <Select> currency options 
     const selectedCurrencyStyles = {
+      container: (provided) => ({
+        ...provided,
+        width: "80px"
+      }),
       control: (provided) => ({
         ...provided,
         borderRadius: "5px 0px 0px 5px"
@@ -51,150 +61,206 @@ export function CreateExpenseForm(props) {
         <div className="container mt-4">
             <div className="d-flex align-items-center"><h1>New Expense</h1></div>
 
-        <form id="create-expense" className="row g-3">
+          <form id="create-expense" className="row g-3">
 
-            {/* exepenseName input */}
-            <div className="col-md-4">
-              <label htmlFor="expenseName" className="form-label">Name</label>
-              <input
-                id="expenseName"
-                name="expenseName"
-                type="text"
-                className="form-control"
-                placeholder="Jajangmyeon Restaurant"
-                required
-              />
-            </div>
+              <section class="card">
+                <div class="card-body">
+                  <div class="row">
 
-            {/* date input */}
-            <div className="col-md-4">
-                <label htmlFor="date" className="form-label">Date</label>
-                <div className="input-group">
-                    <input
-                      id="date"
-                      type="text"
-                      className="form-control"
-                      placeholder="7/18/2024"
+                    {/* exepenseName input */}
+                    <div className="col-md-4">
+                      <label htmlFor="expense-name" className="form-label">Name</label>
+                      <input
+                        id="expense-name"
+                        name="expenseName"
+                        type="text"
+                        className="form-control"
+                        placeholder="Jajangmyeon Restaurant"
+                        required
+                      />
+                    </div>
+
+                    {/* date input */}
+                    <div className="col-md-4">
+                        <label htmlFor="date" className="form-label">Date</label>
+                        <div className="input-group">
+                            <input
+                              id="date"
+                              type="text"
+                              className="form-control"
+                              placeholder="7/18/2024"
+                            />
+                            <span className="input-group-text">
+                                <span className="material-symbols-outlined">calendar_today</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* <!-- expenseCategory dropdown --> */}
+                    <div className="col-md-4">
+                      <label htmlFor="expense-category" className="form-label">Category</label>
+                      <Select
+                          id="expense-category"
+                          value={categoryOptions[0]}
+                          onChange=""
+                          options={categoryOptions}
+                          isSearchable
+                          styles={selectedStyles}
+                          maxMenuHeight={140}
+                      />
+                    </div>
+
+                    {/* cost input */}
+                    <div className="col-md-3">
+                      <label htmlFor="cost" className="form-label">Cost</label>
+                      <div className="input-group">
+                        <Select
+                          id="cost"
+                          value=""
+                          onChange=""
+                          options={currencyOptions}
+                          styles={selectedCurrencyStyles}
+                          maxMenuHeight={140}
+                          aria-label="currency selector"
+                        />
+                        <input
+                          id="cost"
+                          type="text"
+                          className="form-control"
+                          placeholder="55,423"
+                          required
+                        />
+                      </div>
+                    </div>
+                    {/* paidByName select */}
+                    <div className="col-md-2">
+                        <label htmlFor="paid-by" className="form-label">Paid by</label>
+                        <select id="paid-by" className="form-select" aria-label="select paid by">
+                          <option selected value="Kara">Kara</option>
+                          <option value="Josh">Josh</option>
+                          <option value="Kevin">Kevin</option>
+                          <option value="Michelle">Michelle</option>
+                        </select>
+                    </div>
+                  </div>
+                </div>
+              </section>   
+
+              <section class="card">
+                <div className="card-body col-md-6">
+
+                  {/* paidForNames */}
+                  <div class="mb-4">
+                    <label htmlFor="paid-for" className="form-label">Paid for</label>
+                    <div className="d-flex align-items-center form-check">
+                        <div className='me-5'>
+                          <label className="form-check-label" htmlFor="paidForKara">Kara</label>
+                          <input
+                              id="paid-for-kara"
+                              className="form-check-input"
+                              type="checkbox"
+                              value="Kara"
+                          />
+                        </div>
+                        <div className='ms-auto'>
+                          <input
+                            id="cost-for-kara"
+                            type="text"
+                            className="form-control bottom-border-only"
+                            placeholder="13855"
+                          />
+                        </div>
+                    </div>
+                    <div className="d-flex align-items-center form-check">
+                        <div className='me-5'>
+                          <label className="form-check-label" htmlFor="paidForKara">Josh</label>
+                          <input
+                              className="form-check-input"
+                              type="checkbox"
+                              value="Kara"
+                              id="paidForKara"
+                          />
+                        </div>
+                        <div className='ms-auto'>
+                          <input
+                            id="cost-for-kara"
+                            type="text"
+                            className="form-control bottom-border-only"
+                            placeholder="13855"
+                          />
+                        </div>
+                    </div>
+                    <div className="d-flex align-items-center form-check">
+                        <div className='me-5'>
+                          <label className="form-check-label" htmlFor="paidForKara">Kevin</label>
+                          <input
+                              className="form-check-input"
+                              type="checkbox"
+                              value="Kara"
+                              id="paidForKara"
+                          />
+                        </div>
+                        <div className='ms-auto'>
+                          <input
+                            id="cost-for-kara"
+                            type="text"
+                            className="form-control bottom-border-only"
+                            placeholder="13855"
+                          />
+                        </div>
+                    </div>
+                    <div className="d-flex align-items-center form-check">
+                        <div className='me-5'>
+                          <label className="form-check-label" htmlFor="paidForKara">Michelle</label>
+                          <input
+                              className="form-check-input"
+                              type="checkbox"
+                              value="Kara"
+                              id="paidForKara"
+                          />
+                        </div>
+                        <div className='ms-auto'>
+                          <input
+                            id="cost-for-kara"
+                            type="text"
+                            className="form-control bottom-border-only"
+                            placeholder="13855"
+                          />
+                        </div>
+                    </div>
+                  </div>
+
+                  {/* splitMethod select */}
+                  <div className="col-md-4">
+                    <label htmlFor="splitMethod" className="form-label">Split Method</label>
+                    <Select 
+                        id="split-method"
+                        value=""
+                        onChange=""
+                        options={splitMethodOptions}
+                        styles={selectedStyles}
                     />
-                    <span className="input-group-text">
-                        <span className="material-symbols-outlined">calendar_today</span>
-                    </span>
+                  </div> 
+                
                 </div>
-            </div>
+              </section>
 
-            {/* <!-- expenseCategory dropdown --> */}
-            <div className="col-md-4">
-              <label htmlFor="expenseCategory" className="form-label">Category</label>
-              <Select 
-                  id="expenseCategory"
-                  value={categoryOptions[0]}
-                  onChange=""
-                  options={categoryOptions}
-                  isSearchable
-                  styles={selectedStyles}
-                  maxMenuHeight={140}
-              />
-            </div>               
-           
-            {/* cost input */}
-            <div className="col-md-4">
-              <label htmlFor="cost" className="form-label">Cost</label>
-              <div className="input-group">
-                <Select
-                  id="cost"
-                  value=""
-                  onChange=""
-                  options={currencyOptions}
-                  styles={selectedCurrencyStyles}
-                  maxMenuHeight={140}
-                  aria-label="currency selector"
-                />
-                <input
-                  id="cost"
-                  type="text"
-                  className="form-control"
-                  placeholder="55,423"
-                  required
-                />
+              {/* notes text input */}
+              <section class="card">
+                <div class="card-body">
+                  <div className="col-12">
+                      <label htmlFor="notes" className="form-label">Notes</label>
+                      <textarea className="form-control" id="notes"></textarea>
+                  </div>
+                </div>
+              </section>
+
+              {/* submit form button */}
+              <div className="d-flex align-items-center col-12">
+                <button className="btn btn-primary me-3" type="submit">Create</button>
+                <a href="index.html" className="text-decoration-none"><span className="me-2" type="submit">Cancel</span></a>
               </div>
-            </div>
-
-            {/* <!-- paid by dropdown --> */}
-            <div className="col-md-3">
-                <label htmlFor="paidBySelect" className="form-label">Paid by</label>
-                <select id="paidBySelect" className="form-select" aria-label="select paid by">
-                  <option selected value="Kara">Kara</option>
-                  <option value="Josh">Josh</option>
-                  <option value="Kevin">Kevin</option>
-                  <option value="Michelle">Michelle</option>
-                </select>
-            </div>                
-
-            {/* <!-- paid for checklist --> */}
-            <div className="col-md-6">
-                <label htmlFor="paidFor" className="form-label">Paid for</label>
-                <div id="paidFor" className="form-check">
-                    <label className="form-check-label" htmlFor="paidForKara">
-                      Kara
-                    </label>
-                    <input 
-                        className="form-check-input"
-                        type="checkbox"
-                        value="Kara"
-                        id="paidForKara"
-                        aria-checked="true"
-                        checked/>
-                </div>
-                <div className="form-check" id="paidFor">
-                    <label className="form-check-label" htmlFor="paidForJosh">
-                      Josh
-                    </label>
-                    <input 
-                        className="form-check-input"
-                        type="checkbox"
-                        value="Josh"
-                        id="paidForJosh"
-                        aria-checked="true"
-                        checked/>
-                </div>
-                <div className="form-check" id="paidForKevin">
-                    <label className="form-check-label" htmlFor="paidForKevin">
-                      Kevin
-                    </label>
-                    <input 
-                        className="form-check-input"
-                        type="checkbox"
-                        value="Kevin"
-                        id="paidForKevin"
-                        aria-checked="true"
-                        checked/>
-                </div>
-                <div className="form-check" id="paidFor">
-                    <label className="form-check-label" htmlFor="paidForMichelle">
-                      Michelle
-                    </label>
-                    <input 
-                        className="form-check-input"
-                        type="checkbox"
-                        value="Michelle"
-                        id="paidForMichelle"
-                        aria-checked="true"
-                        checked/>
-                </div>
-            </div>
-
-            {/* <!-- notes text input --> */}
-            <div className="col-12">
-                <label htmlFor="notes" className="form-label">Notes</label>
-                <textarea className="form-control" id="notes"></textarea>
-            </div>
-
-            {/* <!-- submit form button --> */}
-            <div className="d-flex align-items-center col-12">
-              <button className="btn btn-primary me-3" type="submit">Create</button>
-              <a href="index.html" className="text-decoration-none"><span className="me-2" type="submit">Cancel</span></a>
-            </div>
           </form>
-    </div>
+        </div>
     );
 }
