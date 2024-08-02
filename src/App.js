@@ -13,7 +13,7 @@ import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 import Landing from './components/Landing.js';
 
-export default function App({ expenses, currencyNames }) {
+export default function App({ expenses, currencyNames, tripsData }) {
   const expensesData = expenses;
 
   // example TripsDataArray[0] data: 
@@ -30,8 +30,11 @@ export default function App({ expenses, currencyNames }) {
   // ]
 
   /// An array of trip objects
-  const [tripsDataArray, setTripsDataArray] = useState([]);
+  // initialize trips.json sample data used for debugging feature 2: 
+  const [tripsDataArray, setTripsDataArray] = useState([...tripsData]);
   console.log(tripsDataArray); // Use this to debug and make sure you are getting trips data
+
+
 
   function handleTripFormSubmit(tripFormData) {
     const updatedTripsDataArray = [...tripsDataArray, tripFormData];
@@ -47,14 +50,15 @@ export default function App({ expenses, currencyNames }) {
           <Route path="/emptybalances" element={<EmptyBalances />} />
           <Route path="/filledbalances" element={<FilledBalances />} />
           <Route path="/stats" element={<Stats />} />
-          <Route path="/expenses" element={<Expenses expensesData={expensesData} />} >
+          <Route path="/expenses/:tripName" element={<Expenses expensesData={expensesData} />}></Route>
+          {/* <Route path="/expenses" element={<Expenses expensesData={expensesData} />} > */}
             {/* {<Route index element={<FilterExpensesForm />}></Route>} */}
             {/* <Route path="/expenses/:expenseId" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} /> */}
-          </Route>
-          <Route path="/expenses/create" element={<CreateExpenseForm />} />
+          {/* </Route>                          */}
+          <Route path="/expenses/create" element={<CreateExpenseForm tripsDataArray={tripsDataArray} />} />
           <Route path="/mytrips" element={<MyTrips tripsDataArray={tripsDataArray} />} />
           <Route path="/createtrip" element={<CreateTripForm onSubmit={handleTripFormSubmit} currencyNames={currencyNames} />} />
-          <Route path="/*" element={<Navigate to="/createtrip" />} />
+          <Route path="/*" element={<Navigate to="/expenses/create" />} />
         </Routes>
       </main>
       <Footer />

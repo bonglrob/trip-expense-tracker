@@ -1,9 +1,10 @@
 import Select from 'react-select';
 
-export function CreateExpenseForm(props) {
+export function CreateExpenseForm({ tripsDataArray }) {
 
-    // Todo: Pass tripsDataArray here and accept only needed data
-    // Todo: Change inputs into a controlled form  https://youtu.be/fBILD_NqP08?si=cN-rCzvx77r31sbu&t=478
+    const { startDate, members, currency } = tripsDataArray;
+    console.log(startDate, members, currency);
+    
       // expenseCategory input
     // Todo: Handle Form Submission Data https://youtu.be/fBILD_NqP08?si=LPfLTx7gDZda42FT&t=920
 

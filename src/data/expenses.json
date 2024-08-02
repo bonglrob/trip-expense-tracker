@@ -1,5 +1,6 @@
 [
     {
+        "expenseId": 1,
         "expenseName": "Jajangmyeon Restaurant",
         "expenseCategory": { "value": "Food & Drinks", "label": "Food & Drinks"},
         "currency": { "value": "KRW", "label": "KRW - South Korean Won" },
@@ -12,33 +13,38 @@
         "notes": "dinner in downtown"
     },
     {
+        "expenseId": 2,
         "expenseName": "Ttbeokki",
-        "category": "food",
+        "expenseCategory": { "value": "Food & Drinks", "label": "Food & Drinks"},
+        "currency": { "value": "USD", "label": "USD - United States Dollar" },
         "cost": 5.08,
-        "altCurrencyCost": 7000,
         "date": "7/17/24",
-        "paidByName": "Kara",
-        "paidForName": ["Michelle"],
+        "paidByName": { "value": "Kara", "label": "Kara" },
+        "paidForNames": ["Michelle"],
+        "splitMethod": { "value": "evenly", "label": "evenly" },
+        "costPerName": [{ "Michelle": 5.08 }],
         "notes": ""
     },
     {
+        "expenseId": 3,
         "expenseName": "Mangwon Market",
         "category": "food",
         "cost": 13.58,
         "altCurrencyCost": 18700,
         "date": "7/15/24",
         "paidByName": "Kara",
-        "paidForName": ["Kevin", "Michelle"],
+        "paidForNames": ["Kevin", "Michelle"],
         "notes": ""
     },
     {
+        "expenseId": 4,
         "expenseName": "Airbnb grocery haul",
         "category": "food",
         "cost": 16.12,
         "altCurrencyCost": 22200,
         "date": "7/12/24",
         "paidByName": "Kara",
-        "paidForName": ["Kevin", "Michelle", "Josh", "Kara"],
+        "paidForNames": ["Kevin", "Michelle", "Josh", "Kara"],
         "notes": ""
     }
 ]
