@@ -356,27 +356,11 @@ footer {
   justify-content: space-between;
 }
 
-/* react-select component styles */
-.custom-select__control {
-  border: 1px solid #000; /* Default border style */
-  border-radius: "5px 0px 0px 5px";
-
+.bottom-border-only {
+  border: none;
+  border-bottom: 1px solid #ced4da; /* Adjust the color and width as needed */
+  border-radius: 0; /* Remove border radius if you want sharp edges */
 }
-
-.custom-select__control--is-focused {
-  border: 1px solid #666; /* Focused border style */
-}
-
-.custom-select__option {
-  background-color: #fff; /* Default background color */
-  color: #000; /* Default text color */
-}
-
-.custom-select__indicator-separator {
-  display: none;
-}
-
-/* react-select component styles */
 
 @media (min-width: 768px) {
   .create-trip input {
