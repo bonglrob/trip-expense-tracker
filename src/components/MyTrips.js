@@ -35,7 +35,7 @@ export default function MyTrips({ tripsDataArray }) { // Receive members as a pr
                         
                         {tripsCardArray}
 
-                        <div className="card trip-card">
+                        {/* <div className="card trip-card">
                             <a href="expenses-filled.html">
                                 <div className="card-body">
                                     <div className="card-title">Korea</div>
@@ -77,7 +77,7 @@ export default function MyTrips({ tripsDataArray }) { // Receive members as a pr
                                     <div className="col card-text text-end">12/20/2023</div>
                                 </div>   
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
