@@ -11,7 +11,7 @@ export function CreateTripForm({ onSubmit, currencyNames }) {
         tripName: "",
         members: ["", ""],
         startDate: "",
-        currency: { main: { value: "USD", label: "USD - United States Dollar" }, alt: { value: "KRW", label: "KRW - South Korean Won" }}
+        currency: { main: { value: "USD", label: "USD - United States Dollar" }, alt: { value: "KRW", label: "KRW - South Korean Won" }, rates: {} }
     });
     
     // handles text input for tripName and startDate

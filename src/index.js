@@ -10,36 +10,44 @@ import SAMPLE_EXPENSES from "./data/expenses.json";
 import SAMPLE_TRIPS from "./data/trips.json";
 
   // Fetch Frankfurther API: https://github.com/hakanensari/frankfurter
-  // const host = 'api.frankfurter.app';
+  // const CURRENCY_API_URL = 'https://api.frankfurter.app';
 
   // get currencies rates
-  // fetch(`https://${host}/latest?amount=10&from=USD&to=KRW, JPY`) 
+  // fetch(`https://${HOST}/latest?amount=10&from=USD&to=KRW, JPY`) 
   //   .then(resp => resp.json())
   //   .then((data) => {
   //   console.log(data);
   //   }
   // );
 
-  // get currency names
-  // fetch(`https://${host}/currencies`) 
+  // call makeRequest at tripsDataForm submit 
+  //  
+  // function makeRequest() {
+  //   fetch(`${CURRENCY_API_URL}/${startDate}/?from=${mainCurrency}&to={altCurrency}`)
+  //     .then(statusCheck)
+  //     .then(res => res.json())
+  //     .then(data => setTripsDataArray(data))
+  //     .catch(console.error);
+  // }
+
+  // get mainCurrency (base) from startDate and altCurrency
+  // https://api.frankfurter.app/2024-01-01?from=USD&to=GBP,EUR
+  // {"amount":1.0,"base":"USD","date":"2023-12-29","rates":{"EUR":0.90498,"GBP":0.78647}}
+
+  // get currencyNames (see currencyNames.json for example)
+  // fetch(`https://${HOST}/currencies`) 
   //   .then(resp => resp.json())
   //   .then((data) => {
   //   console.log(data);
   //   }
   // );
+
 
   // e.g. KRW, JPY
   // let currencyRates = currencyNames.rates;
   // Object.keys(currencyRates).forEach(currency => {
   //   console.log(currency, currencyRates[currency]);
   // });
-    
-
-  //get sorted list of unique teamNames. reduce array of objects into array of strings, 
-  //convert to Set to get uniques, spread back into array, and sort 
-  // const currencies = [...new Set(props.gameData.reduce((all, current) => {
-  //   return all.concat([current.winner, current.runner_up]);
-  // }, []))].sort();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

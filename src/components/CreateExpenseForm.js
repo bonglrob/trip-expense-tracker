@@ -1,6 +1,9 @@
 import Select from 'react-select';
+import { useParams } from 'react-router-dom';
 
 export function CreateExpenseForm({ tripsDataArray }) {
+
+    //  = useParams();
 
     const { startDate, members, currency } = tripsDataArray;
     console.log(startDate, members, currency);

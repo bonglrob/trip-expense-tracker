@@ -15,6 +15,8 @@ import Landing from './components/Landing.js';
 
 export default function App({ expenses, currencyNames, tripsData }) {
   const expensesData = expenses;
+  console.log(expensesData);
+  
 
   // example TripsDataArray[0] data: 
   // [
@@ -24,7 +26,8 @@ export default function App({ expenses, currencyNames, tripsData }) {
   //   startDate: "12/20/2023", 
   //   currency: {
   //     "main": { value: "USD", label: "USD - United States Dollar" } 
-  //     "alt": [{ value: "KRW", label: "KRW - South Korean Won" }, { value: "JPY", label: "JPY - Japanese Yen" }]
+  //     "alt": [{ value: "KRW", label: "KRW - South Korean Won" }, { value: "JPY", label: "JPY - Japanese Yen" }],
+  //     "rates": { "JPY": 148.93, "KRW": 1365.73 }
   //     } 
   //   },
   // ]
@@ -34,7 +37,8 @@ export default function App({ expenses, currencyNames, tripsData }) {
   const [tripsDataArray, setTripsDataArray] = useState([...tripsData]);
   console.log(tripsDataArray); // Use this to debug and make sure you are getting trips data
 
-
+  // An array of currency objects
+  // const [] { ...tripFormData, currency: { ...tripFormData.currency, main: mainCurrency }
 
   function handleTripFormSubmit(tripFormData) {
     const updatedTripsDataArray = [...tripsDataArray, tripFormData];
@@ -50,15 +54,14 @@ export default function App({ expenses, currencyNames, tripsData }) {
           <Route path="/emptybalances" element={<EmptyBalances />} />
           <Route path="/filledbalances" element={<FilledBalances />} />
           <Route path="/stats" element={<Stats />} />
-          <Route path="/expenses/:tripName" element={<Expenses expensesData={expensesData} />}></Route>
-          {/* <Route path="/expenses" element={<Expenses expensesData={expensesData} />} > */}
+          <Route path="/expenses/:tripNameString" element={<Expenses expensesData={expensesData} tripsDataArray={tripsDataArray} />}>
+            <Route path="/expenses/:tripNameString/create" element={<CreateExpenseForm tripsDataArray={tripsDataArray} />} />
             {/* {<Route index element={<FilterExpensesForm />}></Route>} */}
             {/* <Route path="/expenses/:expenseId" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} /> */}
-          {/* </Route>                          */}
-          <Route path="/expenses/create" element={<CreateExpenseForm tripsDataArray={tripsDataArray} />} />
+          </Route>
           <Route path="/mytrips" element={<MyTrips tripsDataArray={tripsDataArray} />} />
           <Route path="/createtrip" element={<CreateTripForm onSubmit={handleTripFormSubmit} currencyNames={currencyNames} />} />
-          <Route path="/*" element={<Navigate to="/expenses/create" />} />
+          <Route path="/*" element={<Navigate to="/mytrips" />} />
         </Routes>
       </main>
       <Footer />

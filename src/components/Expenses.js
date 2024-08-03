@@ -4,10 +4,22 @@ import ExpensesList from "./ExpensesList.js";
 import SearchBar from "./SearchBar.js"
 import { Outlet } from "react-router-dom";
 import Select from 'react-select';
+import { useParams } from "react-router-dom";
+import _ from "lodash";
 
-export default function Expenses({ expensesData }) {
+export default function Expenses({ expensesData, tripsDataArray }) {
     // no expenses user state
     let expenseList = <EmptyExpenses />;
+
+    const { tripNameString } = useParams();
+    console.log(tripNameString);
+    
+
+    let tripName =  _.find(tripsDataArray, { tripName: tripNameString }); //find tripName in data
+    console.log(tripName);
+    
+
+    if(!tripName) return <h2>{tripName} trip has not yet been created!</h2> //if unspecified
 
     if (expensesData.length > 1) {
         expenseList = (

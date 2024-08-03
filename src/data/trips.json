@@ -6,7 +6,8 @@
         "currency": 
             { 
                 "main": { "value": "USD", "label": "USD - United States Dollar" },
-                "alt": [{ "value": "KRW", "label": "KRW - South Korean Won" }, { "value": "JPY", "label": "JPY - Japanese Yen" }]
+                "alt": [{ "value": "KRW", "label": "KRW - South Korean Won" }, { "value": "JPY", "label": "JPY - Japanese Yen" }],
+                "rates": { "KRW": 1365.73, "JPY": 148.93 }
             }
 
     },
