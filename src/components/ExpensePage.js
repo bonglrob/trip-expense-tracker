@@ -7,21 +7,17 @@ import Select from 'react-select';
 import { useParams } from "react-router-dom";
 import _ from "lodash";
 
-export default function Expenses({ expensesData, tripsDataArray }) {
+export default function ExpensePage({ expensesData, tripsDataArray }) {
+        
+    const { tripName } = useParams(); // e.g. returns "Korea"
+    
+    let tripNameString =  _.find(tripsDataArray, { tripName: tripName }); //find tripName in data
+    
+    if(!tripNameString) return <h2>{tripNameString} trip has not yet been created!</h2> //if unspecified
+
     // no expenses user state
     let expenseList = <EmptyExpenses />;
-
-    const { tripNameString } = useParams();
-    console.log(tripNameString);
-    
-
-    let tripName =  _.find(tripsDataArray, { tripName: tripNameString }); //find tripName in data
-    console.log(tripName);
-    
-
-    if(!tripName) return <h2>{tripName} trip has not yet been created!</h2> //if unspecified
-
-    if (expensesData.length > 1) {
+    if (expensesData[tripName].length > 1) {
         expenseList = (
             <div className="container mt-4">
             <h1 className="color-primary">Korea</h1>

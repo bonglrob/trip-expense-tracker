@@ -5,49 +5,28 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
+import 'whatwg-fetch';
+
 import CURRENCIES_NAMES from "./data/currencyNames.json";
 import SAMPLE_EXPENSES from "./data/expenses.json";
 import SAMPLE_TRIPS from "./data/trips.json";
 
-  // Fetch Frankfurther API: https://github.com/hakanensari/frankfurter
-  // const CURRENCY_API_URL = 'https://api.frankfurter.app';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-  // get currencies rates
-  // fetch(`https://${HOST}/latest?amount=10&from=USD&to=KRW, JPY`) 
-  //   .then(resp => resp.json())
-  //   .then((data) => {
-  //   console.log(data);
-  //   }
-  // );
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
+};
 
-  // call makeRequest at tripsDataForm submit 
-  //  
-  // function makeRequest() {
-  //   fetch(`${CURRENCY_API_URL}/${startDate}/?from=${mainCurrency}&to={altCurrency}`)
-  //     .then(statusCheck)
-  //     .then(res => res.json())
-  //     .then(data => setTripsDataArray(data))
-  //     .catch(console.error);
-  // }
-
-  // get mainCurrency (base) from startDate and altCurrency
-  // https://api.frankfurter.app/2024-01-01?from=USD&to=GBP,EUR
-  // {"amount":1.0,"base":"USD","date":"2023-12-29","rates":{"EUR":0.90498,"GBP":0.78647}}
-
-  // get currencyNames (see currencyNames.json for example)
-  // fetch(`https://${HOST}/currencies`) 
-  //   .then(resp => resp.json())
-  //   .then((data) => {
-  //   console.log(data);
-  //   }
-  // );
-
-
-  // e.g. KRW, JPY
-  // let currencyRates = currencyNames.rates;
-  // Object.keys(currencyRates).forEach(currency => {
-  //   console.log(currency, currencyRates[currency]);
-  // });
+initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

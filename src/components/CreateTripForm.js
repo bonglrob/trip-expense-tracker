@@ -11,7 +11,7 @@ export function CreateTripForm({ onSubmit, currencyNames }) {
         tripName: "",
         members: ["", ""],
         startDate: "",
-        currency: { main: { value: "USD", label: "USD - United States Dollar" }, alt: { value: "KRW", label: "KRW - South Korean Won" }, rates: {} }
+        currency: { main: { value: "USD", label: "USD - United States Dollar" }, alt: [], rates: {} }
     });
     
     // handles text input for tripName and startDate
@@ -53,7 +53,7 @@ export function CreateTripForm({ onSubmit, currencyNames }) {
         setTripFormData(updatedTripFormData);
     }
 
-    // takes altCurrency parameter: e.g. [{value: USD, label: USD}, {value: GBP, label: GBP}] 
+    // @param Array[Object] altCurrency e.g. [{value: USD, label: USD}, {value: GBP, label: GBP}] 
     function handleAltCurrencyChange(altCurrency) {
         const updatedTripFormData = { ...tripFormData, currency: { ...tripFormData.currency, alt: altCurrency } };
         setTripFormData(updatedTripFormData);

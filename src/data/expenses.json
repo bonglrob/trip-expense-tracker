@@ -1,50 +1,102 @@
-[
-    {
-        "expenseId": 1,
-        "expenseName": "Jajangmyeon Restaurant",
-        "expenseCategory": { "value": "Food & Drinks", "label": "Food & Drinks"},
-        "currency": { "value": "KRW", "label": "KRW - South Korean Won" },
-        "cost": 55423,
-        "date": "7/18/24",
-        "paidByName": { "value": "Kara", "label": "Kara" },
-        "paidForNames": ["Kevin", "Michelle", "Josh", "Kara"],
-        "splitMethod": { "value": "evenly", "label": "evenly" },
-        "costPerName": [{ "Kevin": 13855 }, { "Michelle": 13855 }, { "Josh": 13855 }, { "Kara": 13855 }],
-        "notes": "dinner in downtown"
-    },
-    {
-        "expenseId": 2,
-        "expenseName": "Ttbeokki",
-        "expenseCategory": { "value": "Food & Drinks", "label": "Food & Drinks"},
-        "currency": { "value": "USD", "label": "USD - United States Dollar" },
-        "cost": 5.08,
-        "date": "7/17/24",
-        "paidByName": { "value": "Kara", "label": "Kara" },
-        "paidForNames": ["Michelle"],
-        "splitMethod": { "value": "evenly", "label": "evenly" },
-        "costPerName": [{ "Michelle": 5.08 }],
-        "notes": ""
-    },
-    {
-        "expenseId": 3,
-        "expenseName": "Mangwon Market",
-        "category": "food",
-        "cost": 13.58,
-        "altCurrencyCost": 18700,
-        "date": "7/15/24",
-        "paidByName": "Kara",
-        "paidForNames": ["Kevin", "Michelle"],
-        "notes": ""
-    },
-    {
-        "expenseId": 4,
-        "expenseName": "Airbnb grocery haul",
-        "category": "food",
-        "cost": 16.12,
-        "altCurrencyCost": 22200,
-        "date": "7/12/24",
-        "paidByName": "Kara",
-        "paidForNames": ["Kevin", "Michelle", "Josh", "Kara"],
-        "notes": ""
-    }
-]
+{
+    "Korea": [
+        {
+            "expenseId": 1,
+            "expenseName": "Jajangmyeon Restaurant",
+            "expenseCategory": { "value": "Food & Drinks", "label": "Food & Drinks"},
+            "currency": { "value": "KRW", "label": "KRW - South Korean Won" },
+            "cost": 55423,
+            "date": "7/18/24",
+            "paidByName": { "value": "Kara", "label": "Kara" },
+            "paidForNames": ["Kevin", "Michelle", "Josh", "Kara"],
+            "splitMethod": { "value": "evenly", "label": "evenly" },
+            "costPerName": [{ "Kevin": 13855 }, { "Michelle": 13855 }, { "Josh": 13855 }, { "Kara": 13855 }],
+            "notes": "dinner in downtown"
+        },
+        {
+            "expenseId": 2,
+            "expenseName": "Ttbeokki",
+            "expenseCategory": { "value": "Food & Drinks", "label": "Food & Drinks"},
+            "currency": { "value": "USD", "label": "USD - United States Dollar" },
+            "cost": 5.08,
+            "date": "7/17/24",
+            "paidByName": { "value": "Kara", "label": "Kara" },
+            "paidForNames": ["Michelle"],
+            "splitMethod": { "value": "evenly", "label": "evenly" },
+            "costPerName": [{ "Michelle": 5.08 }],
+            "notes": ""
+        },
+        {
+            "expenseId": 3,
+            "expenseName": "Mangwon Market",
+            "category": "food",
+            "cost": 13.58,
+            "altCurrencyCost": 18700,
+            "date": "7/15/24",
+            "paidByName": { "value": "Kara", "label": "Kara" },
+            "paidForNames": ["Kevin", "Michelle"],
+            "notes": ""
+        },
+        {
+            "expenseId": 4,
+            "expenseName": "Bus",
+            "category": "Transportation",
+            "cost": 16.12,
+            "date": "7/12/24",
+            "paidByName": "Kara",
+            "paidForNames": ["Kevin", "Michelle", "Josh", "Kara"],
+            "notes": ""
+        },
+        {
+            "expenseId": 5,
+            "expenseName": "Airbnb grocery haul",
+            "category": "food",
+            "cost": 16.12,
+            "date": "7/12/24",
+            "paidByName": "Kara",
+            "paidForNames": ["Kevin", "Michelle", "Josh", "Kara"],
+            "notes": ""
+        }
+    ],
+    "London": [
+        {
+            "expenseId": 1,
+            "expenseName": "Fish n Chips",
+            "expenseCategory": { "value": "Food & Drinks", "label": "Food & Drinks"},
+            "currency": { "value": "EUR", "label": "EUR - European Euros" },
+            "cost": 20,
+            "date": "7/18/24",
+            "paidByName": { "value": "Kevin", "label": "Kevin" },
+            "paidForNames": ["Kevin", "Noel", "Joseph"],
+            "splitMethod": { "value": "evenly", "label": "evenly" },
+            "costPerName": [{ "Kevin": 13855 }, { "Michelle": 13855 }, { "Josh": 13855 }, { "Kara": 13855 }],
+            "notes": "dinner in downtown"
+        },
+        {
+            "expenseId": 2,
+            "expenseName": "Tikka Masala",
+            "expenseCategory": { "value": "Food & Drinks", "label": "Food & Drinks"},
+            "currency": { "value": "KRW", "label": "KRW - South Korean Won" },
+            "cost": 55423,
+            "date": "7/18/24",
+            "paidByName": { "value": "Kara", "label": "Kara" },
+            "paidForNames": ["Kevin", "Michelle", "Josh", "Kara"],
+            "splitMethod": { "value": "evenly", "label": "evenly" },
+            "costPerName": [{ "Kevin": 13855 }, { "Michelle": 13855 }, { "Josh": 13855 }, { "Kara": 13855 }],
+            "notes": "dinner in downtown"
+        },
+        {
+            "expenseId": 3,
+            "expenseName": "Jajangmyeon Restaurant",
+            "expenseCategory": { "value": "Food & Drinks", "label": "Food & Drinks"},
+            "currency": { "value": "KRW", "label": "KRW - South Korean Won" },
+            "cost": 55423,
+            "date": "7/18/24",
+            "paidByName": { "value": "Kara", "label": "Kara" },
+            "paidForNames": ["Kevin", "Michelle", "Josh", "Kara"],
+            "splitMethod": { "value": "evenly", "label": "evenly" },
+            "costPerName": [{ "Kevin": 13855 }, { "Michelle": 13855 }, { "Josh": 13855 }, { "Kara": 13855 }],
+            "notes": "dinner in downtown"
+        }
+    ]
+}

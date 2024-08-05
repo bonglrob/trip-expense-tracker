@@ -1,7 +1,11 @@
+import { useParams, Link } from "react-router-dom";
+
 export default function ExpensesList({ expensesData }) {
-    let expenseCardArray = expensesData.map((expense) => {
+    const { tripName } = useParams();
+
+    let expenseCardArray = expensesData[tripName].map((expense) => {
         const transformed = (
-            <ExpenseCard expense={expense}/>
+            <ExpenseCard key={expense.expenseId} expense={expense}/>
         );
         return transformed;
     })
@@ -13,7 +17,7 @@ export default function ExpensesList({ expensesData }) {
 }
 
 function ExpenseCard({ expense }) {
-
+    const { tripName } = useParams();
 
     const {expenseId, expenseName, paidForNames, paidByName, cost, date} = expense;
 
@@ -26,7 +30,7 @@ function ExpenseCard({ expense }) {
 
     return (
         <div key={expenseId} className="col-12">
-            <div className="card mb-2">
+            <Link to={`/expenses/${tripName}/${expenseId}`} className="card mb-2">
                 <div className="card-body d-flex justify-content-between">
                     <div>
                         <h2 className="card-title">{expenseName}</h2>
@@ -38,7 +42,7 @@ function ExpenseCard({ expense }) {
                         <p className="card-date">{date}</p>
                     </div>
                 </div>
-            </div>
+            </Link>
         </div>
     )
 }

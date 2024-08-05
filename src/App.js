@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import EmptyBalances from './components/EmptyBalances';
 import FilledBalances from './components/FilledBalances';
 import Stats from './components/Stats';
 import { CreateExpenseForm } from './components/CreateExpenseForm.js';
 import FilterExpensesForm from './components/FiltersExpensesForm.js';
-import Expenses from './components/Expenses.js';
+import ExpensePage from './components/ExpensePage.js';
 import MyTrips from './components/MyTrips.js';
 import { CreateTripForm } from './components/CreateTripForm.js';
 import { Navigate } from 'react-router-dom';
@@ -15,34 +15,80 @@ import Landing from './components/Landing.js';
 
 export default function App({ expenses, currencyNames, tripsData }) {
   const expensesData = expenses;
-  console.log(expensesData);
   
+  // Fetch Frankfurther API: https://github.com/hakanensari/frankfurter
+  const CURRENCY_API_URL = 'https://api.frankfurter.app';  
+  
+  // get currency rates on day of trip based on main currency against alt currencies (e.g. currencyRates.json)
+  function fetchCurrencyRates(tripFormData) {
+    let { startDate, currency } = tripFormData;
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
 
-  // example TripsDataArray[0] data: 
-  // [
-  //   { 
-  //   tripName: "Korea", 
-  //   members: ["Kevin", "Michelle", "Josh", "Kara"], 
-  //   startDate: "12/20/2023", 
-  //   currency: {
-  //     "main": { value: "USD", label: "USD - United States Dollar" } 
-  //     "alt": [{ value: "KRW", label: "KRW - South Korean Won" }, { value: "JPY", label: "JPY - Japanese Yen" }],
-  //     "rates": { "JPY": 148.93, "KRW": 1365.73 }
-  //     } 
-  //   },
-  // ]
+    if (startDate >= currentDate) startDate = "latest";
+
+    const mainCurrencyParam = currency.main.value;
+    const altCurrencyArray = currency.alt.value;
+
+    const altCurrencyParam = altCurrencyArray.map(currency => currency.value).join(',');
+
+    // API startDate format YYYY/MM/DD
+    fetch(`${CURRENCY_API_URL}/${startDate}?from=${mainCurrencyParam}&to=${altCurrencyParam}`)
+      .then(statusCheck)
+      .then(res => res.json())
+      .then(data => {
+        const updatedTripsDataArray =  [ ...tripsDataArray, { ...tripFormData, currency: { ...tripFormData.currency, rates: data.rates } }];
+        setTripsDataArray(updatedTripsDataArray);
+      })
+      .catch((error) => console.error("Error fetching currency data:", error));
+  }
+
+  // get object of currency Names (e.g. currencyNames.json)
+  function fetchCurrencyNames() {
+    fetch(CURRENCY_API_URL + "/currencies") 
+      .then(statusCheck)
+      .then(res => res.json())
+      .then(data => {
+        const updatedCurrencyNamesObj = data;
+        setCurrencyNamesObj(updatedCurrencyNamesObj);
+      })
+      .catch((error) => console.error("Error fetching currency names:", error));
+  }
+
+  // useEffect(() => {
+  //   fetchCurrencyNames();
+  // }, []);
+
+  /*
+  * Checks whether it can establish a connection with frankfurter API
+  *
+  * @param {Object} res - promised object
+  * @returns {Object} res - promised object
+  */
+  async function statusCheck(res) {
+    if (!res.ok) {
+      throw new Error(await res.text());
+    }
+    return res;
+  }
+
+  // An object of currency names
+  const [currencyNamesObj, setCurrencyNamesObj] = useState({...currencyNames}); // testing with currencyNames.json
 
   /// An array of trip objects
-  // initialize trips.json sample data used for debugging feature 2: 
-  const [tripsDataArray, setTripsDataArray] = useState([...tripsData]);
-  console.log(tripsDataArray); // Use this to debug and make sure you are getting trips data
-
-  // An array of currency objects
-  // const [] { ...tripFormData, currency: { ...tripFormData.currency, main: mainCurrency }
+  const [tripsDataArray, setTripsDataArray] = useState([...tripsData]); // testing with trips.json
+  console.log(tripsDataArray);
 
   function handleTripFormSubmit(tripFormData) {
+    
     const updatedTripsDataArray = [...tripsDataArray, tripFormData];
     setTripsDataArray(updatedTripsDataArray);
+    
+    // when user selects alt currencies
+    if (tripFormData.currency.alt.length > 0 ) {      
+      // fetchCurrencyRates(tripFormData);
+    }
+
   };
 
   return (
@@ -54,13 +100,13 @@ export default function App({ expenses, currencyNames, tripsData }) {
           <Route path="/emptybalances" element={<EmptyBalances />} />
           <Route path="/filledbalances" element={<FilledBalances />} />
           <Route path="/stats" element={<Stats />} />
-          <Route path="/expenses/:tripNameString" element={<Expenses expensesData={expensesData} tripsDataArray={tripsDataArray} />}>
-            <Route path="/expenses/:tripNameString/create" element={<CreateExpenseForm tripsDataArray={tripsDataArray} />} />
+          <Route path="/expenses/:tripName" element={<ExpensePage expensesData={expensesData} tripsDataArray={tripsDataArray} />}>
             {/* {<Route index element={<FilterExpensesForm />}></Route>} */}
             {/* <Route path="/expenses/:expenseId" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} /> */}
           </Route>
+          <Route path="/expenses/:tripName/:expenseId" element={<CreateExpenseForm tripsDataArray={tripsDataArray} />} />
           <Route path="/mytrips" element={<MyTrips tripsDataArray={tripsDataArray} />} />
-          <Route path="/createtrip" element={<CreateTripForm onSubmit={handleTripFormSubmit} currencyNames={currencyNames} />} />
+          <Route path="/createtrip" element={<CreateTripForm onSubmit={handleTripFormSubmit} currencyNames={currencyNamesObj} />} />
           <Route path="/*" element={<Navigate to="/mytrips" />} />
         </Routes>
       </main>

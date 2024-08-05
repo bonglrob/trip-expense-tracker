@@ -4,7 +4,7 @@ export default function MyTrips({ tripsDataArray }) {
 
     const tripsCardArray = tripsDataArray.map((tripObj) => {
         const transformed = (
-            <TripCard tripObj={tripObj} />
+            <TripCard key={tripObj.tripName} tripObj={tripObj} />
         );
         return transformed;
     });

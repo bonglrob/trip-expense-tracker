@@ -18,7 +18,8 @@
         "currency":
             { 
                 "main": { "value": "EUR", "label": "EUR - European Euros" },
-                "alt": [{ "value": "GBP", "label": "GBP - Great Britain Pound" }, { "value": "USD", "label": "USD - United States Dollar" }]
+                "alt": [{ "value": "GBP", "label": "GBP - Great Britain Pound" }, { "value": "USD", "label": "USD - United States Dollar" }],
+                "rates": { "GBP": 0.85, "USD": 1.0835}
             }
     },
     {
@@ -28,7 +29,8 @@
         "currency":
             {
                 "main": { "value": "USD", "label": "USD - United States Dollar" },
-                "alt": [{ "value": "USD", "label": "USD - United States Dollar" }]
+                "alt": [],
+                "rates": {}
             }
 
     },
@@ -39,7 +41,8 @@
         "currency":
             {
                 "main": { "value": "USD", "label": "USD - United States Dollar" },
-                "alt": [{ "value": "MXN", "label": "MXN - Mexican Pesos" }]
+                "alt": [{ "value": "MXN", "label": "MXN - Mexican Pesos" }],
+                "rates": { "MXN": 19.18 }
             }
     }
 ]
