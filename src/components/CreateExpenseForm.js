@@ -3,10 +3,27 @@ import { useParams } from 'react-router-dom';
 import Select from 'react-select';
 import _ from 'lodash';
 
-export function CreateExpenseForm({ tripsDataArray }) {
+export function CreateExpenseForm({ onSubmit, tripsDataArray }) {
   const { tripName } = useParams();
   const index = _.findIndex(tripsDataArray, { tripName: tripName });
   const { startDate, members, currency } = tripsDataArray[index];
+  const currencies = [currency.main, ...currency.alt];
+
+  const [paidByOptions, setPaidByOptions] = useState([]);
+  const [currencyOptions, setCurrencyOptions] = useState([]);
+
+  const [expenseFormData, setExpenseFormData] = useState({
+    expenseId: 1,
+    expenseName: "",
+    expenseCategory: {},
+    currency: {},
+    cost: 0,
+    date: "",
+    paidByName: {},
+    paidForNames: [],
+    splitMethod: {},
+    costPerName: []
+  });
     
   const categoryOptions = [
     { "value": "Food & Drinks", "label": "Food & Drinks" },
@@ -23,18 +40,20 @@ export function CreateExpenseForm({ tripsDataArray }) {
     { "value": "By amount", "label": "By amount" }
   ]
 
-  const [paidByOptions, setPaidByOptions] = useState([]);
-
   useEffect(() => {
     const paidByOptionsArray = members.map(member => ({"value": member, "label": member}));
     setPaidByOptions(paidByOptionsArray);
   }, [members])
 
-  // Todo pass tripsDataArray currencies here:
-  const currencyOptions = [
-    { "value": "USD", "label": "USD" },
-    { "value": "KRW", "label": "KRW" },
-  ]
+  useEffect(() => {
+    const currencyOptionsArray = currencies.map(currency => ({
+      value: currency,
+      label: currency
+    }))
+    console.log(currencyOptionsArray);
+    
+    // setCurrencyOptions(currencyOptionsArray);
+  }, [currencies])
 
   // styles for <Select> category options 
   const selectedStyles = {
@@ -65,11 +84,15 @@ export function CreateExpenseForm({ tripsDataArray }) {
     })
   };
 
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
   return (
     <div className="container mt-4">
       <div className="d-flex align-items-center"><h1>New Expense</h1></div>
 
-      <form id="create-expense" className="row g-3">
+      <form id="create-expense" className="row g-3" onSubmit={handleSubmit}>
 
         <section class="card">
           <div class="card-body">

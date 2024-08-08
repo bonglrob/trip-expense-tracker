@@ -91,6 +91,10 @@ export default function App({ expenses, currencyNames, tripsData }) {
 
   };
 
+  function handleExpenseFormSubmit(expenseFormData) {
+    // 
+  }
+
   return (
     <div>
       <Header />
@@ -104,7 +108,7 @@ export default function App({ expenses, currencyNames, tripsData }) {
             {/* {<Route index element={<FilterExpensesForm />}></Route>} */}
             {/* <Route path="/expenses/:expenseId" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} /> */}
           </Route>
-          <Route path="/expenses/:tripName/:expenseId" element={<CreateExpenseForm tripsDataArray={tripsDataArray} />} />
+          <Route path="/expenses/:tripName/:expenseId" element={<CreateExpenseForm onSubmit={handleExpenseFormSubmit} tripsDataArray={tripsDataArray} />} />
           <Route path="/mytrips" element={<MyTrips tripsDataArray={tripsDataArray} />} />
           <Route path="/createtrip" element={<CreateTripForm onSubmit={handleTripFormSubmit} currencyNames={currencyNamesObj} />} />
           <Route path="/*" element={<Navigate to="/mytrips" />} />
