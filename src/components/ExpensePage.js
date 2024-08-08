@@ -6,6 +6,7 @@ import { Outlet } from "react-router-dom";
 import Select from 'react-select';
 import { useParams } from "react-router-dom";
 import _ from "lodash";
+import NavigationBar from "./NavigationBar.js";
 
 export default function ExpensePage({ expensesData, tripsDataArray }) {
         
@@ -21,6 +22,7 @@ export default function ExpensePage({ expensesData, tripsDataArray }) {
         expenseList = (
             <div className="container mt-4">
             <h1 className="color-primary">Korea</h1>
+            <NavigationBar />
 
             <div className="d-flex mb-1 align-items-center">
 
