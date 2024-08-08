@@ -65,6 +65,21 @@ export function CreateExpenseForm({ tripsDataArray }) {
     })
   };
 
+  // Set up expenseFormData state variable
+  const [expenseFormData, setExpenseFormData] = useState({
+    expenseId: undefined,
+    expenseName: "",
+    expenseCategory: { "value": "Food & Drinks", "label": "Food & Drinks"},
+    currency: { value: "USD", label: "USD - United States Dollar" },
+    cost: undefined,
+    date: "",
+    paidByName: { value: "", label: "" },
+    paidForNames: [""],
+    splitMethod: { value: "evenly", label: "evenly" },
+    costPerName: [{ "": undefined }],
+    notes: ""
+  });
+
   return (
     <div className="container mt-4">
       <div className="d-flex align-items-center"><h1>New Expense</h1></div>
