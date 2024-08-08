@@ -4,6 +4,7 @@ import ExpensesList from "./ExpensesList.js";
 import SearchBar from "./SearchBar.js";
 import { Outlet, useParams } from "react-router-dom";
 import _ from "lodash";
+import NavigationBar from "./NavigationBar.js";
 
 export default function ExpensePage({ expensesData, tripsDataArray }) {
     const { tripName } = useParams(); // e.g. returns "Korea"
@@ -18,6 +19,7 @@ export default function ExpensePage({ expensesData, tripsDataArray }) {
         expenseList = (
             <div className="container mt-4">
                 <h1 className="color-primary">{tripName}</h1>
+            <NavigationBar />
 
                 <div className="d-flex mb-1 align-items-center">
                     <Outlet />

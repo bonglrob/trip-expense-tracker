@@ -1,8 +1,12 @@
+import { Routes } from "react-router-dom";
+import NavigationBar from "./NavigationBar";
+
 export default function EmptyBalances() {
     return (
       <div className="container mt-4">
         <h1 className="color-primary">Korea</h1>
         <div className="row">
+          <NavigationBar />
           <div className="col">
             <div className="card">
               <div className="card-body">
