@@ -8,12 +8,16 @@ export default function ExpensesList({ expensesData, currencyData }) {
     fx.base = currencyData.main.value;
     fx.rates = currencyData.rates;
 
+    console.log("Configured base currency:", fx.base);
+    console.log("Currency rates:", fx.rates);
+
     let expenseCardArray = expensesData[tripName].map((expense) => {
         const transformed = (
             <ExpenseCard key={expense.expenseId} expense={expense} currencyData={currencyData} />
         );
         return transformed;
     });
+
     return (
         <div className="row">
             {expenseCardArray}
@@ -35,7 +39,16 @@ function ExpenseCard({ expense, currencyData }) {
 
     const mainCurrency = currencyData.main.value;
     const altCurrency = currencyData.alt.length > 0 ? currencyData.alt[0].value : null;
+
+    // Log the cost and currencies
+    console.log("Original cost:", cost);
+    console.log("Main currency:", mainCurrency);
+    console.log("Alternative currency:", altCurrency);
+
     const altCost = altCurrency ? fx(cost).from(mainCurrency).to(altCurrency).toFixed(2) : null;
+
+    // Log the converted cost
+    console.log("Converted cost:", altCost);
 
     return (
         <div key={expenseId} className="col-12">
