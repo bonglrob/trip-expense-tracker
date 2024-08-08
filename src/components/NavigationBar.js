@@ -12,7 +12,7 @@ export default function NavigationBar(props) {
                             {/* <a className="nav-link active btn" aria-current="page" href="#">Expenses</a> */}
                         </li>
                         <li className="nav-item">
-                            <Link to="/filledbalances" className="nav-link">Balances</Link>
+                            <Link to="/balances/:tripName" className="nav-link">Balances</Link>
                             {/* <a className="nav-link" href="#">Balances</a> */}
                         </li>
                         <li className="nav-item">
