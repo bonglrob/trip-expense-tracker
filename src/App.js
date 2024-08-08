@@ -12,13 +12,14 @@ import { Navigate } from 'react-router-dom';
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 import Landing from './components/Landing.js';
+import BalancesPage from './components/BalancesPage.js'; // Import BalancesPage
 
 export default function App({ expenses, currencyNames, tripsData }) {
   const expensesData = expenses;
-  
+
   // Fetch Frankfurther API: https://github.com/hakanensari/frankfurter
-  const CURRENCY_API_URL = 'https://api.frankfurter.app';  
-  
+  const CURRENCY_API_URL = 'https://api.frankfurter.app';
+
   // get currency rates on day of trip based on main currency against alt currencies (e.g. currencyRates.json)
   function fetchCurrencyRates(tripFormData) {
     let { startDate, currency } = tripFormData;
@@ -45,7 +46,7 @@ export default function App({ expenses, currencyNames, tripsData }) {
 
   // get object of currency Names (e.g. currencyNames.json)
   function fetchCurrencyNames() {
-    fetch(CURRENCY_API_URL + "/currencies") 
+    fetch(CURRENCY_API_URL + "/currencies")
       .then(statusCheck)
       .then(res => res.json())
       .then(data => {
@@ -80,15 +81,13 @@ export default function App({ expenses, currencyNames, tripsData }) {
   console.log(tripsDataArray);
 
   function handleTripFormSubmit(tripFormData) {
-    
     const updatedTripsDataArray = [...tripsDataArray, tripFormData];
     setTripsDataArray(updatedTripsDataArray);
-    
+
     // when user selects alt currencies
-    if (tripFormData.currency.alt.length > 0 ) {      
+    if (tripFormData.currency.alt.length > 0) {
       // fetchCurrencyRates(tripFormData);
     }
-
   };
 
   function handleExpenseFormSubmit(expenseFormData) {
@@ -111,6 +110,7 @@ export default function App({ expenses, currencyNames, tripsData }) {
           <Route path="/expenses/:tripName/:expenseId" element={<CreateExpenseForm onSubmit={handleExpenseFormSubmit} tripsDataArray={tripsDataArray} />} />
           <Route path="/mytrips" element={<MyTrips tripsDataArray={tripsDataArray} />} />
           <Route path="/createtrip" element={<CreateTripForm onSubmit={handleTripFormSubmit} currencyNames={currencyNamesObj} />} />
+          <Route path="/balances/:tripName" element={<BalancesPage expensesData={expensesData} tripsDataArray={tripsDataArray} />} /> {/* Added route for BalancesPage */}
           <Route path="/*" element={<Navigate to="/mytrips" />} />
         </Routes>
       </main>
