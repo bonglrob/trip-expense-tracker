@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import _ from 'lodash';
+
 import EmptyBalances from './components/EmptyBalances';
 import FilledBalances from './components/FilledBalances';
 import Stats from './components/Stats';
@@ -15,7 +17,6 @@ import Landing from './components/Landing.js';
 import BalancesPage from './components/BalancesPage.js'; // Import BalancesPage
 
 export default function App({ expenses, currencyNames, tripsData }) {
-  const expensesData = expenses;
 
   // Fetch Frankfurther API: https://github.com/hakanensari/frankfurter
   const CURRENCY_API_URL = 'https://api.frankfurter.app';
@@ -78,11 +79,31 @@ export default function App({ expenses, currencyNames, tripsData }) {
 
   /// An array of trip objects
   const [tripsDataArray, setTripsDataArray] = useState([...tripsData]); // testing with trips.json
-  console.log(tripsDataArray);
+  
+  // An object of expenses
+  const [expensesDataObj, setExpensesDataObj] = useState(expenses); // testing with expenses.json
+
+  const [highestId, setHighestId] = useState(1);  
+  // console.log(highestId);
+  
+
+  function getHighestId(tripName) {
+    if (expensesDataObj[tripName].length === 0) {
+      setHighestId(1);
+    } else {
+        const arrayOfExpenses = _.flatMap(expensesDataObj[tripName], (expense) => expense);
+        const highestIdObj = _.maxBy(arrayOfExpenses, "expenseId");
+        const updatedHighestId = Number(highestIdObj["expenseId"]); 
+        setHighestId(updatedHighestId);
+    }
+  }
 
   function handleTripFormSubmit(tripFormData) {
     const updatedTripsDataArray = [...tripsDataArray, tripFormData];
     setTripsDataArray(updatedTripsDataArray);
+
+    const updatedExpensesDataObj = { [tripFormData.tripName]: [] };
+    setExpensesDataObj(updatedExpensesDataObj);
 
     // when user selects alt currencies
     if (tripFormData.currency.alt.length > 0) {
@@ -91,7 +112,8 @@ export default function App({ expenses, currencyNames, tripsData }) {
   };
 
   function handleExpenseFormSubmit(expenseFormData) {
-    // 
+    const updatedExpensesDataObj = expenseFormData;
+    setExpensesDataObj(updatedExpensesDataObj);
   }
 
   return (
@@ -103,14 +125,14 @@ export default function App({ expenses, currencyNames, tripsData }) {
           <Route path="/emptybalances" element={<EmptyBalances />} />
           <Route path="/filledbalances" element={<FilledBalances />} />
           <Route path="/stats" element={<Stats />} />
-          <Route path="/expenses/:tripName" element={<ExpensePage expensesData={expensesData} tripsDataArray={tripsDataArray} />}>
+          <Route path="/expenses/:tripName" element={<ExpensePage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} getHighestId={getHighestId} highestId={highestId} /> }>
             {/* {<Route index element={<FilterExpensesForm />}></Route>} */}
             {/* <Route path="/expenses/:expenseId" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} /> */}
           </Route>
-          <Route path="/expenses/:tripName/:expenseId" element={<CreateExpenseForm onSubmit={handleExpenseFormSubmit} tripsDataArray={tripsDataArray} />} />
+          <Route path="/expenses/:tripName/:expenseId" element={<CreateExpenseForm onSubmit={handleExpenseFormSubmit} tripsDataArray={tripsDataArray} expensesData={expensesDataObj} highestId={highestId} />} />
           <Route path="/mytrips" element={<MyTrips tripsDataArray={tripsDataArray} />} />
           <Route path="/createtrip" element={<CreateTripForm onSubmit={handleTripFormSubmit} currencyNames={currencyNamesObj} />} />
-          <Route path="/balances/:tripName" element={<BalancesPage expensesData={expensesData} tripsDataArray={tripsDataArray} />} /> {/* Added route for BalancesPage */}
+          <Route path="/balances/:tripName" element={<BalancesPage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} />} /> {/* Added route for BalancesPage */}
           <Route path="/*" element={<Navigate to="/mytrips" />} />
         </Routes>
       </main>
