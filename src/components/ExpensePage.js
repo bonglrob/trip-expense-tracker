@@ -18,7 +18,7 @@ export default function ExpensePage({ expensesData, tripsDataArray }) {
     if (expensesData[tripName].length > 1) {
         expenseList = (
             <div className="container mt-4">
-                <h1 className="color-primary">{tripName}</h1>
+                <h1 className="color-primary">{tripsDataArray.tripName}</h1>
             <NavigationBar />
 
                 <div className="d-flex mb-1 align-items-center">

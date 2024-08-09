@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Select from 'react-select';
 import _ from 'lodash';
 
@@ -196,7 +196,10 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray }) {
         {/* submit form button */}
         <div className="d-flex align-items-center col-12">
           <button className="btn btn-primary me-3" type="submit">Create</button>
-          <a href="index.html" className="text-decoration-none"><span className="me-2" type="submit">Cancel</span></a>
+          {/* Use Link for navigation */}
+          <Link to={`/expenses/${tripName}`} className="text-decoration-none btn btn-secondary">
+            Cancel
+          </Link>
         </div>
 
       </form>
