@@ -84,6 +84,29 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray }) {
     })
   };
 
+  // handles text input
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    const updatedExpenseFormData = { ...expenseFormData, [name]: value }
+    setExpenseFormData(updatedExpenseFormData);
+  };
+
+  function handleCategoryChange(expenseCategory) {
+    const updatedExpenseFormData = { ...expenseFormData, "expenseCategory": expenseCategory }
+    setExpenseFormData(updatedExpenseFormData);
+  };
+
+  function handleCurrencyChange(currency) {
+    const updatedExpenseFormData = { ...expenseFormData, "currency": currency }
+    setExpenseFormData(updatedExpenseFormData);
+  };
+
+  function handlePaidByChange(paidByName) {
+    const updatedExpenseFormData = { ...expenseFormData, "paidByName": paidByName }
+    setExpenseFormData(updatedExpenseFormData);
+  };
+
   function handleSubmit(event) {
     event.preventDefault();
   }
@@ -99,78 +122,37 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray }) {
             <div class="row">
 
               {/* exepenseName input */}
-              <div className="col-md-4">
-                <label htmlFor="expense-name" className="form-label">Name</label>
-                <input
-                  id="expense-name"
-                  name="expenseName"
-                  type="text"
-                  className="form-control"
-                  placeholder="Jajangmyeon Restaurant"
-                  required
-                />
-              </div>
+              <ExpenseName expenseName={expenseFormData.expenseName} handleChange={handleChange}/>
 
               {/* date input */}
-              <div className="col-md-4">
-                  <label htmlFor="date" className="form-label">Date</label>
-                  <div className="input-group">
-                      <input
-                        id="date"
-                        type="text"
-                        className="form-control"
-                        placeholder="7/18/2024"
-                      />
-                      <span className="input-group-text">
-                          <span className="material-symbols-outlined">calendar_today</span>
-                      </span>
-                  </div>
-              </div>
+              <Date date={expenseFormData.date} handleChange={handleChange}/>
 
               {/* <!-- expenseCategory dropdown --> */}
-              <div className="col-md-4">
-                <label htmlFor="expense-category" className="form-label">Category</label>
-                <Select
-                    id="expense-category"
-                    value={categoryOptions[0]}
-                    onChange=""
-                    options={categoryOptions}
-                    isSearchable
-                    styles={selectedStyles}
-                    maxMenuHeight={140}
-                />
-              </div>
+              <ExpenseCategory 
+                expenseCategory={expenseFormData.expenseCategory} 
+                categoryOptions={categoryOptions} 
+                selectedStyles={selectedStyles}
+                handleChange={handleCategoryChange}
+              />
 
               {/* cost input */}
-              <div className="col-md-3">
-                <label htmlFor="cost" className="form-label">Cost</label>
-                <div className="input-group">
-                  <Select
-                    id="cost"
-                    value=""
-                    onChange=""
-                    options={currencyOptions}
-                    styles={selectedCurrencyStyles}
-                    maxMenuHeight={140}
-                    aria-label="currency selector"
-                  />
-                  <input
-                    id="cost"
-                    type="text"
-                    className="form-control"
-                    placeholder="55,423"
-                    required
-                  />
-                </div>
-              </div>
+              <Cost 
+                currency={expenseFormData.currency} 
+                currencyOptions={currencyOptions} 
+                selectedStyles={selectedCurrencyStyles}
+                handleCurrencyChange={handleCurrencyChange}
+
+                cost={expenseFormData.cost} 
+                handleCostChange={handleChange}
+              />
               
               {/* paidByName select */}
               <div className="col col-md-2">
                 <label htmlFor="paid-by" className="form-label">Paid by</label>
                   <Select
                     id="paid-by"
-                    value=""
-                    onChange=""
+                    value={expenseFormData.paidByName}
+                    onChange={handlePaidByChange}
                     options={paidByOptions}
                     styles={selectedStyles}
                   />
@@ -258,4 +240,104 @@ function PaidForInput({ tripsDataArray }) {
         {paidForInputArray}
       </div>
   )
+}
+
+
+//   expenseId: 1,         //
+//   expenseName: "",      // done
+//   expenseCategory: {},  // done
+//   currency: {},         //
+//   cost: 0,              // done
+//   date: "",             // done
+//   paidByName: {},       // done
+//   paidForNames: [],     //
+//   splitMethod: {},      //
+//   costPerName: []       //
+
+
+// Component for Expense Name input field
+function ExpenseName({ expenseName, handleChange }) {
+  return (
+    <div className="col-md-4">
+      <label htmlFor="expense-name" className="form-label">Name</label>
+      <input
+        id="expense-name"
+        name="expenseName"
+        value={expenseName}
+        onChange={handleChange}
+        type="text"
+        className="form-control"
+        placeholder="Jajangmyeon Restaurant"
+        required
+      />
+    </div>  
+  );
+}
+
+// Component for Date input field
+function Date({ date, handleChange }) {
+  return (
+    <div className="col-md-4">
+      <label htmlFor="date" className="form-label">Date</label>
+      <div className="input-group">
+          <input
+            id="date"
+            name="date"
+            value={date}
+            onChange={handleChange}
+            type="date"
+            className="form-control"
+            placeholder=""
+          />
+      </div>
+    </div>  
+  );
+}
+
+// Component for Expense Category input field
+function ExpenseCategory({ expenseCategory, categoryOptions, selectedStyles, handleCategoryChange}) {
+  return (
+    <div className="col-md-4">
+      <label htmlFor="expense-category" className="form-label">Category</label>
+      <Select
+          id="expense-category"
+          value={expenseCategory}
+          onChange={handleCategoryChange}
+          options={categoryOptions}
+          isSearchable
+          styles={selectedStyles}
+          maxMenuHeight={140}
+      />
+    </div>
+  );
+}
+
+// Component for Currency and Cost input field
+function Cost({currency, currencyOptions, selectedStyles, handleCurrencyChange, cost, handleCostChange }) {
+  return (
+    <div className="col-md-3">
+      <label htmlFor="cost" className="form-label">Cost</label>
+      <div className="input-group">
+        <Select
+          id="currency"
+          value={currency}
+          onChange={handleCurrencyChange}
+          options={currencyOptions}
+          styles={selectedStyles}
+          maxMenuHeight={140}
+          aria-label="currency selector"
+        />
+        <input
+          id="cost"
+          name="cost"
+          value={cost}
+          onChange={handleCostChange}
+          type="text"
+          className="form-control"
+          placeholder="0"
+          required
+        />
+      </div>
+    </div>
+  );
 }
