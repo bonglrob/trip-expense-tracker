@@ -25,8 +25,8 @@ export default function ExpensePage({ expensesData, tripsDataArray, getHighestId
             <EmptyExpenses highestId={highestId} /> 
         ) : (
             <div className="container mt-4">
-                <h1 className="color-primary">{tripName}</h1>
-                <NavigationBar />
+                <h1 className="color-primary">{tripsDataArray.tripName}</h1>
+            <NavigationBar />
 
                 <div className="d-flex mb-1 align-items-center">
                     <Outlet />
