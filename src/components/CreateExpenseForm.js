@@ -1,16 +1,23 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Select from 'react-select';
 import _ from 'lodash';
+import { useNavigate } from 'react-router-dom';
 
-export function CreateExpenseForm({ onSubmit, tripsDataArray }) {
-  const { tripName } = useParams();
+export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, highestId }) {
+  
+  // Todo: If params expenseId === tripsDataArray[tripName] / .expenseId exists (use _.find?)
+
+  const navigate = useNavigate();
+
+  const { tripName, expenseId } = useParams();  
+
   const index = _.findIndex(tripsDataArray, { tripName: tripName });
   const { startDate, members, currency } = tripsDataArray[index];
-  const currencies = [currency.main, ...currency.alt];
+  const [currencies, setCurrencies] = useState([currency.main, ...currency.alt]);
 
   const [paidByOptions, setPaidByOptions] = useState([]);
-  const [currencyOptions, setCurrencyOptions] = useState([]);
+  const [currencyOptions, setCurrencyOptions] = useState([]);  
 
   const [expenseFormData, setExpenseFormData] = useState({
     expenseId: 1,
@@ -18,7 +25,7 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray }) {
     expenseCategory: {},
     currency: {},
     cost: 0,
-    date: "",
+    date: "", // should be set to today's date
     paidByName: {},
     paidForNames: [],
     splitMethod: {},
@@ -42,20 +49,9 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray }) {
     // { "value": "By amount", "label": "By amount" }
   ]
 
-  useEffect(() => {
-    const paidByOptionsArray = members.map(member => ({"value": member, "label": member}));
-    setPaidByOptions(paidByOptionsArray);
-  }, [members])
-
-  useEffect(() => {
-    const currencyOptionsArray = currencies.map(currency => ({
-      value: currency,
-      label: currency
-    }))
-    console.log(currencyOptionsArray);
-    
-    // setCurrencyOptions(currencyOptionsArray);
-  }, [currencies])
+  const [expenseIsFound, setExpenseIsFound] = useState(false);
+  // console.log("expenseFound", expenseIsFound);
+  
 
   // styles for <Select> category options 
   const selectedStyles = {
@@ -108,6 +104,13 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray }) {
     const updatedExpenseFormData = { ...expenseFormData, "paidByName": paidByName }
     setExpenseFormData(updatedExpenseFormData);
   };
+
+  // Returns boolean if expenseId in URL params exists in expenses database 
+  function findExpenseId() {
+    const arrayOfExpenses = _.flatMap(expensesData[tripName], (expense) => expense); // flattens expensesDataObj to array
+    const expenseIsFound = _.find(arrayOfExpenses, { "expenseId": Number(expenseId) })    
+    setExpenseIsFound(!!expenseIsFound);  
+  }
 
   function handleSplitMethodChange(splitMethod) {
     const updatedExpenseFormData = { ...expenseFormData, "splitMethod": splitMethod }
@@ -162,17 +165,38 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    onSubmit(expenseFormData);
+
+    navigate(`/expenses/${tripName}`)
   }
 
+  useEffect(() => {
+    const paidByOptionsArray = members.map(member => ({"value": member, "label": member}));
+    setPaidByOptions(paidByOptionsArray);
+    findExpenseId();
+  }, [expensesData])
+
+  useEffect(() => {
+    const currencyOptionsArray = currencies.map(currency => ({
+      value: currency.value,
+      label: currency.value
+    }))
+    setCurrencyOptions(currencyOptionsArray);
+  }, [currencies])
+    
   return (
+    Number(expenseId) > highestId + 1 || !expenseIsFound
+    ? <h2>This expense has not yet been created!</h2>
+    : (
     <div className="container mt-4">
       <div className="d-flex align-items-center"><h1>New Expense</h1></div>
 
       <form id="create-expense" className="row g-3" onSubmit={handleSubmit}>
 
-        <section class="card">
-          <div class="card-body">
-            <div class="row">
+        <section className="card">
+          <div className="card-body">
+            <div className="row">
 
               {/* exepenseName input */}
               <ExpenseName expenseName={expenseFormData.expenseName} handleChange={handleChange}/>
@@ -215,7 +239,7 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray }) {
           </div>
         </section>   
 
-        <section class="card">
+        <section className="card">
           <div className="card-body col-md-6">
 
             <h2 className='mb-3'>Paid for</h2>
@@ -258,12 +282,16 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray }) {
         {/* submit form button */}
         <div className="d-flex align-items-center col-12">
           <button className="btn btn-primary me-3" type="submit">Create</button>
-          <a href="index.html" className="text-decoration-none"><span className="me-2" type="submit">Cancel</span></a>
+          {/* Use Link for navigation */}
+          <Link to={`/expenses/${tripName}`} className="text-decoration-none btn btn-secondary">
+            Cancel
+          </Link>
         </div>
 
       </form>
 
     </div>
+    )
   );
 }
 
@@ -374,7 +402,7 @@ function PaidForInput({ paidForNames, cost, splitMethod, tripsDataArray, handleC
 
   const paidForInputArray = members.map((member) => {
     const transformed = (
-      <div className='row'>
+      <div key={member} className='row'>
         <div key={member} className='col py-1'>
           <label className="form-check-label" htmlFor={`paidFor${member}`}>{member}</label>
           <input
