@@ -8,9 +8,7 @@ export default function ExpensesList({ expensesData, currencyData }) {
     fx.base = currencyData.main.value;
     fx.rates = currencyData.rates;
 
-    // console.log("Configured base currency:", fx.base);
-    // console.log("Currency rates:", fx.rates);
-
+    // Map expenses data to ExpenseCard components
     let expenseCardArray = expensesData[tripName].map((expense) => {
         const transformed = (
             <ExpenseCard key={expense.expenseId} expense={expense} currencyData={currencyData} />
@@ -40,15 +38,16 @@ function ExpenseCard({ expense, currencyData }) {
     const mainCurrency = currencyData.main.value;
     const altCurrency = currencyData.alt.length > 0 ? currencyData.alt[0].value : null;
 
-    // Log the cost and currencies
-    // console.log("Original cost:", cost);
-    // console.log("Main currency:", mainCurrency);
-    // console.log("Alternative currency:", altCurrency);
-
     const altCost = altCurrency ? fx(cost).from(mainCurrency).to(altCurrency).toFixed(2) : null;
 
-    // Log the converted cost
-    // console.log("Converted cost:", altCost);
+    // Function to format money with commas
+    function formatMoney(amount) {
+        return new Intl.NumberFormat('en-US', {
+            style: 'decimal',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        }).format(amount);
+    }
 
     return (
         <div key={expenseId} className="col-12">
@@ -62,8 +61,8 @@ function ExpenseCard({ expense, currencyData }) {
                         </p>
                     </div>
                     <div className="text-end align-self-end">
-                        <h2 className="card-dollar-amt">${cost} {mainCurrency}</h2>
-                        {altCurrency && <p className="card-currency-amt">({altCost} {altCurrency})</p>}
+                        <h2 className="card-dollar-amt">${formatMoney(cost)} {mainCurrency}</h2>
+                        {altCurrency && <p className="card-currency-amt">({formatMoney(altCost)} {altCurrency})</p>}
                         <p className="card-date">{date}</p>
                     </div>
                 </div>

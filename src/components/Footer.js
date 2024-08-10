@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 export default function Footer(props) { 
     
     return (
-        <footer>
+        <footer className="mt-5">
             <div className="d-flex flex-column align-items-center">
                 {/* <div className="footer-links">
                     <p>

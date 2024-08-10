@@ -33,6 +33,8 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
     splitMethod: {},
     costPerName: []
   });
+  console.log("DEBUG: paidForNames", expenseFormData.paidForNames);
+  console.log("DEBUG: costPerName", expenseFormData.costPerName);
     
   const categoryOptions = [
     { "value": "Food & Drinks", "label": "Food & Drinks" },
@@ -45,8 +47,8 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
     
   const splitMethodOptions = [
     { "value": "Evenly", "label": "Evenly" },
-    { "value": "By Percentage", "label": "By Percentage" },
-    { "value": "By amount", "label": "By amount" }
+    // { "value": "By Percentage", "label": "By Percentage" },
+    // { "value": "By amount", "label": "By amount" }
   ]
 
   const [hasExpense, setHasExpense] = useState(false);
@@ -117,6 +119,57 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
     
     setHasExpense(expenseIsFound);  
   }
+
+  function handleSplitMethodChange(splitMethod) {
+    const updatedExpenseFormData = { ...expenseFormData, "splitMethod": splitMethod }
+    setExpenseFormData(updatedExpenseFormData);
+  };
+
+  // function handlePercentageChange(percent) {};
+
+  function handleCheckboxChange(event) {
+    const value = event.target.value;
+    // let updatedExpenseFormData = {};
+    
+    if (event.target.checked) {
+      let updatedExpenseFormData = { ...expenseFormData, "paidForNames": [...expenseFormData.paidForNames, value ] }
+      setExpenseFormData(updatedExpenseFormData);
+      
+      // const constPerNameArray = expenseFormData.paidForNames.map((name) => {
+      //   const costPerNameObj = { 
+      //     [name]: (expenseFormData.cost / (expenseFormData.paidForNames.length)) 
+      //   }
+      //   return costPerNameObj;
+      // });
+      // updatedExpenseFormData = { ...expenseFormData, "costPerName": constPerNameArray }      
+      // setExpenseFormData(updatedExpenseFormData);
+
+    } else {
+      const updatedPaidForNames = expenseFormData.paidForNames.filter((name) => name !== value);
+      let updatedExpenseFormData = { ...expenseFormData, "paidForNames": updatedPaidForNames }
+      setExpenseFormData(updatedExpenseFormData);
+
+      // const constPerNameArray = expenseFormData.paidForNames.map((name) => {
+      //   const costPerNameObj = { 
+      //     [name]: (expenseFormData.cost / (expenseFormData.paidForNames.length)) 
+      //   }
+      //   return costPerNameObj;
+      // });
+      // updatedExpenseFormData = { ...expenseFormData, "costPerName": constPerNameArray } 
+      // setExpenseFormData(updatedExpenseFormData); 
+    }
+
+    // setExpenseFormData(updatedExpenseFormData);
+  }
+
+  // function handleCostPerNameChange(event) {
+  //   const { id, value } = event.target;
+  //   const member = id.substring(9);
+  //   const memberIndex = expenseFormData.paidForNames.indexOf(member);
+  //   expenseFormData.constPerNameArray[memberIndex][member] = value;
+  //   const updatedExpenseFormData = { ...expenseFormData, "costPerName": expenseFormData.constPerNameArray }
+  //   setExpenseFormData(updatedExpenseFormData)
+  // }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -199,15 +252,24 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
           <div className="card-body col-md-6">
 
             <h2 className='mb-3'>Paid for</h2>
-            <PaidForInput tripsDataArray={tripsDataArray}/>
+            <PaidForInput 
+              paidForNames={expenseFormData.paidForNames} 
+              cost={expenseFormData.cost}
+              splitMethod={expenseFormData.splitMethod}
+              tripsDataArray={tripsDataArray} 
+              handleChange={handleCheckboxChange}
+              // handleCostPerNameChange={handleCostPerNameChange}
+              // percent="0-100%"
+              // handlePercentageChange={handlePercentageChange}
+            />
 
             {/* splitMethod select */}
             <div className="col-md-4">
               <label htmlFor="splitMethod" className="form-label">Split Method</label>
               <Select 
                   id="split-method"
-                  value=""
-                  onChange=""
+                  value={expenseFormData.splitMethod}
+                  onChange={handleSplitMethodChange}
                   options={splitMethodOptions}
                   styles={selectedStyles}
               />
@@ -242,43 +304,6 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   );
 }
 
-function PaidForInput({ tripsDataArray }) {
-  const { tripName } = useParams();
-  const index = _.findIndex(tripsDataArray, { tripName: tripName });
-  const { members } = tripsDataArray[index];
-
-  const paidForInputArray = members.map((member) => {
-    const transformed = (
-      <div key={member} className='row'>
-        <div key={member} className='col'>
-          <label className="form-check-label" htmlFor={`paidFor${member}`}>{member}</label>
-          <input
-              id={`paid-for-${member}`}
-              className="form-check-input"
-              type="checkbox"
-              value={member}
-          />
-          </div>
-          <div className='col'>
-            <input
-              id={`cost-for-${member}`}
-              type="text"
-              className="form-control bottom-border-only"
-              placeholder="13855"
-            />
-        </div>
-      </div>
-    );
-    return transformed;
-  })
-
-  return (
-      <div className="form-check mb-4">
-        {paidForInputArray}
-      </div>
-  )
-}
-
 
 //   expenseId: 1,         //
 //   expenseName: "",      // done
@@ -287,8 +312,8 @@ function PaidForInput({ tripsDataArray }) {
 //   cost: 0,              // done
 //   date: "",             // done
 //   paidByName: {},       // done
-//   paidForNames: [],     //
-//   splitMethod: {},      //
+//   paidForNames: [],     // done
+//   splitMethod: {},      // done
 //   costPerName: []       //
 
 
@@ -332,14 +357,14 @@ function Date({ date, handleChange }) {
 }
 
 // Component for Expense Category input field
-function ExpenseCategory({ expenseCategory, categoryOptions, selectedStyles, handleCategoryChange}) {
+function ExpenseCategory({ expenseCategory, categoryOptions, selectedStyles, handleChange}) {
   return (
     <div className="col-md-4">
       <label htmlFor="expense-category" className="form-label">Category</label>
       <Select
           id="expense-category"
           value={expenseCategory}
-          onChange={handleCategoryChange}
+          onChange={handleChange}
           options={categoryOptions}
           isSearchable
           styles={selectedStyles}
@@ -377,4 +402,76 @@ function Cost({currency, currencyOptions, selectedStyles, handleCurrencyChange, 
       </div>
     </div>
   );
+}
+
+function PaidForInput({ paidForNames, cost, splitMethod, tripsDataArray, handleChange,  }) { //handleCostPerNameChange
+  const { tripName } = useParams();
+  const index = _.findIndex(tripsDataArray, { tripName: tripName });
+  const { members } = tripsDataArray[index];
+
+  const paidForInputArray = members.map((member) => {
+    const transformed = (
+      <div key={member} className='row'>
+        <div key={member} className='col py-1'>
+          <label className="form-check-label" htmlFor={`paidFor${member}`}>{member}</label>
+          <input
+              id={`paid-for-${member}`}
+              className="form-check-input"
+              type="checkbox"
+              value={member}
+              onChange={handleChange}
+          />
+          </div>
+          <div className='col'>
+            <CostForMemberInput 
+              member={member} 
+              paidForNames={paidForNames} 
+              cost={cost} 
+              splitMethod={splitMethod} 
+              // handleChange={handleCostPerNameChange}  
+            />
+        </div>
+      </div>
+    );
+    return transformed;
+  })
+
+  return (
+      <div className="form-check mb-4">
+        {paidForInputArray}
+      </div>
+  )
+}
+
+function CostForMemberInput({ paidForNames, splitMethod, cost, member, handleChange }) {   // , percent, handlePercentageChange 
+  if (paidForNames.includes(member)) {
+
+    if (splitMethod.value === "Evenly") {
+      return (
+        <input
+          id={`cost-for-${member}`}
+          type="text"
+          className="form-control bottom-border-only"
+          value={cost / paidForNames.length}
+          // onChange={handleChange}
+          readOnly
+        /> 
+      );
+    } 
+
+    // if (splitMethod.value === "By Percentage") {
+    //   return (
+    //     <input
+    //       id={`cost-for-${member}`}
+    //       type="text"
+    //       className="form-control bottom-border-only"
+    //       placeholder={percent}
+    //       required
+    //       value=""
+    //       onChange={handlePercentageChange}
+    //     /> 
+    //   );
+    // }
+
+  }
 }
