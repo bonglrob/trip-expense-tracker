@@ -11,8 +11,6 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   const navigate = useNavigate();
 
   const { tripName, expenseId } = useParams();  
-  console.log("expenseId", expenseId);
-  
 
   const index = _.findIndex(tripsDataArray, { tripName: tripName });
   const { startDate, members, currency } = tripsDataArray[index];
@@ -174,9 +172,12 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   function handleSubmit(event) {
     event.preventDefault();
 
-    onSubmit(expenseFormData, tripName);
+    // give the latest expenseId
+    const updatedExpenseFormData = { ...expenseFormData, expenseId: highestId + 1 };
 
-    navigate(`/expenses/${tripName}`)
+    onSubmit(updatedExpenseFormData, tripName);
+
+    navigate(`/${tripName}/expenses`)
   }
 
   useEffect(() => {
@@ -193,7 +194,6 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
     setCurrencyOptions(currencyOptionsArray);
   }, [currencies])
     
-  // 16 > 16
   return (
     !hasExpense ? (
        <h2>This expense has not yet been created!</h2>
@@ -292,7 +292,7 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
         <div className="d-flex align-items-center col-12">
           <button className="btn btn-primary me-3" type="submit">Create</button>
           {/* Use Link for navigation */}
-          <Link to={`/expenses/${tripName}`} className="text-decoration-none btn btn-secondary">
+          <Link to={`/${tripName}/expenses`} className="text-decoration-none btn btn-secondary">
             Cancel
           </Link>
         </div>

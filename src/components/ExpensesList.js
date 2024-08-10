@@ -51,7 +51,7 @@ function ExpenseCard({ expense, currencyData }) {
 
     return (
         <div key={expenseId} className="col-12">
-            <Link to={`/expenses/${tripName}/${expenseId}`} className="card mb-2">
+            <Link to={`/${tripName}/expenses/${expenseId}`} className="card mb-2">
                 <div className="card-body d-flex justify-content-between">
                     <div>
                         <h2 className="card-title">{expenseName}</h2>

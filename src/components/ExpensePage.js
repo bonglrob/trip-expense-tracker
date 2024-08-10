@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import AddExpenseButton from "./AddExpenseButton.js";
 import EmptyExpenses from "./EmptyExpenses.js";
 import ExpensesList from "./ExpensesList.js";
@@ -11,7 +11,7 @@ export default function ExpensePage({ expensesData, tripsDataArray, getHighestId
 
     const { tripName } = useParams(); // e.g. returns "Korea"
 
-    let tripData = _.find(tripsDataArray, { tripName: tripName }); // find tripName in data
+    let tripData = _.find(tripsDataArray, { tripName: tripName }); // find tripName in data    
 
     useEffect(() => {
         getHighestId(tripName);
@@ -25,8 +25,8 @@ export default function ExpensePage({ expensesData, tripsDataArray, getHighestId
             <EmptyExpenses highestId={highestId} /> 
         ) : (
             <div className="container mt-4">
-                <h1 className="color-primary">{tripsDataArray.tripName}</h1>
-            <NavigationBar />
+                <h1 className="color-primary">{tripName}</h1>
+                <NavigationBar />
 
                 <div className="d-flex mb-1 align-items-center">
                     <Outlet />

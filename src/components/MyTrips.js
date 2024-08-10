@@ -45,7 +45,7 @@ function TripCard({ tripObj }) {
 
     return (
         <div key={tripName} className="card trip-card">
-            <Link to={`/expenses/${tripName}`}>
+            <Link to={`/${tripName}/expenses`}>
                 <div className="card-body">
                     <div className="card-title">{tripName}</div> 
                     <div className="row">

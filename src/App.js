@@ -4,7 +4,6 @@ import _ from 'lodash';
 
 import EmptyBalances from './components/EmptyBalances';
 import FilledBalances from './components/FilledBalances';
-import Stats from './components/Stats';
 import { CreateExpenseForm } from './components/CreateExpenseForm.js';
 import FilterExpensesForm from './components/FiltersExpensesForm.js';
 import ExpensePage from './components/ExpensePage.js';
@@ -15,6 +14,7 @@ import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 import Landing from './components/Landing.js';
 import BalancesPage from './components/BalancesPage.js'; // Import BalancesPage
+import NavigationBar from './components/NavigationBar.js';
 
 export default function App({ expenses, currencyNames, tripsData }) {
 
@@ -130,15 +130,16 @@ export default function App({ expenses, currencyNames, tripsData }) {
           <Route path="/landing" element={<Landing />} />
           <Route path="/emptybalances" element={<EmptyBalances />} />
           <Route path="/filledbalances" element={<FilledBalances />} />
-          <Route path="/stats" element={<Stats />} />
-          <Route path="/expenses/:tripName" element={<ExpensePage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} getHighestId={getHighestId} highestId={highestId} /> }>
-            {/* {<Route index element={<FilterExpensesForm />}></Route>} */}
-            {/* <Route path="/expenses/:expenseId" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} /> */}
-          </Route>
-          <Route path="/expenses/:tripName/:expenseId" element={<CreateExpenseForm onSubmit={handleExpenseFormSubmit} tripsDataArray={tripsDataArray} expensesData={expensesDataObj} highestId={highestId} />} />
+
+          {/* <Route path="/:tripName" element={<NavigationBar /> }> */}
+          <Route path="/:tripName/expenses" element={<ExpensePage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} getHighestId={getHighestId} highestId={highestId} /> }/>
+          <Route path="/:tripName/expenses/:expenseId" element={<CreateExpenseForm onSubmit={handleExpenseFormSubmit} tripsDataArray={tripsDataArray} expensesData={expensesDataObj} highestId={highestId} />} />
+          <Route path="/:tripName/balances" element={<BalancesPage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} />} /> {/* Added route for BalancesPage */}
+          {/* {<Route index element={<FilterExpensesForm />}></Route>} */}
+          {/* <Route path="/expenses/:expenseId" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} /> */}
+          {/* </Route> */}
           <Route path="/mytrips" element={<MyTrips tripsDataArray={tripsDataArray} />} />
           <Route path="/createtrip" element={<CreateTripForm onSubmit={handleTripFormSubmit} currencyNames={currencyNamesObj} />} />
-          <Route path="/balances/:tripName" element={<BalancesPage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} />} /> {/* Added route for BalancesPage */}
           <Route path="/*" element={<Navigate to="/mytrips" />} />
         </Routes>
       </main>
