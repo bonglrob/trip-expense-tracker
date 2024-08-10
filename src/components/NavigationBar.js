@@ -15,12 +15,12 @@ export default function NavigationBar(props) {
                             <Link to="/balances/:tripName" className="nav-link">Balances</Link>
                             {/* <a className="nav-link" href="#">Balances</a> */}
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <Link to="#" className="nav-link">Stats</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="#" className="nav-link">Settings</Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </nav>
