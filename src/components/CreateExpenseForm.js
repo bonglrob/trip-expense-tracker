@@ -11,6 +11,8 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   const navigate = useNavigate();
 
   const { tripName, expenseId } = useParams();  
+  console.log("expenseId", expenseId);
+  
 
   const index = _.findIndex(tripsDataArray, { tripName: tripName });
   const { startDate, members, currency } = tripsDataArray[index];
@@ -47,7 +49,7 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
     { "value": "By amount", "label": "By amount" }
   ]
 
-  const [expenseIsFound, setExpenseIsFound] = useState(false);
+  const [hasExpense, setHasExpense] = useState(false);
   // console.log("expenseFound", expenseIsFound);
   
 
@@ -106,14 +108,20 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   // Returns boolean if expenseId in URL params exists in expenses database 
   function findExpenseId() {
     const arrayOfExpenses = _.flatMap(expensesData[tripName], (expense) => expense); // flattens expensesDataObj to array
-    const expenseIsFound = _.find(arrayOfExpenses, { "expenseId": Number(expenseId) })    
-    setExpenseIsFound(!!expenseIsFound);  
+    let expense = _.find(arrayOfExpenses, { "expenseId": Number(expenseId) })    
+    
+    let expenseIsFound = !!expense;    
+
+    // allows users to access new expense form
+    if (Number(expenseId) === highestId + 1) expenseIsFound = true;
+    
+    setHasExpense(expenseIsFound);  
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    onSubmit(expenseFormData);
+    onSubmit(expenseFormData, tripName);
 
     navigate(`/expenses/${tripName}`)
   }
@@ -132,10 +140,11 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
     setCurrencyOptions(currencyOptionsArray);
   }, [currencies])
     
+  // 16 > 16
   return (
-    Number(expenseId) > highestId + 1 || !expenseIsFound
-    ? <h2>This expense has not yet been created!</h2>
-    : (
+    !hasExpense ? (
+       <h2>This expense has not yet been created!</h2>
+    ) : (
     <div className="container mt-4">
       <div className="d-flex align-items-center"><h1>New Expense</h1></div>
 

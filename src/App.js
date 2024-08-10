@@ -84,7 +84,7 @@ export default function App({ expenses, currencyNames, tripsData }) {
   const [expensesDataObj, setExpensesDataObj] = useState(expenses); // testing with expenses.json
 
   const [highestId, setHighestId] = useState(1);  
-  // console.log(highestId);
+  console.log("highestId", highestId);
   
 
   function getHighestId(tripName) {
@@ -111,8 +111,14 @@ export default function App({ expenses, currencyNames, tripsData }) {
     }
   };
 
-  function handleExpenseFormSubmit(expenseFormData) {
-    const updatedExpensesDataObj = expenseFormData;
+// Test this
+  function handleExpenseFormSubmit(expenseFormData, tripName) {
+    const updatedExpensesDataObj = {
+      ...expensesDataObj,
+      [tripName]: [...expensesDataObj[tripName], expenseFormData]
+    }
+    // console.log(updatedExpensesDataObj);
+    
     setExpensesDataObj(updatedExpensesDataObj);
   }
 
