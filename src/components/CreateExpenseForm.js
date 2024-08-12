@@ -48,7 +48,14 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   ]
 
   const [hasExpense, setHasExpense] = useState(false);
+  
   const [showNewForm, setShowNewForm] = useState(false);  
+
+  const [hasChecked, setHasChecked] = useState({
+    checkbox1: false,
+    checkbox2: false,
+    checkbox3: false,
+  });
 
   // styles for <Select> category options 
   const selectedStyles = {
@@ -63,7 +70,7 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   const selectedCurrencyStyles = {
     container: (provided) => ({
       ...provided,
-      width: "80px"
+      width: "110px"
     }),
     control: (provided) => ({
       ...provided,
@@ -116,6 +123,7 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
       setShowNewForm(false);
     }
     setHasExpense(expenseIsFound);  
+    return expense;
   }
 
   function handleSplitMethodChange(splitMethod) {
@@ -192,9 +200,15 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   useEffect(() => {
     const paidByOptionsArray = members.map(member => ({"value": member, "label": member}));
     setPaidByOptions(paidByOptionsArray);
-    findExpenseId();
+    findExpenseId();    
+  }, [expensesData]);
 
-  }, [expensesData])
+  useEffect(() => {
+    if (hasExpense) {
+      const updatedExpenseData = expensesData[tripName].filter(expense => expense.expenseId === Number(expenseId));
+      setExpenseFormData(updatedExpenseData[0]);
+    }
+  }, [hasExpense]);
 
   useEffect(() => {
     const currencyOptionsArray = currencies.map(currency => ({
@@ -385,7 +399,7 @@ function ExpenseCategory({ expenseCategory, categoryOptions, selectedStyles, han
 // Component for Currency and Cost input field
 function Cost({currency, currencyOptions, selectedStyles, handleCurrencyChange, cost, handleCostChange }) {
   return (
-    <div className="col-md-3">
+    <div className="col-3">
       <label htmlFor="cost" className="form-label">Cost</label>
       <div className="input-group">
         <Select
@@ -438,7 +452,7 @@ function PaidForInput({ paidForNames, cost, splitMethod, tripsDataArray, handleC
               splitMethod={splitMethod} 
               // handleChange={handleCostPerNameChange}  
             />
-        </div>
+          </div>
       </div>
     );
     return transformed;

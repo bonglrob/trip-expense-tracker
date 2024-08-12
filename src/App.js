@@ -81,9 +81,7 @@ export default function App({ expenses, currencyNames, tripsData }) {
   const [tripsDataArray, setTripsDataArray] = useState([...tripsData]); // testing with trips.json
   
   // An object of expenses
-  const [expensesDataObj, setExpensesDataObj] = useState(expenses); // testing with expenses.json
-  console.log("expenses", expensesDataObj);
-  
+  const [expensesDataObj, setExpensesDataObj] = useState(expenses); // testing with expenses.json  
 
   const [highestId, setHighestId] = useState(1);    
 
@@ -124,7 +122,6 @@ export default function App({ expenses, currencyNames, tripsData }) {
   function deleteExpense(tripName, expenseId) {
     const expenses = [...expensesDataObj[tripName]];
     _.remove(expenses, (expense) => expense.expenseId === expenseId);
-    console.log("supposed to be deleted", expenses);
     const updatedExpenses = { ...expensesDataObj, [tripName]: expenses };
     
     setExpensesDataObj(updatedExpenses);
@@ -140,12 +137,9 @@ export default function App({ expenses, currencyNames, tripsData }) {
           <Route path="/filledbalances" element={<FilledBalances />} />
 
           {/* <Route path="/:tripName" element={<NavigationBar /> }> */}
-          <Route path="/:tripName/expenses" element={<ExpensePage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} getHighestId={getHighestId} highestId={highestId} /> }/>
+          <Route path="/:tripName/expenses" element={<ExpensePage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} getHighestId={getHighestId} highestId={highestId} /> }></Route>
           <Route path="/:tripName/expenses/:expenseId" element={<CreateExpenseForm onSubmit={handleExpenseFormSubmit} tripsDataArray={tripsDataArray} expensesData={expensesDataObj} highestId={highestId} deleteExpense={deleteExpense}/>} />
           <Route path="/:tripName/balances" element={<BalancesPage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} />} /> {/* Added route for BalancesPage */}
-          {/* {<Route index element={<FilterExpensesForm />}></Route>} */}
-          {/* <Route path="/expenses/:expenseId" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} /> */}
-          {/* </Route> */}
           <Route path="/mytrips" element={<MyTrips tripsDataArray={tripsDataArray} />} />
           <Route path="/createtrip" element={<CreateTripForm onSubmit={handleTripFormSubmit} currencyNames={currencyNamesObj} />} />
           <Route path="/*" element={<Navigate to="/mytrips" />} />
