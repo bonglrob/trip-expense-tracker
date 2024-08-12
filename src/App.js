@@ -82,10 +82,10 @@ export default function App({ expenses, currencyNames, tripsData }) {
   
   // An object of expenses
   const [expensesDataObj, setExpensesDataObj] = useState(expenses); // testing with expenses.json
-
-  const [highestId, setHighestId] = useState(1);  
-  console.log("highestId", highestId);
+  console.log("expenses", expensesDataObj);
   
+
+  const [highestId, setHighestId] = useState(1);    
 
   function getHighestId(tripName) {
     if (expensesDataObj[tripName].length === 0) {
@@ -111,15 +111,23 @@ export default function App({ expenses, currencyNames, tripsData }) {
     }
   };
 
-// Test this
   function handleExpenseFormSubmit(expenseFormData, tripName) {
     const updatedExpensesDataObj = {
       ...expensesDataObj,
       [tripName]: [...expensesDataObj[tripName], expenseFormData]
     }
-    // console.log(updatedExpensesDataObj);
     
     setExpensesDataObj(updatedExpensesDataObj);
+  }
+
+  // Todo: Fix DeleteExpense
+  function deleteExpense(tripName, expenseId) {
+    const expenses = [...expensesDataObj[tripName]];
+    _.remove(expenses, (expense) => expense.expenseId === expenseId);
+    console.log("supposed to be deleted", expenses);
+    const updatedExpenses = { ...expensesDataObj, [tripName]: expenses };
+    
+    setExpensesDataObj(updatedExpenses);
   }
 
   return (
@@ -133,7 +141,7 @@ export default function App({ expenses, currencyNames, tripsData }) {
 
           {/* <Route path="/:tripName" element={<NavigationBar /> }> */}
           <Route path="/:tripName/expenses" element={<ExpensePage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} getHighestId={getHighestId} highestId={highestId} /> }/>
-          <Route path="/:tripName/expenses/:expenseId" element={<CreateExpenseForm onSubmit={handleExpenseFormSubmit} tripsDataArray={tripsDataArray} expensesData={expensesDataObj} highestId={highestId} />} />
+          <Route path="/:tripName/expenses/:expenseId" element={<CreateExpenseForm onSubmit={handleExpenseFormSubmit} tripsDataArray={tripsDataArray} expensesData={expensesDataObj} highestId={highestId} deleteExpense={deleteExpense}/>} />
           <Route path="/:tripName/balances" element={<BalancesPage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} />} /> {/* Added route for BalancesPage */}
           {/* {<Route index element={<FilterExpensesForm />}></Route>} */}
           {/* <Route path="/expenses/:expenseId" element={<CreateExpenseForm mainCurrency={mainCurrency} altCurrency={altCurrency} />} /> */}

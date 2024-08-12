@@ -4,10 +4,8 @@ import Select from 'react-select';
 import _ from 'lodash';
 import { useNavigate } from 'react-router-dom';
 
-export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, highestId }) {
+export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, highestId, deleteExpense }) {
   
-  // Todo: If params expenseId === tripsDataArray[tripName] / .expenseId exists (use _.find?)
-
   const navigate = useNavigate();
 
   const { tripName, expenseId } = useParams();  
@@ -31,8 +29,8 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
     splitMethod: {},
     costPerName: []
   });
-  console.log("DEBUG: paidForNames", expenseFormData.paidForNames);
-  console.log("DEBUG: costPerName", expenseFormData.costPerName);
+  // console.log("DEBUG: paidForNames", expenseFormData.paidForNames);
+  // console.log("DEBUG: costPerName", expenseFormData.costPerName);
     
   const categoryOptions = [
     { "value": "Food & Drinks", "label": "Food & Drinks" },
@@ -50,8 +48,7 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   ]
 
   const [hasExpense, setHasExpense] = useState(false);
-  // console.log("expenseFound", expenseIsFound);
-  
+  const [showNewForm, setShowNewForm] = useState(false);  
 
   // styles for <Select> category options 
   const selectedStyles = {
@@ -113,8 +110,11 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
     let expenseIsFound = !!expense;    
 
     // allows users to access new expense form
-    if (Number(expenseId) === highestId + 1) expenseIsFound = true;
-    
+    if (Number(expenseId) === highestId + 1) {
+      setShowNewForm(true);
+    } else {
+      setShowNewForm(false);
+    }
     setHasExpense(expenseIsFound);  
   }
 
@@ -180,10 +180,20 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
     navigate(`/${tripName}/expenses`)
   }
 
+  function handleDelete(event) {
+    // todo: delete an expense behavior
+    event.preventDefault();
+
+    deleteExpense(tripName, expenseId);
+
+    navigate(`/${tripName}/expenses`);
+  }
+
   useEffect(() => {
     const paidByOptionsArray = members.map(member => ({"value": member, "label": member}));
     setPaidByOptions(paidByOptionsArray);
     findExpenseId();
+
   }, [expensesData])
 
   useEffect(() => {
@@ -195,11 +205,11 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   }, [currencies])
     
   return (
-    !hasExpense ? (
+    (!hasExpense && !showNewForm) ? (
        <h2>This expense has not yet been created!</h2>
     ) : (
     <div className="container mt-4">
-      <div className="d-flex align-items-center"><h1>New Expense</h1></div>
+      <div className="d-flex align-items-center"><h1>{hasExpense ? "Edit Expense" : "New Expense"}</h1></div>
 
       <form id="create-expense" className="row g-3" onSubmit={handleSubmit}>
 
@@ -291,10 +301,8 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
         {/* submit form button */}
         <div className="d-flex align-items-center col-12">
           <button className="btn btn-primary me-3" type="submit">Create</button>
-          {/* Use Link for navigation */}
-          <Link to={`/${tripName}/expenses`} className="text-decoration-none btn btn-secondary">
-            Cancel
-          </Link>
+          <Link to={`/${tripName}/expenses`} className="text-decoration-none btn btn-secondary me-3">Cancel</Link>
+          {hasExpense && <div onClick={handleDelete}><span className="material-symbols-outlined color-error">delete</span></div>}
         </div>
 
       </form>
