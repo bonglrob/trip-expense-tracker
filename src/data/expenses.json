@@ -5,7 +5,7 @@
             "expenseName": "Jajangmyeon Restaurant",
             "expenseCategory": { "value": "Food & Drinks", "label": "Food & Drinks"},
             "currency": { "value": "KRW", "label": "KRW - South Korean Won" },
-            "cost": 55423,
+            "cost": 55,
             "date": "2024-07-18",
             "paidByName": { "value": "Kara", "label": "Kara" },
             "paidForNames": ["Kevin", "Michelle", "Josh", "Kara"],
