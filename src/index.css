@@ -378,6 +378,10 @@ footer {
   justify-content: space-between;
 }
 
+.date-filter {
+  color: #808080;
+}
+
 .bottom-border-only {
   border: none;
   border-bottom: 1px solid #ced4da; /* Adjust the color and width as needed */
