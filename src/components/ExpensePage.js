@@ -26,16 +26,28 @@ export default function ExpensePage({ expensesData, tripsDataArray, getHighestId
             <EmptyExpenses highestId={highestId} /> 
         ) : (
             <div className="container mt-4">
-                <h1 className="color-primary">{tripName}</h1>
+                <div className="row mb-1">
+                    <div className="col-md-4">
+                        <h1 className="color-primary">{tripName}</h1>
+                    </div>
+                    <div className="col-md-4 mt-auto ms-auto mb-2">
+                        <AddExpenseButton highestId={highestId} />
+                    </div>
+                </div>
                 <NavigationBar />
 
-                <AddExpenseButton highestId={highestId} />
                 <div className="d-flex mb-1 align-items-center">
                     <FilterExpensesForm tripsDataArray={tripsDataArray}/>
                 </div>
 
                 <SearchBar />
+
                 <ExpensesList expensesData={expensesData} currencyData={tripData.currency} />
+
+                <div className="col-md-12">
+                    <p className="text-end">showing {expensesData[tripName].length} of {expensesData[tripName].length} results</p>
+                </div>
+
             </div>
         )
     );

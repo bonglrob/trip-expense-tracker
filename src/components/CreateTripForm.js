@@ -132,6 +132,7 @@ function TripName({ tripName, handleChange }) {
                 onChange={handleChange}
                 className="form-control"
                 placeholder="Korea"
+                required
             />
         </div>
     );

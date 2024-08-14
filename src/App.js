@@ -5,7 +5,6 @@ import _ from 'lodash';
 import EmptyBalances from './components/EmptyBalances';
 import FilledBalances from './components/FilledBalances';
 import { CreateExpenseForm } from './components/CreateExpenseForm.js';
-import FilterExpensesForm from './components/FiltersExpensesForm.js';
 import ExpensePage from './components/ExpensePage.js';
 import MyTrips from './components/MyTrips.js';
 import { CreateTripForm } from './components/CreateTripForm.js';
@@ -14,7 +13,6 @@ import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 import Landing from './components/Landing.js';
 import BalancesPage from './components/BalancesPage.js'; // Import BalancesPage
-import NavigationBar from './components/NavigationBar.js';
 
 export default function App({ expenses, currencyNames, tripsData }) {
 
@@ -109,13 +107,30 @@ export default function App({ expenses, currencyNames, tripsData }) {
     }
   };
 
-  function handleExpenseFormSubmit(expenseFormData, tripName) {
-    const updatedExpensesDataObj = {
-      ...expensesDataObj,
-      [tripName]: [...expensesDataObj[tripName], expenseFormData]
+
+  function handleExpenseFormSubmit(expenseFormData, tripName, hasExpense) {
+
+    let updatedExpensesDataObj = expensesDataObj;
+    // editing existing expenses
+    if (hasExpense) {
+
+    // Find the index of the object with the same id
+    const index = _.findIndex(updatedExpensesDataObj[tripName], { expenseId: expenseFormData.expenseId });
+
+    if (index !== -1) {
+      updatedExpensesDataObj[tripName][index] = _.assign({}, updatedExpensesDataObj[tripName][index], expenseFormData);
     }
-    
+    console.log("inside");
+    console.log("updated expenses obj", updatedExpensesDataObj);
+
+    } else {
+      // adding new expense
+      updatedExpensesDataObj = {
+        ...expensesDataObj,
+        [tripName]: [...expensesDataObj[tripName], expenseFormData]
+      };
     setExpensesDataObj(updatedExpensesDataObj);
+    } 
   }
 
   // Todo: Fix DeleteExpense

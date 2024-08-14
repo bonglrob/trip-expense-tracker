@@ -17,6 +17,14 @@ export default function FilterExpensesForm({ tripsDataArray }) {
 
     // currency select option color styles
     const selectedStyles = {
+        indicatorSeparator: () => ({
+            display: "none"
+          }),
+        option: (provided, state) => ({
+            ...provided,
+            backgroundColor: state.isSelected ? '#b3f1be' : state.isFocused ? '#d3e8d3' : null,
+            color: state.isSelected ? '#181d18' : '#00210c',
+        }),
         multiValue: (provided) => ({
             ...provided,
             backgroundColor: "#d3e8d3",
@@ -56,14 +64,19 @@ export default function FilterExpensesForm({ tripsDataArray }) {
       }, [tripsDataArray]);
 
     return (
-        <div className="container mt-4">
+        <div className="container mt-3">
 
             <div className="row">
 
-                <div className="col col-md-3">
-                    <label htmlFor="paidFor" className="form-label">Paid For</label>
+                <div className="col col-md-1">
+                    <span className="material-symbols-outlined d-flex align-items-center justify-content-center fs-3 mt-1">tune</span>
+                </div>
+
+                <div className="col col-md-4">
                     <Select
                         id="paidFor"
+                        placeholder="Paid for"
+                        aria-label="paid-for"
                         options={paidForOptions}
                         isSearchable
                         onChange={handleChange}
@@ -74,9 +87,10 @@ export default function FilterExpensesForm({ tripsDataArray }) {
     
                 <div className="col-md-3">
                     {/* paidByName select */}
-                    <label htmlFor="paid-by" className="form-label">Paid by</label>
+                    {/* <label htmlFor="paid-by" className="form-label">Paid by</label> */}
                     <Select
                         id="paid-by"
+                        placeholder="Paid by"
                         value={""}
                         onChange={""}
                         options={paidByOptions}
@@ -85,27 +99,28 @@ export default function FilterExpensesForm({ tripsDataArray }) {
               </div>
 
                 {/* <!-- date filter --> */}
-                <div className="col-md-3 mb-4">
-                    <label htmlFor="date" className="form-label">Date</label>
+                <div className="col-md-2 mb-4">
+                    {/* <label htmlFor="date" className="form-label">Date</label> */}
                     <div className="input-group" id="date">
                         <input
                             type="text"
                             className="form-control"
-                            placeholder="7/12/2024 - 7/18/2024"/>
+                            placeholder="7/12/2024"/>
                         <span className="input-group-text">
-                            <icon className="material-symbols-outlined">calendar_today</icon>
+                            <span className="material-symbols-outlined">calendar_today</span>
                         </span>
                     </div>
                 </div>
 
                 {/* <!-- category select --> */}
-                <div className="col-md-3 mb-4">
-                    <label htmlFor="expense-category" className="form-label">Category</label>
+                <div className="col-md-2 mb-4">
+                    {/* <label htmlFor="expense-category" className="form-label">Category</label> */}
                     <Select
                         id="expense-category"
                         value={""}
                         onChange={handleChange}
                         options={categoryOptions}
+                        placeholder="Category"
                         isSearchable
                         styles={selectedStyles}
                         maxMenuHeight={140}
@@ -113,10 +128,10 @@ export default function FilterExpensesForm({ tripsDataArray }) {
                 </div>  
 
                 {/* <!-- apply filters button --> */}
-                <div className="d-flex justify-content-end align-items-center mb-3">
+                {/* <div className="d-flex justify-content-end align-items-center mb-3">
                     <button className="btn btn-tertiary me-2" type="submit">Apply Filters</button>
                     <button className="btn btn-tertiary" type="submit">Clear</button>
-                </div>
+                </div> */}
             </div>
          </div>
     )
