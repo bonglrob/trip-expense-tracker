@@ -14,10 +14,7 @@ export default function FilterExpensesForm({ tripsDataArray }) {
     const [dateFilter, setDateFilter] = useState('');
     const [categoryFilter, setCategoryFilter] = useState(null);
     console.log('DEBUG:', paidForFilter, paidByFilter, dateFilter, categoryFilter);
-    
-    // function handleChange() {
-    //     // update state variable ExpensesData to filter for expeneses that meet filter criteria
-    // }
+
 
     function handlePaidForChange(paidForFilter) {
         setPaidForFilter(paidForFilter);
@@ -100,7 +97,7 @@ export default function FilterExpensesForm({ tripsDataArray }) {
 
                 <div className="col col-md-4">
                     <Select
-                        // value={paidForFilter}
+                        value={paidForFilter}
                         id="paidFor"
                         placeholder="Paid for"
                         aria-label="paid-for"
@@ -135,9 +132,6 @@ export default function FilterExpensesForm({ tripsDataArray }) {
                             className="form-control date-filter"
                             placeholder={startDate}
                             onChange={handleDateChange}/>
-                        {/* <span className="input-group-text">
-                            <span className="material-symbols-outlined">calendar_today</span>
-                        </span> */}
                     </div>
                 </div>
 
