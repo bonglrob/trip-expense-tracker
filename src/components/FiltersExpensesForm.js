@@ -127,7 +127,7 @@ export default function FilterExpensesForm({ tripsDataArray }) {
                         options={paidByOptions}
                         isClearable
                     />
-              </div>
+                </div>
 
                 {/* <!-- date filter --> */}
                 <div className="col-md-2 mb-4">
