@@ -25,6 +25,7 @@ export default function FilterExpensesForm({ tripsDataArray, applyFilterCallback
         setSelectedPaidBy(updatedSelectedPaidBy);
         applyFilterCallback(selectedPaidFor, selectedPaidBy, selectedDate, selectedCategory);
     }
+
     function handleDateChange(event) {
         const value = event.target.value;
         setSelectedDate(value);
@@ -34,6 +35,7 @@ export default function FilterExpensesForm({ tripsDataArray, applyFilterCallback
         setSelectedCategory(updatedSelectedCategory);
         applyFilterCallback(selectedPaidFor, selectedPaidBy, selectedDate, selectedCategory);
     }
+
     function handleClick() {
         setSelectedPaidFor(null);
         setSelectedPaidBy(null);
@@ -126,7 +128,7 @@ export default function FilterExpensesForm({ tripsDataArray, applyFilterCallback
                         options={paidByOptions}
                         isClearable
                     />
-              </div>
+                </div>
 
                 {/* <!-- date filter --> */}
                 <div className="col-md-2 mb-4">
@@ -137,7 +139,11 @@ export default function FilterExpensesForm({ tripsDataArray, applyFilterCallback
                             value={selectedDate}
                             className="form-control date-filter"
                             placeholder={startDate}
-                            onChange={handleDateChange}/>
+                            onChange={handleDateChange}
+                        />
+                        {/* <span className="input-group-text">
+                            <span className="material-symbols-outlined">calendar_today</span>
+                        </span> */}
                     </div>
                 </div>
 

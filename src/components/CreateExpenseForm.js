@@ -51,11 +51,7 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   
   const [showNewForm, setShowNewForm] = useState(false);  
 
-  const [hasChecked, setHasChecked] = useState({
-    checkbox1: false,
-    checkbox2: false,
-    checkbox3: false,
-  });
+  const [hasChecked, setHasChecked] = useState({});
 
   // styles for <Select> category options 
   const selectedStyles = {
@@ -134,11 +130,16 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   // function handlePercentageChange(percent) {};
 
   function handleCheckboxChange(event) {
-    const value = event.target.value;
+    const { name, value, checked } = event.target;
     // let updatedExpenseFormData = {};
+
+    setHasChecked((prevState) => ({
+      ...prevState,
+      [name]: checked,
+    }));
     
-    if (event.target.checked) {
-      let updatedExpenseFormData = { ...expenseFormData, "paidForNames": [...expenseFormData.paidForNames, value ] }
+    if (checked) {
+      let updatedExpenseFormData = { ...expenseFormData, "paidForNames": [...expenseFormData.paidForNames, value ] };
       setExpenseFormData(updatedExpenseFormData);
       
       // const constPerNameArray = expenseFormData.paidForNames.map((name) => {
@@ -152,7 +153,7 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
 
     } else {
       const updatedPaidForNames = expenseFormData.paidForNames.filter((name) => name !== value);
-      let updatedExpenseFormData = { ...expenseFormData, "paidForNames": updatedPaidForNames }
+      let updatedExpenseFormData = { ...expenseFormData, "paidForNames": updatedPaidForNames };
       setExpenseFormData(updatedExpenseFormData);
 
       // const constPerNameArray = expenseFormData.paidForNames.map((name) => {
@@ -180,21 +181,25 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   function handleSubmit(event) {
     event.preventDefault();
 
-    // give the latest expenseId
-    const updatedExpenseFormData = { ...expenseFormData, expenseId: highestId + 1 };
+    // give the latest expenseId to new expense
+    let updatedExpenseFormData = { ...expenseFormData };
+    if (expenseId === highestId + 1) {
+      updatedExpenseFormData = { ...expenseFormData, expenseId: highestId + 1 };
+    }
 
-    onSubmit(updatedExpenseFormData, tripName);
+    onSubmit(updatedExpenseFormData, tripName, hasExpense);
 
-    navigate(`/${tripName}/expenses`)
+    navigate(`/${tripName}/expenses`);
   }
 
   function handleDelete(event) {
     // todo: delete an expense behavior
     event.preventDefault();
 
-    deleteExpense(tripName, expenseId);
+    // show "are you sure you want to delete?" pop up
+    // deleteExpense(tripName, expenseId);
 
-    navigate(`/${tripName}/expenses`);
+    // navigate(`/${tripName}/expenses`);
   }
 
   useEffect(() => {
@@ -205,8 +210,14 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
 
   useEffect(() => {
     if (hasExpense) {
-      const updatedExpenseData = expensesData[tripName].filter(expense => expense.expenseId === Number(expenseId));
-      setExpenseFormData(updatedExpenseData[0]);
+      const currentExpense = expensesData[tripName].filter(expense => expense.expenseId === Number(expenseId))[0];
+      setExpenseFormData(currentExpense);
+
+      const updatedInputs = currentExpense.paidForNames.reduce((acc, member) => {
+        acc[member] = true;
+        return acc;
+      }, {});
+      setHasChecked(updatedInputs);
     }
   }, [hasExpense]);
 
@@ -282,6 +293,7 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
               splitMethod={expenseFormData.splitMethod}
               tripsDataArray={tripsDataArray} 
               handleChange={handleCheckboxChange}
+              hasChecked={hasChecked}
               // handleCostPerNameChange={handleCostPerNameChange}
               // percent="0-100%"
               // handlePercentageChange={handlePercentageChange}
@@ -314,7 +326,7 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
 
         {/* submit form button */}
         <div className="d-flex align-items-center col-12">
-          <button className="btn btn-primary me-3" type="submit">Create</button>
+          <button className="btn btn-primary me-3" type="submit">{hasExpense ? "Save Changes" : "Create"}</button>
           <Link to={`/${tripName}/expenses`} className="text-decoration-none btn btn-secondary me-3">Cancel</Link>
           {hasExpense && <div onClick={handleDelete}><span className="material-symbols-outlined color-error">delete</span></div>}
         </div>
@@ -426,7 +438,7 @@ function Cost({currency, currencyOptions, selectedStyles, handleCurrencyChange, 
   );
 }
 
-function PaidForInput({ paidForNames, cost, splitMethod, tripsDataArray, handleChange,  }) { //handleCostPerNameChange
+function PaidForInput({ paidForNames, cost, splitMethod, tripsDataArray, handleChange, hasChecked }) { //handleCostPerNameChange
   const { tripName } = useParams();
   const index = _.findIndex(tripsDataArray, { tripName: tripName });
   const { members } = tripsDataArray[index];
@@ -438,10 +450,12 @@ function PaidForInput({ paidForNames, cost, splitMethod, tripsDataArray, handleC
           <label className="form-check-label" htmlFor={`paidFor${member}`}>{member}</label>
           <input
               id={`paid-for-${member}`}
+              name={member}
               className="form-check-input"
               type="checkbox"
               value={member}
               onChange={handleChange}
+              checked={hasChecked[member]}
           />
           </div>
           <div className='col'>
