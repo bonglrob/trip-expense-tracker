@@ -65,7 +65,7 @@ function ExpenseCard({ expense, currencyData }) {
                         <p className="card-text"><span className="name-emphasis">{paidByNameString}</span> paid for {nameSpan}</p>
                     </div>
                     <div className="text-end align-self-end">
-                        <h2 className="card-dollar-amt">${formatMoney(cost)} {mainCurrency}</h2>
+                        <h2 className="card-dollar-amt">{formatMoney(cost)} {mainCurrency}</h2>
                         {altCurrency && <p className="card-currency-amt">({formatMoney(altCost)} {altCurrency})</p>}
                         <p className="card-date">{date}</p>
                     </div>
