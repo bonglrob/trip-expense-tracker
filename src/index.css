@@ -305,6 +305,7 @@ div.card {
 
 .about-section {
   background-color: var(--color-background);
+  background-image: url('../public/image/about.avif');
   padding: 1rem;
 }
 
