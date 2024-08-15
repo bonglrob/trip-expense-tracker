@@ -132,11 +132,13 @@ export default function App({ expenses, currencyNames, tripsData }) {
     } 
   }
 
-  // Todo: Fix DeleteExpense
   function deleteExpense(tripName, expenseId) {
-    const expenses = [...expensesDataObj[tripName]];
-    _.remove(expenses, (expense) => expense.expenseId === expenseId);
+    let expenses = [...expensesDataObj[tripName]];
+    _.remove(expenses, (expense) => Number(expense.expenseId) === Number(expenseId));
+    console.log("expenses AFTER remove", expenses);
+    
     const updatedExpenses = { ...expensesDataObj, [tripName]: expenses };
+    console.log("updatedExpenses", updatedExpenses);
     
     setExpensesDataObj(updatedExpenses);
   }

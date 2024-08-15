@@ -302,6 +302,10 @@ div.card {
   padding: 1rem;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .background-fill {
   background-color: var(--color-background);
 }

@@ -4,6 +4,8 @@ import Select from 'react-select';
 import _ from 'lodash';
 import { useNavigate } from 'react-router-dom';
 
+import { ConfirmDeleteModal } from './ConfirmDeleteModal.js';
+
 export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, highestId, deleteExpense }) {
   
   const navigate = useNavigate();
@@ -16,6 +18,8 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
 
   const [paidByOptions, setPaidByOptions] = useState([]);
   const [currencyOptions, setCurrencyOptions] = useState([]);  
+
+  const [showModal, setShowModal] = useState(false);
 
   const [expenseFormData, setExpenseFormData] = useState({
     expenseId: 1,
@@ -192,15 +196,23 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
     navigate(`/${tripName}/expenses`);
   }
 
-  function handleDelete(event) {
-    // todo: delete an expense behavior
+  function handleDeleteClick() {
+    setShowModal(true);
+  }
+
+  function handleClose() {
+    setShowModal(false);
+  }
+
+  function handleConfirm(event) {
     event.preventDefault();
 
-    // show "are you sure you want to delete?" pop up
-    // deleteExpense(tripName, expenseId);
+    deleteExpense(tripName, expenseId);
 
-    // navigate(`/${tripName}/expenses`);
-  }
+    setShowModal(false);
+    
+    navigate(`/${tripName}/expenses`);
+  };
 
   useEffect(() => {
     const paidByOptionsArray = members.map(member => ({"value": member, "label": member}));
@@ -328,7 +340,17 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
         <div className="d-flex align-items-center col-12">
           <button className="btn btn-primary me-3" type="submit">{hasExpense ? "Save Changes" : "Create"}</button>
           <Link to={`/${tripName}/expenses`} className="text-decoration-none btn btn-secondary me-3">Cancel</Link>
-          {hasExpense && <div onClick={handleDelete}><span className="material-symbols-outlined color-error">delete</span></div>}
+          {hasExpense && (
+            <div className="d-flex">
+              <span className="material-symbols-outlined color-error cursor-pointer fs-2" onClick={handleDeleteClick}>delete</span>
+
+              <ConfirmDeleteModal
+                show={showModal}
+                handleClose={handleClose}
+                handleConfirm={handleConfirm}
+              />
+            </div>
+          )}
         </div>
 
       </form>
