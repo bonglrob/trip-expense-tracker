@@ -10,7 +10,7 @@ export default function Landing(props) {
                 <div className="row justify-content-center">
                     <h1 className="col-5 justify-content-center">Share Travel Expenses with Your Group</h1>
                 </div>
-                <Link to="/createtrip" className="btn btn-primary justify-content-center create-new-trip-btn">Create New Trip</Link>
+                <Link to="/createtrip" className="btn btn-primary justify-content-center drop-shadow-btn">Create New Trip</Link>
             </div>
 
 

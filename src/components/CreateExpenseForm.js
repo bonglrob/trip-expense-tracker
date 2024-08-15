@@ -33,8 +33,11 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
     splitMethod: {},
     costPerName: []
   });
+
   // console.log("DEBUG: paidForNames", expenseFormData.paidForNames);
   // console.log("DEBUG: costPerName", expenseFormData.costPerName);
+  // console.log("DEBUG: splitMethod", expenseFormData.splitMethod);
+  
     
   const categoryOptions = [
     { "value": "Food & Drinks", "label": "Food & Drinks" },
@@ -135,7 +138,7 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
 
   function handleCheckboxChange(event) {
     const { name, value, checked } = event.target;
-    // let updatedExpenseFormData = {};
+    let updatedExpenseFormData = {};
 
     setHasChecked((prevState) => ({
       ...prevState,
@@ -143,44 +146,26 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
     }));
     
     if (checked) {
-      let updatedExpenseFormData = { ...expenseFormData, "paidForNames": [...expenseFormData.paidForNames, value ] };
-      setExpenseFormData(updatedExpenseFormData);
-      
-      // const constPerNameArray = expenseFormData.paidForNames.map((name) => {
-      //   const costPerNameObj = { 
-      //     [name]: (expenseFormData.cost / (expenseFormData.paidForNames.length)) 
-      //   }
-      //   return costPerNameObj;
-      // });
-      // updatedExpenseFormData = { ...expenseFormData, "costPerName": constPerNameArray }      
-      // setExpenseFormData(updatedExpenseFormData);
+      updatedExpenseFormData = { ...expenseFormData, "paidForNames": [...expenseFormData.paidForNames, value ] };
 
     } else {
       const updatedPaidForNames = expenseFormData.paidForNames.filter((name) => name !== value);
-      let updatedExpenseFormData = { ...expenseFormData, "paidForNames": updatedPaidForNames };
-      setExpenseFormData(updatedExpenseFormData);
-
-      // const constPerNameArray = expenseFormData.paidForNames.map((name) => {
-      //   const costPerNameObj = { 
-      //     [name]: (expenseFormData.cost / (expenseFormData.paidForNames.length)) 
-      //   }
-      //   return costPerNameObj;
-      // });
-      // updatedExpenseFormData = { ...expenseFormData, "costPerName": constPerNameArray } 
-      // setExpenseFormData(updatedExpenseFormData); 
+      updatedExpenseFormData = { ...expenseFormData, "paidForNames": updatedPaidForNames };
     }
+    
+    const constPerNameArray = updatedExpenseFormData.paidForNames.map((name) => {
+      const costPerNameObj = { 
+        [name]: (updatedExpenseFormData.cost / (updatedExpenseFormData.paidForNames.length)) 
+      }
+      return costPerNameObj;
+    });
+    // console.log("pfn:", updatedExpenseFormData.paidForNames)
+    // console.log("costPerNameArray:", constPerNameArray)
+    updatedExpenseFormData = { ...updatedExpenseFormData, "costPerName": constPerNameArray }
 
-    // setExpenseFormData(updatedExpenseFormData);
+    setExpenseFormData(updatedExpenseFormData);
   }
 
-  // function handleCostPerNameChange(event) {
-  //   const { id, value } = event.target;
-  //   const member = id.substring(9);
-  //   const memberIndex = expenseFormData.paidForNames.indexOf(member);
-  //   expenseFormData.constPerNameArray[memberIndex][member] = value;
-  //   const updatedExpenseFormData = { ...expenseFormData, "costPerName": expenseFormData.constPerNameArray }
-  //   setExpenseFormData(updatedExpenseFormData)
-  // }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -327,8 +312,8 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
         </section>
 
         {/* notes text input */}
-        {/* <section class="card">
-          <div class="card-body">
+        {/* <section className="card">
+          <div className="card-body">
             <div className="col-12">
                 <label htmlFor="notes" className="form-label">Notes</label>
                 <textarea className="form-control" id="notes"></textarea>

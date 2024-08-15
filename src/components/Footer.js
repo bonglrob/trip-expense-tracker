@@ -8,8 +8,8 @@ export default function Footer(props) {
                 {/* <div className="footer-links">
                     <p>
                         <Link to="/landing" aria-label="Home" className="px-1">Home</Link>
-                        <a href="#" aria-label="About"className="px-1">About</a>
-                        <a href="#" aria-label="FAQ" className="px-1">Frequently Asked Questions</a>
+                        <Link to="#" aria-label="About"className="px-1">About</a>
+                        <Link to="#" aria-label="FAQ" className="px-1">Frequently Asked Questions</Link>
                     </p>         
                 </div> */}
                 <p>&copy; TripSplit <a href="https://github.com/info340-su24/travel-expenses-B7"><img className="github" src="image/github-icon.svg" alt="github icon" /></a></p>
