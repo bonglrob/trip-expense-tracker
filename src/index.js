@@ -7,8 +7,8 @@ import App from './App';
 
 import 'whatwg-fetch';
 
-import SAMPLE_EXPENSES from "./data/expenses.json";
-import SAMPLE_TRIPS from "./data/trips.json";
+// import SAMPLE_EXPENSES from "./data/expenses.json";
+// import SAMPLE_TRIPS from "./data/trips.json";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -31,7 +31,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App expenses={SAMPLE_EXPENSES} tripsData={SAMPLE_TRIPS}/>
+      <App/>
     </BrowserRouter>
   </React.StrictMode>
 );

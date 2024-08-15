@@ -21,7 +21,8 @@ export default function ExpensePage({ expensesData, tripsDataArray, getHighestId
 
     // Find trip data
     const tripData = _.find(tripsDataArray, { tripName: tripName });
-
+    
+    
     // Function to convert amount to main currency
     const convertToMainCurrency = (amount, currency, rates, mainCurrency) => {
         if (currency === mainCurrency) return amount;
@@ -65,7 +66,7 @@ export default function ExpensePage({ expensesData, tripsDataArray, getHighestId
 
     useEffect(() => {
         getHighestId(tripName);
-    }, [getHighestId, tripName]);
+    }, [expensesData]);
 
     if (!tripData) return <h2>{tripName} trip has not yet been created!</h2>; // if unspecified
 
