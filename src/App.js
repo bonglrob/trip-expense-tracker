@@ -12,11 +12,10 @@ import { Navigate } from 'react-router-dom';
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 import Landing from './components/Landing.js';
-import BalancesPage from './components/BalancesPage.js'; // Import BalancesPage
+import BalancesPage from './components/BalancesPage.js';
 
 export default function App({ expenses, currencyNames, tripsData }) {
 
-  // Fetch Frankfurther API: https://github.com/hakanensari/frankfurter
   const CURRENCY_API_URL = 'https://api.frankfurter.app';
 
   // get currency rates on day of trip based on main currency against alt currencies (e.g. currencyRates.json)
