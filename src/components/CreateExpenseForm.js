@@ -500,7 +500,7 @@ function CostForMemberInput({ paidForNames, splitMethod, cost, member, handleCha
           id={`cost-for-${member}`}
           type="text"
           className="form-control bottom-border-only"
-          value={cost / paidForNames.length}
+          value={(cost / paidForNames.length).toFixed(2)}
           // onChange={handleChange}
           readOnly
         /> 
