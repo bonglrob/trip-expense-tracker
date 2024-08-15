@@ -12,9 +12,9 @@ export default function EmptyBalances() {
               <div className="card-body">
                 <h2 className="card-title">No Balances Yet</h2>
                 <p className="card-text">Get started by adding your first expense!</p>
-                <a href="#" className="btn btn-primary d-flex align-items-center">
+                {/* <a href="#" className="btn btn-primary d-flex align-items-center">
                   <span className="material-symbols-outlined me-2">checkbook</span>Create Expense
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

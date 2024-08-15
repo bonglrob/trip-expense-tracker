@@ -17,7 +17,7 @@ export default function ExpensePage({ expensesData, tripsDataArray, getHighestId
     const [dateFilter, setDateFilter] = useState('');
     const [categoryFilter, setCategoryFilter] = useState(null);
     const [searchFilter, setSearchFilter] = useState('');
-    console.log('DEBUG exp page:', paidForFilter, paidByFilter, dateFilter, categoryFilter, searchFilter);
+    // console.log('DEBUG exp page:', paidForFilter, paidByFilter, dateFilter, categoryFilter, searchFilter);
 
     // Find trip data
     const tripData = _.find(tripsDataArray, { tripName: tripName });
@@ -70,9 +70,6 @@ export default function ExpensePage({ expensesData, tripsDataArray, getHighestId
     if (!tripData) return <h2>{tripName} trip has not yet been created!</h2>; // if unspecified
 
     const tripExpenseData = convertedExpensesData[tripName];
-    // console.log("convertedExpensesData", convertedExpensesData);
-    // console.log("tripExpenseData", expensesData[tripName]);
-    // console.log("tripExpenseData", convertedExpensesData[tripName]);
 
     function applyFilter(paidForNames, paidByName, date, category) {
         updateFilter(paidForNames, paidByName, date, category);
@@ -124,8 +121,6 @@ export default function ExpensePage({ expensesData, tripsDataArray, getHighestId
         if (dateFilter === '') {
             return true;
         } else {
-            console.log(dateFilter);
-            console.log(expenseObj.date);
             return expenseObj.date === dateFilter;
         }
     });
@@ -151,7 +146,7 @@ export default function ExpensePage({ expensesData, tripsDataArray, getHighestId
     });
     
     const displayedData = dataFilteredBySearch;
-    console.log('DISPLAYED:', displayedData);
+    // console.log('DISPLAYED:', displayedData);
 
     return (
         // if no expenses exist for a trip
@@ -163,7 +158,7 @@ export default function ExpensePage({ expensesData, tripsDataArray, getHighestId
                     <div className="col-md-4">
                         <h1 className="color-primary">{tripName}</h1>
                     </div>
-                    <div className="col-md-4 mt-auto ms-auto mb-2">
+                    <div className="col-md-4 mt-auto ms-auto mb-2 ">
                         <AddExpenseButton highestId={highestId} />
                     </div>
                 </div>

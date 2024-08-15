@@ -7,7 +7,7 @@ export default function AddExpenseButton({ highestId }) {
 
     return (
         <div className="d-flex align-items-center justify-content-end">
-            <Link className="d-flex btn btn-primary me-2 text-decoration-none" to={`/${tripName}/expenses/${highestId + 1}`}>Add Expense<span className="material-symbols-outlined ms-1">add</span></Link>
+            <Link className="d-flex btn btn-primary me-2 text-decoration-none drop-shadow-btn" to={`/${tripName}/expenses/${highestId + 1}`}>Add Expense<span className="material-symbols-outlined ms-1">add</span></Link>
         </div>
     )
 }

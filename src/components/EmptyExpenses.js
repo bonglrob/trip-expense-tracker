@@ -3,15 +3,15 @@ import NavigationBar from "./NavigationBar"
 
 export default function EmptyExpenses({ highestId }) {
     return (
-        <div class="container mt-4">
-            <h1 class="color-primary">Korea</h1>
-            <div class="row">
+        <div className="container mt-4">
+            <h1 className="color-primary">Korea</h1>
+            <div className="row">
                 <NavigationBar />
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <h2 class="card-title">No Expenses Yet</h2>
-                            <p class="card-text">Get started by adding your first expense!</p>
+                <div className="col">
+                    <div className="card">
+                        <div className="card-body">
+                            <h2 className="card-title">No Expenses Yet</h2>
+                            <p className="card-text">Get started by adding your first expense!</p>
 
                             <div className="d-flex">
                                 <AddExpenseButton highestId={highestId}/>

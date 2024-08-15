@@ -14,7 +14,7 @@ export default function FilterExpensesForm({ tripsDataArray, applyFilterCallback
     const [selectedDate, setSelectedDate] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(null);
     applyFilterCallback(selectedPaidFor, selectedPaidBy, selectedDate, selectedCategory);
-    console.log('DEBUG:', selectedPaidFor, selectedPaidBy, selectedDate, selectedCategory);
+    // console.log('DEBUG:', selectedPaidFor, selectedPaidBy, selectedDate, selectedCategory);
 
 
     function handlePaidForChange(updatedSelectedPaidFor) {

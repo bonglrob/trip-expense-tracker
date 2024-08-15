@@ -60,84 +60,53 @@ export default function BalancesPage({ expensesData, tripsDataArray }) {
     }
 
     return (
-        <div className="bg-light">
-            <main>
-                <div className="container mt-4">
-                    <h1 className="color-container-primary-on">{tripName}</h1>
-                    <div className="row">
-                        <NavigationBar />
+        <main>
+            <div className="container mt-4">
+                <h1 className="color-primary">{tripName}</h1>
+                <div className="row">
+                    <NavigationBar />
 
-                        <div className="col-lg-6 mb-4">
-                            <div className="card shadow-sm border-0">
-                                <div className="card-body">
-                                    <h1 className="card-title">Overall Debt</h1>
-                                    <p className="card-text">Here is the overall debt of each person:</p>
-                                    <ul className="list-group">
-                                        {positiveBalances.map(({ person, amount }) => (
-                                            <li key={person} className="list-group-item d-flex justify-content-between align-items-center">
-                                                {person}
-                                                <span className="badge bg-success rounded-pill">+ ${amount.toFixed(2)}</span>
-                                            </li>
-                                        ))}
-                                        {negativeBalances.map(({ person, amount }) => (
-                                            <li key={person} className="list-group-item d-flex justify-content-between align-items-center">
-                                                {person}
-                                                <span className="badge bg-danger rounded-pill">- ${Math.abs(amount).toFixed(2)}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                    <div className="col-lg-6 mb-4">
+                        <div className="card shadow-sm border-0">
+                            <div className="card-body">
+                                <h1 className="card-title">Overall Debt</h1>
+                                <p className="card-text">Here is the overall debt of each person:</p>
+                                <ul className="list-group">
+                                    {positiveBalances.map(({ person, amount }) => (
+                                        <li key={person} className="list-group-item d-flex justify-content-between align-items-center">
+                                            {person}
+                                            <span className="badge bg-success rounded-pill">+ ${amount.toFixed(2)}</span>
+                                        </li>
+                                    ))}
+                                    {negativeBalances.map(({ person, amount }) => (
+                                        <li key={person} className="list-group-item d-flex justify-content-between align-items-center">
+                                            {person}
+                                            <span className="badge bg-danger rounded-pill">- ${Math.abs(amount).toFixed(2)}</span>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
                         </div>
-                        <div className="col-lg-6">
-                            <div className="card shadow-sm border-0">
-                                <div className="card-body">
-                                    <h1 className="card-title">Balances</h1>
-                                    <p className="card-text">Here are the current balances:</p>
-                                    <ul className="list-group">
-                                        {negativeBalances.map(({ person: debtor, amount: debtAmount }) => (
-                                            positiveBalances.map(({ person: creditor, amount: creditAmount }) => (
-                                                <li key={debtor + creditor} className="list-group-item">
-                                                    {debtor} <span className="icon-center material-symbols-outlined">arrow_forward</span> owes {creditor}: ${(Math.min(Math.abs(debtAmount), creditAmount)).toFixed(2)}
-                                                </li>
-                                            ))
-                                        ))}
-                                    </ul>
-                                </div>
+                    </div>
+                    <div className="col-lg-6">
+                        <div className="card shadow-sm border-0">
+                            <div className="card-body">
+                                <h1 className="card-title">Balances</h1>
+                                <p className="card-text">Here are the current balances:</p>
+                                <ul className="list-group">
+                                    {negativeBalances.map(({ person: debtor, amount: debtAmount }) => (
+                                        positiveBalances.map(({ person: creditor, amount: creditAmount }) => (
+                                            <li key={debtor + creditor} className="list-group-item">
+                                                {debtor} <span className="icon-center material-symbols-outlined">arrow_forward</span> owes {creditor}: ${(Math.min(Math.abs(debtAmount), creditAmount)).toFixed(2)}
+                                            </li>
+                                        ))
+                                    ))}
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </main>
-
-            <footer className="mt-5">
-                <div className="d-flex flex-column align-items-center">
-                    <div className="footer-links">
-                        <p>
-                            <a href="#" aria-label="Home" className="px-1">
-                                Home
-                            </a>
-                            <a href="#" aria-label="About" className="px-1">
-                                About
-                            </a>
-                            <a href="#" aria-label="FAQ" className="px-1">
-                                Frequently Asked Questions
-                            </a>
-                        </p>
-                    </div>
-                    <p>
-                        TripSplit{' '}
-                        <a href="https://github.com/info340-su24/travel-expenses-B7">
-                            <img className="github" src="image/github-icon.svg" alt="github icon" />
-                        </a>
-                    </p>
-                    <p className="text-center">
-                        Created by Robert Bonglamphone, Emma Esteban, and Nick Chiu
-                        <br />
-                        Part of University of Washington course INFO 340
-                    </p>
-                </div>
-            </footer>
-        </div>
+            </div>
+        </main>
     );
 }

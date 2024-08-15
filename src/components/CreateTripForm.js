@@ -142,7 +142,7 @@ function TripName({ tripName, handleChange }) {
 function Members({ members, handleAddMember, handleRemoveMember, handleChange }) {
     // Extracted map function into variable
     const memberInputs = members.map((member, index) => (
-        <div className="d-flex mb-2" key={index}>
+        <div className="d-flex mb-2 align-items-center" key={index}>
             <input
                 className="form-control"
                 name="member"
