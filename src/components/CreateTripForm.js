@@ -152,9 +152,8 @@ function Members({ members, handleAddMember, handleRemoveMember, handleChange })
                 required
             />
             <span
-                className="material-symbols-outlined"
+                className="material-symbols-outlined pointer-cursor"
                 onClick={() => handleRemoveMember(index)}
-                style={{ cursor: 'pointer' }}
             >
                 delete
             </span>
