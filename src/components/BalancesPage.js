@@ -20,6 +20,15 @@ export default function BalancesPage({ expensesData, tripsDataArray, highestId }
 
     if (!tripData) return <h2>{tripName} trip has not yet been created!</h2>; // if unspecified
 
+    // Function to convert amount to main currency
+    const convertToMainCurrency = (amount, currency, rates, mainCurrency) => {
+        if (currency === mainCurrency) return amount;
+        const rate = rates[currency];
+        if (rate) return amount / rate;
+        console.error(`Conversion rate for ${currency} not found`);
+        return amount;
+    };
+
     const calculateBalances = () => {
         const balances = {};
 
@@ -28,11 +37,14 @@ export default function BalancesPage({ expensesData, tripsDataArray, highestId }
             balances[member] = 0;
         });
 
+        const mainCurrency = tripData.currency.main.value;
+        const currencyRates = tripData.currency.rates;
+
         // Iterate over each expense in the selected trip
         expensesData[tripName].forEach(expense => {
-            const totalCost = expense.cost;
+            const expenseCurrency = expense.currency && expense.currency.value;
+            const totalCost = convertToMainCurrency(expense.cost, expenseCurrency, currencyRates, mainCurrency);
             const paidBy = expense.paidByName.value;
-            const splitMethod = expense.splitMethod.value;
             const numOfPeople = expense.paidForNames.length;
             const costPerPerson = totalCost / numOfPeople;
 
@@ -61,9 +73,12 @@ export default function BalancesPage({ expensesData, tripsDataArray, highestId }
         }
     }
 
+    // Get the main currency symbol
+    const mainCurrencySymbol = tripData.currency.main.value;
+
     return (
         expensesData[tripName].length === 0 ? (
-            < EmptyExpenses highestId={highestId}/>
+            <EmptyExpenses highestId={highestId}/>
         ) : (
         <>
             <div className="container mt-4">
@@ -80,13 +95,13 @@ export default function BalancesPage({ expensesData, tripsDataArray, highestId }
                                     {positiveBalances.map(({ person, amount }) => (
                                         <li key={person} className="list-group-item d-flex justify-content-between align-items-center">
                                             {person}
-                                            <span className="badge bg-success rounded-pill">+ ${amount.toFixed(2)}</span>
+                                            <span className="badge bg-success rounded-pill">+ {mainCurrencySymbol} {amount.toFixed(2)}</span>
                                         </li>
                                     ))}
                                     {negativeBalances.map(({ person, amount }) => (
                                         <li key={person} className="list-group-item d-flex justify-content-between align-items-center">
                                             {person}
-                                            <span className="badge bg-danger rounded-pill">- ${Math.abs(amount).toFixed(2)}</span>
+                                            <span className="badge bg-danger rounded-pill">- {mainCurrencySymbol} {Math.abs(amount).toFixed(2)}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -102,7 +117,7 @@ export default function BalancesPage({ expensesData, tripsDataArray, highestId }
                                     {negativeBalances.map(({ person: debtor, amount: debtAmount }) => (
                                         positiveBalances.map(({ person: creditor, amount: creditAmount }) => (
                                             <li key={debtor + creditor} className="list-group-item">
-                                                {debtor} <span className="icon-center material-symbols-outlined">arrow_forward</span> owes {creditor}: ${(Math.min(Math.abs(debtAmount), creditAmount)).toFixed(2)}
+                                                {debtor} <span className="icon-center material-symbols-outlined">arrow_forward</span> owes {creditor}: {mainCurrencySymbol} {(Math.min(Math.abs(debtAmount), creditAmount)).toFixed(2)}
                                             </li>
                                         ))
                                     ))}
