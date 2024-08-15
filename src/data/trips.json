@@ -21,28 +21,5 @@
                 "alt": [{ "value": "GBP", "label": "GBP - Great Britain Pound" }, { "value": "USD", "label": "USD - United States Dollar" }],
                 "rates": { "GBP": 0.85, "USD": 1.0835}
             }
-    },
-    {
-        "tripName": "Seattle / Portland",
-        "members": ["Kevin", "Michelle", "Joel", "Tracy"],
-        "startDate": "12/15/2023",
-        "currency":
-            {
-                "main": { "value": "USD", "label": "USD - United States Dollar" },
-                "alt": [],
-                "rates": {}
-            }
-
-    },
-    {
-        "tripName": "Mexico",
-        "members": ["Kevin", "Josh"],
-        "startDate": "10/25/2024",
-        "currency":
-            {
-                "main": { "value": "USD", "label": "USD - United States Dollar" },
-                "alt": [{ "value": "MXN", "label": "MXN - Mexican Pesos" }],
-                "rates": { "MXN": 19.18 }
-            }
     }
 ]
