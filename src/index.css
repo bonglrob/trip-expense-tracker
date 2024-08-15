@@ -302,6 +302,10 @@ div.card {
   padding: 1rem;
 }
 
+.background-fill {
+  background-color: var(--color-background);
+}
+
 /* Icons */
 .material-symbols-outlined {
 font-variation-settings:
