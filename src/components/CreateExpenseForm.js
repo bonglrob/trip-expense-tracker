@@ -22,7 +22,7 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   const [showModal, setShowModal] = useState(false);
 
   const [expenseFormData, setExpenseFormData] = useState({
-    expenseId: 1,
+    expenseId: "",
     expenseName: "",
     expenseCategory: {},
     currency: {},
@@ -175,6 +175,10 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
     if (expenseId === highestId + 1) {
       updatedExpenseFormData = { ...expenseFormData, expenseId: highestId + 1 };
     }
+
+    console.log("expenseId is", expenseId);
+    console.log("highestId is", highestId);
+    
 
     onSubmit(updatedExpenseFormData, tripName, hasExpense);
 

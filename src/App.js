@@ -12,7 +12,7 @@ import Footer from './components/Footer.js';
 import Landing from './components/Landing.js';
 import BalancesPage from './components/BalancesPage.js';
 
-export default function App({ expenses, tripsData }) {
+export default function App(props) {
 
   const CURRENCY_API_URL = 'https://api.frankfurter.app';
 
@@ -73,18 +73,22 @@ export default function App({ expenses, tripsData }) {
   const [currencyNamesObj, setCurrencyNamesObj] = useState({});
 
   /// An array of trip objects
-  const [tripsDataArray, setTripsDataArray] = useState([...tripsData]); // testing with trips.json
+  const [tripsDataArray, setTripsDataArray] = useState([]); // testing with trips.json
+  console.log("tripsDataArray is", tripsDataArray);
+  
+  
   
   // An object of expenses
-  const [expensesDataObj, setExpensesDataObj] = useState(expenses); // testing with expenses.json  
+  const [expensesDataObj, setExpensesDataObj] = useState({}); // testing with expenses.json  
+  console.log("expensesDataObj is ", expensesDataObj);
 
-  const [highestId, setHighestId] = useState(1);    
+  const [highestId, setHighestId] = useState(0);    
 
   function getHighestId(tripName) {
     if (expensesDataObj[tripName].length === 0) {
-      setHighestId(1);
-    } else {
-        const arrayOfExpenses = _.flatMap(expensesDataObj[tripName], (expense) => expense);
+      setHighestId(0);
+    } else {      
+      const arrayOfExpenses = _.flatMap(expensesDataObj[tripName], (expense) => expense);
         const highestIdObj = _.maxBy(arrayOfExpenses, "expenseId");
         const updatedHighestId = Number(highestIdObj["expenseId"]); 
         setHighestId(updatedHighestId);
@@ -112,20 +116,23 @@ export default function App({ expenses, tripsData }) {
     if (hasExpense) {
 
     // Find the index of the object with the same id
-    const index = _.findIndex(updatedExpensesDataObj[tripName], { expenseId: expenseFormData.expenseId });
+    const index = _.findIndex(updatedExpensesDataObj[tripName], { expenseId: Number(expenseFormData.expenseId) });
 
     if (index !== -1) {
       updatedExpensesDataObj[tripName][index] = _.assign({}, updatedExpensesDataObj[tripName][index], expenseFormData);
     }
-    console.log("inside");
-    console.log("updated expenses obj", updatedExpensesDataObj);
 
     } else {
       // adding new expense
       updatedExpensesDataObj = {
         ...expensesDataObj,
-        [tripName]: [...expensesDataObj[tripName], expenseFormData]
+        [tripName]: [
+          ...(expensesDataObj[tripName] || []), 
+          { ...expenseFormData, expenseId: Number(highestId + 1) }
+        ]
       };
+      console.log("updatedExpensesDataObj", updatedExpensesDataObj);
+      
     setExpensesDataObj(updatedExpensesDataObj);
     } 
   }
@@ -133,10 +140,8 @@ export default function App({ expenses, tripsData }) {
   function deleteExpense(tripName, expenseId) {
     let expenses = [...expensesDataObj[tripName]];
     _.remove(expenses, (expense) => Number(expense.expenseId) === Number(expenseId));
-    console.log("expenses AFTER remove", expenses);
     
     const updatedExpenses = { ...expensesDataObj, [tripName]: expenses };
-    console.log("updatedExpenses", updatedExpenses);
     
     setExpensesDataObj(updatedExpenses);
   }

@@ -35,7 +35,7 @@ function ExpenseCard({ expense, currencyData }) {
     let nameSpan = paidForNames.map((name, index) => {
         const isLastName = index === paidForNames.length - 1;
         const transformed = (
-            <span className="name-emphasis">
+            <span key={name} className="name-emphasis">
                 {name}{!isLastName && ', '}
             </span>
         );

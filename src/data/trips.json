@@ -9,7 +9,6 @@
                 "alt": [{ "value": "KRW", "label": "KRW - South Korean Won" }, { "value": "JPY", "label": "JPY - Japanese Yen" }],
                 "rates": { "KRW": 1365.73, "JPY": 148.93 }
             }
-
     },
     {
         "tripName": "London",
