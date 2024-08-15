@@ -69,7 +69,10 @@ export default function ExpensePage({ expensesData, tripsDataArray, getHighestId
 
     if (!tripData) return <h2>{tripName} trip has not yet been created!</h2>; // if unspecified
 
-    const tripExpenseData = expensesData[tripName];
+    const tripExpenseData = convertedExpensesData[tripName];
+    // console.log("convertedExpensesData", convertedExpensesData);
+    // console.log("tripExpenseData", expensesData[tripName]);
+    // console.log("tripExpenseData", convertedExpensesData[tripName]);
 
     function applyFilter(paidForNames, paidByName, date, category) {
         updateFilter(paidForNames, paidByName, date, category);
@@ -175,7 +178,7 @@ export default function ExpensePage({ expensesData, tripsDataArray, getHighestId
                 <ExpensesList expensesData={convertedExpensesData} currencyData={tripData.currency} tripDisplayedData={displayedData}/>
 
                 <div className="col-md-12">
-                    <p className="text-end">showing {expensesData[tripName].length} of {expensesData[tripName].length} results</p>
+                    <p className="text-end">showing {displayedData.length} of {expensesData[tripName].length} results</p>
                 </div>
 
             </div>

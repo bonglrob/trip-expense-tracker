@@ -124,7 +124,7 @@ function TripName({ tripName, handleChange }) {
     
     return (
         <div>
-            <label htmlFor='tripName' className="form-label">Name</label>
+            <label htmlFor='trip-name' className="form-label">Name</label>
             <input 
                 id="trip-name"
                 name="tripName"
