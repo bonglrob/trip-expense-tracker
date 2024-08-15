@@ -1,15 +1,16 @@
 import { useParams, Link } from "react-router-dom";
 import fx from "money"; // import money.js
 
-export default function ExpensesList({ expensesData, currencyData }) {
-    const { tripName } = useParams();
+export default function ExpensesList({ expensesData, currencyData, tripDisplayedData }) {
+    // const { tripName } = useParams();
+    
 
     // Configure money.js with currency rates
     fx.base = currencyData.main.value;
     fx.rates = currencyData.rates;
 
     // Map expenses data to ExpenseCard components
-    let expenseCardArray = expensesData[tripName].map((expense) => {
+    let expenseCardArray = tripDisplayedData.map((expense) => {
         const transformed = (
             <ExpenseCard key={expense.expenseId} expense={expense} currencyData={currencyData} />
         );
