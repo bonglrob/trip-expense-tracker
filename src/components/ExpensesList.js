@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import fx from "money"; // import money.js
+import { useState } from "react";
 
 export default function ExpensesList({ expensesData, currencyData, tripDisplayedData }) {
     // const { tripName } = useParams();
@@ -31,10 +32,15 @@ function ExpenseCard({ expense, currencyData }) {
 
     const paidByNameString = paidByName.value;
 
-    let paidForNameString = paidForNames;
-    if (paidForNames.length > 1) {
-        paidForNameString = paidForNames.join(", ");
-    }
+    let nameSpan = paidForNames.map((name, index) => {
+        const isLastName = index === paidForNames.length - 1;
+        const transformed = (
+            <span className="name-emphasis">
+                {name}{!isLastName && ', '}
+            </span>
+        );
+        return transformed;
+    })
 
     const mainCurrency = currencyData.main.value;
     const altCurrency = currencyData.alt.length > 0 ? currencyData.alt[0].value : null;
@@ -56,10 +62,7 @@ function ExpenseCard({ expense, currencyData }) {
                 <div className="card-body d-flex justify-content-between">
                     <div>
                         <h2 className="card-title">{expenseName}</h2>
-                        <p className="card-text">
-                            <span className="name-emphasis">{paidByNameString}</span> paid for{" "}
-                            <span className="name-emphasis">{paidForNameString}</span>
-                        </p>
+                        <p className="card-text"><span className="name-emphasis">{paidByNameString}</span> paid for {nameSpan}</p>
                     </div>
                     <div className="text-end align-self-end">
                         <h2 className="card-dollar-amt">${formatMoney(cost)} {mainCurrency}</h2>

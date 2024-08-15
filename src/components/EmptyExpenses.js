@@ -1,10 +1,13 @@
+import { useParams } from "react-router-dom"
 import AddExpenseButton from "./AddExpenseButton"
 import NavigationBar from "./NavigationBar"
 
 export default function EmptyExpenses({ highestId }) {
+    const { tripName } = useParams();
+
     return (
         <div className="container mt-4">
-            <h1 className="color-primary">Korea</h1>
+            <h1 className="color-primary">{tripName}</h1>
             <div className="row">
                 <NavigationBar />
                 <div className="col">

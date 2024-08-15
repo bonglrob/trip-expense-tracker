@@ -400,6 +400,11 @@ footer {
   color: #000000;
 }
 
+.nav-link.active {
+  font-weight: bold; /* Example styling */
+  color: var(--color-container-tertiary-on); /* Example styling */
+}
+
 .date-filter {
   color: #808080;
 }

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NavigationBar from "./NavigationBar";
 import _ from "lodash";
 
-export default function BalancesPage({ expensesData, tripsDataArray }) {
+import NavigationBar from "./NavigationBar";
+import EmptyExpenses from "./EmptyExpenses";
+
+export default function BalancesPage({ expensesData, tripsDataArray, highestId }) {
     const { tripName } = useParams(); // e.g. returns "Korea"
     const [balances, setBalances] = useState({});
 
@@ -60,7 +62,10 @@ export default function BalancesPage({ expensesData, tripsDataArray }) {
     }
 
     return (
-        <main>
+        expensesData[tripName].length === 0 ? (
+            < EmptyExpenses highestId={highestId}/>
+        ) : (
+        <>
             <div className="container mt-4">
                 <h1 className="color-primary">{tripName}</h1>
                 <div className="row">
@@ -107,6 +112,6 @@ export default function BalancesPage({ expensesData, tripsDataArray }) {
                     </div>
                 </div>
             </div>
-        </main>
-    );
+        </>
+    ));
 }

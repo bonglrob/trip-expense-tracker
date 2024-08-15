@@ -13,8 +13,8 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   const { tripName, expenseId } = useParams();  
 
   const index = _.findIndex(tripsDataArray, { tripName: tripName });
-  const { startDate, members, currency } = tripsDataArray[index];
-  const [currencies, setCurrencies] = useState([currency.main, ...currency.alt]);
+  const { members, currency } = tripsDataArray[index];
+  const [currencies, setCurrencies] = useState([currency.main, ...currency.alt]);  
 
   const [paidByOptions, setPaidByOptions] = useState([]);
   const [currencyOptions, setCurrencyOptions] = useState([]);  
@@ -240,10 +240,10 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
             <div className="row">
 
               {/* exepenseName input */}
-              <ExpenseName expenseName={expenseFormData.expenseName} handleChange={handleChange}/>
+              <ExpenseName expenseName={expenseFormData.expenseName} handleChange={handleChange} />
 
               {/* date input */}
-              <Date date={expenseFormData.date} handleChange={handleChange}/>
+              <Date date={expenseFormData.date} handleChange={handleChange} />
 
               {/* <!-- expenseCategory dropdown --> */}
               <ExpenseCategory 
@@ -370,7 +370,7 @@ function ExpenseName({ expenseName, handleChange }) {
         onChange={handleChange}
         type="text"
         className="form-control"
-        placeholder="Jajangmyeon Restaurant"
+        placeholder="Name of expense"
         required
       />
     </div>  
@@ -378,7 +378,7 @@ function ExpenseName({ expenseName, handleChange }) {
 }
 
 // Component for Date input field
-function Date({ date, handleChange }) {
+function Date({ date, handleChange, startDate }) {
   return (
     <div className="col-md-4">
       <label htmlFor="date" className="form-label">Date</label>
@@ -390,7 +390,7 @@ function Date({ date, handleChange }) {
             onChange={handleChange}
             type="date"
             className="form-control"
-            placeholder=""
+            placeholder={startDate}
           />
       </div>
     </div>  
@@ -398,7 +398,7 @@ function Date({ date, handleChange }) {
 }
 
 // Component for Expense Category input field
-function ExpenseCategory({ expenseCategory, categoryOptions, selectedStyles, handleChange}) {
+function ExpenseCategory({ expenseCategory, categoryOptions, selectedStyles, handleChange }) {
   return (
     <div className="col-md-4">
       <label htmlFor="expense-category" className="form-label">Category</label>
@@ -407,6 +407,7 @@ function ExpenseCategory({ expenseCategory, categoryOptions, selectedStyles, han
           value={expenseCategory}
           onChange={handleChange}
           options={categoryOptions}
+          placeholder="Select a category"
           isSearchable
           styles={selectedStyles}
           maxMenuHeight={140}
@@ -416,7 +417,7 @@ function ExpenseCategory({ expenseCategory, categoryOptions, selectedStyles, han
 }
 
 // Component for Currency and Cost input field
-function Cost({currency, currencyOptions, selectedStyles, handleCurrencyChange, cost, handleCostChange }) {
+function Cost({ currency, currencyOptions, selectedStyles, handleCurrencyChange, cost, handleCostChange }) {
   return (
     <div className="col-3">
       <label htmlFor="cost" className="form-label">Cost</label>
@@ -437,7 +438,7 @@ function Cost({currency, currencyOptions, selectedStyles, handleCurrencyChange, 
           onChange={handleCostChange}
           type="text"
           className="form-control"
-          placeholder="0"
+          placeholder="0.00"
           required
         />
       </div>

@@ -144,7 +144,7 @@ function Members({ members, handleAddMember, handleRemoveMember, handleChange })
     const memberInputs = members.map((member, index) => (
         <div className="d-flex mb-2 align-items-center" key={index}>
             <input
-                className="form-control"
+                className="form-control me-2"
                 name="member"
                 value={member}
                 onChange={(e) => handleChange(index, e)}

@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 export default function NavigationBar(props) { 
     const { tripName } = useParams();
@@ -10,19 +10,11 @@ export default function NavigationBar(props) {
                     <div className="container-fluid">
                         <ul className="nav">
                             <li className="nav-item">
-                                <Link to={`/${tripName}/expenses`} className="nav-link">Expenses</Link>
-                                {/* <a className="nav-link active btn" aria-current="page" href="#">Expenses</a> */}
+                                <NavLink to={`/${tripName}/expenses`} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>Expenses</NavLink>
                             </li>
                             <li className="nav-item">
-                                <Link to={`/${tripName}/balances`} className="nav-link">Balances</Link>
-                                {/* <a className="nav-link" href="#">Balances</a> */}
+                                <NavLink to={`/${tripName}/balances`} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>Balances</NavLink>
                             </li>
-                            {/* <li className="nav-item">
-                                <Link to="#" className="nav-link">Stats</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link to="#" className="nav-link">Settings</Link>
-                            </li> */}
                         </ul>
                     </div>
                 </nav>

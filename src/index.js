@@ -7,7 +7,6 @@ import App from './App';
 
 import 'whatwg-fetch';
 
-import CURRENCIES_NAMES from "./data/currencyNames.json";
 import SAMPLE_EXPENSES from "./data/expenses.json";
 import SAMPLE_TRIPS from "./data/trips.json";
 
@@ -32,7 +31,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App expenses={SAMPLE_EXPENSES} currencyNames={CURRENCIES_NAMES} tripsData={SAMPLE_TRIPS}/>
+      <App expenses={SAMPLE_EXPENSES} tripsData={SAMPLE_TRIPS}/>
     </BrowserRouter>
   </React.StrictMode>
 );

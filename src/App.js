@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import _ from 'lodash';
 
-import EmptyBalances from './components/EmptyBalances';
-import FilledBalances from './components/FilledBalances';
 import { CreateExpenseForm } from './components/CreateExpenseForm.js';
 import ExpensePage from './components/ExpensePage.js';
 import MyTrips from './components/MyTrips.js';
@@ -14,7 +12,7 @@ import Footer from './components/Footer.js';
 import Landing from './components/Landing.js';
 import BalancesPage from './components/BalancesPage.js';
 
-export default function App({ expenses, currencyNames, tripsData }) {
+export default function App({ expenses, tripsData }) {
 
   const CURRENCY_API_URL = 'https://api.frankfurter.app';
 
@@ -27,7 +25,7 @@ export default function App({ expenses, currencyNames, tripsData }) {
     if (startDate >= currentDate) startDate = "latest";
 
     const mainCurrencyParam = currency.main.value;
-    const altCurrencyArray = currency.alt.value;
+    const altCurrencyArray = currency.alt;
 
     const altCurrencyParam = altCurrencyArray.map(currency => currency.value).join(',');
 
@@ -54,9 +52,9 @@ export default function App({ expenses, currencyNames, tripsData }) {
       .catch((error) => console.error("Error fetching currency names:", error));
   }
 
-  // useEffect(() => {
-  //   fetchCurrencyNames();
-  // }, []);
+  useEffect(() => {
+    fetchCurrencyNames();
+  }, []);
 
   /*
   * Checks whether it can establish a connection with frankfurter API
@@ -72,7 +70,7 @@ export default function App({ expenses, currencyNames, tripsData }) {
   }
 
   // An object of currency names
-  const [currencyNamesObj, setCurrencyNamesObj] = useState({...currencyNames}); // testing with currencyNames.json
+  const [currencyNamesObj, setCurrencyNamesObj] = useState({});
 
   /// An array of trip objects
   const [tripsDataArray, setTripsDataArray] = useState([...tripsData]); // testing with trips.json
@@ -102,7 +100,7 @@ export default function App({ expenses, currencyNames, tripsData }) {
 
     // when user selects alt currencies
     if (tripFormData.currency.alt.length > 0) {
-      // fetchCurrencyRates(tripFormData);
+      fetchCurrencyRates(tripFormData);
     }
   };
 
@@ -149,13 +147,10 @@ export default function App({ expenses, currencyNames, tripsData }) {
       <main>
         <Routes>
           <Route path="/landing" element={<Landing />} />
-          <Route path="/emptybalances" element={<EmptyBalances />} />
-          <Route path="/filledbalances" element={<FilledBalances />} />
-
           {/* <Route path="/:tripName" element={<NavigationBar /> }> */}
           <Route path="/:tripName/expenses" element={<ExpensePage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} getHighestId={getHighestId} highestId={highestId} /> }></Route>
           <Route path="/:tripName/expenses/:expenseId" element={<CreateExpenseForm onSubmit={handleExpenseFormSubmit} tripsDataArray={tripsDataArray} expensesData={expensesDataObj} highestId={highestId} deleteExpense={deleteExpense}/>} />
-          <Route path="/:tripName/balances" element={<BalancesPage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} />} /> {/* Added route for BalancesPage */}
+          <Route path="/:tripName/balances" element={<BalancesPage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} highestId={highestId} />} /> {/* Added route for BalancesPage */}
           <Route path="/mytrips" element={<MyTrips tripsDataArray={tripsDataArray} />} />
           <Route path="/createtrip" element={<CreateTripForm onSubmit={handleTripFormSubmit} currencyNames={currencyNamesObj} />} />
           <Route path="/*" element={<Navigate to="/landing" />} />
