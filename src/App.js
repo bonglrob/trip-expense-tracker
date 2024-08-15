@@ -142,7 +142,7 @@ export default function App({ expenses, currencyNames, tripsData }) {
           <Route path="/:tripName/balances" element={<BalancesPage expensesData={expensesDataObj} tripsDataArray={tripsDataArray} />} /> {/* Added route for BalancesPage */}
           <Route path="/mytrips" element={<MyTrips tripsDataArray={tripsDataArray} />} />
           <Route path="/createtrip" element={<CreateTripForm onSubmit={handleTripFormSubmit} currencyNames={currencyNamesObj} />} />
-          <Route path="/*" element={<Navigate to="/mytrips" />} />
+          <Route path="/*" element={<Navigate to="/landing" />} />
         </Routes>
       </main>
       <Footer />

@@ -132,6 +132,7 @@ function TripName({ tripName, handleChange }) {
                 onChange={handleChange}
                 className="form-control"
                 placeholder="Korea"
+                required
             />
         </div>
     );
@@ -148,6 +149,7 @@ function Members({ members, handleAddMember, handleRemoveMember, handleChange })
                 value={member}
                 onChange={(e) => handleChange(index, e)}
                 placeholder={`Member ${index + 1}`}
+                required
             />
             <span
                 className="material-symbols-outlined"
@@ -183,6 +185,7 @@ function StartDate({ startDate, handleChange }) {
                 onChange={handleChange}
                 className="form-control"
                 type="date"
+                required
             />
         </div>
     );

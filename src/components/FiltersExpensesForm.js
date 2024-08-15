@@ -3,37 +3,43 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import _ from "lodash";
 
-export default function FilterExpensesForm({ tripsDataArray }) {
+export default function FilterExpensesForm({ tripsDataArray, applyFilterCallback }) {
     const { tripName } = useParams();  
 
     const index = _.findIndex(tripsDataArray, { tripName: tripName });
     const { startDate, members, currency } = tripsDataArray[index];
 
-    const [paidForFilter, setPaidForFilter] = useState(null);
-    const [paidByFilter, setPaidByFilter] = useState(null);
-    const [dateFilter, setDateFilter] = useState('');
-    const [categoryFilter, setCategoryFilter] = useState(null);
-    console.log('DEBUG:', paidForFilter, paidByFilter, dateFilter, categoryFilter);
+    const [selectedPaidFor, setSelectedPaidFor] = useState(null);
+    const [selectedPaidBy, setSelectedPaidBy] = useState(null);
+    const [selectedDate, setSelectedDate] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    applyFilterCallback(selectedPaidFor, selectedPaidBy, selectedDate, selectedCategory);
+    console.log('DEBUG:', selectedPaidFor, selectedPaidBy, selectedDate, selectedCategory);
 
 
-    function handlePaidForChange(paidForFilter) {
-        setPaidForFilter(paidForFilter);
+    function handlePaidForChange(updatedSelectedPaidFor) {
+        setSelectedPaidFor(updatedSelectedPaidFor);
+        applyFilterCallback(selectedPaidFor, selectedPaidBy, selectedDate, selectedCategory);
     }
-    function handlePaidByChange(paidByFilter) {
-        setPaidByFilter(paidByFilter);
+    function handlePaidByChange(updatedSelectedPaidBy) {
+        setSelectedPaidBy(updatedSelectedPaidBy);
+        applyFilterCallback(selectedPaidFor, selectedPaidBy, selectedDate, selectedCategory);
     }
     function handleDateChange(event) {
         const value = event.target.value;
-        setDateFilter(value);
+        setSelectedDate(value);
+        applyFilterCallback(selectedPaidFor, selectedPaidBy, selectedDate, selectedCategory);
     }
-    function handleCategoryChange(categoryFilter) {
-        setCategoryFilter(categoryFilter);
+    function handleCategoryChange(updatedSelectedCategory) {
+        setSelectedCategory(updatedSelectedCategory);
+        applyFilterCallback(selectedPaidFor, selectedPaidBy, selectedDate, selectedCategory);
     }
     function handleClick() {
-        setPaidForFilter(null);
-        setPaidByFilter(null);
-        setDateFilter('');
-        setCategoryFilter(null);
+        setSelectedPaidFor(null);
+        setSelectedPaidBy(null);
+        setSelectedDate('');
+        setSelectedCategory(null);
+        applyFilterCallback(selectedPaidFor, selectedPaidBy, selectedDate, selectedCategory);
     }
 
     const [paidByOptions, setPaidByOptions] = useState([]);
@@ -97,7 +103,7 @@ export default function FilterExpensesForm({ tripsDataArray }) {
 
                 <div className="col col-md-4">
                     <Select
-                        value={paidForFilter}
+                        value={selectedPaidFor}
                         id="paidFor"
                         placeholder="Paid for"
                         aria-label="paid-for"
@@ -115,7 +121,7 @@ export default function FilterExpensesForm({ tripsDataArray }) {
                     <Select
                         id="paid-by"
                         placeholder="Paid by"
-                        value={paidByFilter}
+                        value={selectedPaidBy}
                         onChange={handlePaidByChange}
                         options={paidByOptions}
                         isClearable
@@ -128,7 +134,7 @@ export default function FilterExpensesForm({ tripsDataArray }) {
                     <div className="input-group" id="date">
                         <input
                             type="date"
-                            value={dateFilter}
+                            value={selectedDate}
                             className="form-control date-filter"
                             placeholder={startDate}
                             onChange={handleDateChange}/>
@@ -140,7 +146,7 @@ export default function FilterExpensesForm({ tripsDataArray }) {
                     {/* <label htmlFor="expense-category" className="form-label">Category</label> */}
                     <Select
                         id="expense-category"
-                        value={categoryFilter}
+                        value={selectedCategory}
                         placeholder="Category"
                         onChange={handleCategoryChange}
                         options={categoryOptions}

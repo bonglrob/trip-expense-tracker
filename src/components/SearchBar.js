@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 
-export default function SearchBar() {
-    const [expenseSearch, setExpenseSearch] = useState(null);
+export default function SearchBar({ applySearchFilterCallback }) {
+    const [expenseSearch, setExpenseSearch] = useState('');
+    applySearchFilterCallback(expenseSearch);
     
     function handleSearchChange(event) {
         const value = event.target.value;
         setExpenseSearch(value);
+        applySearchFilterCallback(expenseSearch);
     }
 
     return (
@@ -20,7 +22,7 @@ export default function SearchBar() {
                 placeholder="Search for expenses" 
                 aria-label="Search"
                 value={expenseSearch}
-                onChange={handleSearchChange}/>
+                onChange={handleSearchChange} />
         </div>
     </form>
     )
