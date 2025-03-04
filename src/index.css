@@ -1,51 +1,42 @@
 :root {
   /* how to apply these colors: https://m3.material.io/styles/color/roles */
 
-  /* colors */
-  --color-primary: #316a42;
-  --color-secondary: #506352;
-  --color-tertiary: #3a656e;
-  --color-error: #ba1a1a;
-  /* use color-text-on for text/logos on the above colors */
-  --color-text-on: #ffffff;
+  --color-primary: rgb(60 96 144);
+  --color-secondary: rgb(84 95 113);
+  --color-tertiary: rgb(109 86 118);
+  --color-error: rgb(186 26 26);
+  
+  --color-text-on: rgb(255 255 255); /* use on text, logos for above colors */
 
-  --color-background-white: #ffffff;
+  --color-background-white: rgb(255 255 255);
+  --color-background: rgb(249 249 255);
+  --color-background-dim: rgb(217 218 224); /* for lower emphasis content */
+  --color-background-on: rgb(25 28 32);
+  --color-background-on-dim: rgb(67, 75, 86);
 
-  --color-background: #f6fbf3;
-  /* dim for lower emphasis content */
-  --color-background-dim: #d7dbd4;
+  --color-container-primary: rgb(212 227 255); /* for containers, btn on bg */
+  --color-container-primary-on: rgb(33 72 118);
+  --color-container-primary-bright: rgb(223, 234, 255); /* for button hover */
 
-  --color-background-on: #181d18;
-  --color-background-on-dim: #414941;
+  --color-container-secondary: rgb(216 227 248);
+  --color-container-secondary-on: rgb(61 71 88);
 
-  /* for containers and buttons that go on background */
-  --color-container-primary: #b3f1be;
-  --color-container-primary-on: #00210c;
+  --color-container-tertiary: rgb(247 217 255);
+  --color-container-tertiary-on: rgb(85 63 94);
 
-  /* for button hover */
-  --color-container-primary-bright: #bdf3c6;
+  --color-container-error: rgb(255 218 214);
+  --color-container-error-on: rgb(147 0 10);
 
-  --color-container-secondary: #d3e8d3;
-  --color-container-secondary-on: #0e1f12;
+  --color-container-inverse: rgb(46 48 53);
+  --color-container-inverse-on: rgb(240 240 247);
+  --color-container-inverse-on-link: rgb(165 200 255);
 
-  --color-container-tertiary: #bdeaf5;
-  --color-container-tertiary-on: #001f25;
+  --color-shadow: rgb(0 0 0);
+  --color-outline: rgb(116 119 127);
+  --color-outline-dim: rgb(146, 148, 156);
 
-  --color-container-error: #ffdad6;
-  --color-container-error-on: #410002;
-
-  --color-shadow: #000000;
-  --color-outline: #717971;
-  --color-outline-dim: #c1c9bf;
-
-  --color-container-inverse: #2d322d;
-  --color-container-inverse-on: #eef2ea;
-  --color-container-inverse-on-link: #98d4a3;
-
-  /* fonts */
   --font-header: "Raleway", Arial, Helvetica, sans-serif;
-  /* subheader also for buttons, navbar */
-  --font-subheader: "Cabin", Noto, sans-serif;
+  --font-subheader: "Cabin", Noto, sans-serif; /* also for buttons, navbar */
   --font-body: "Roboto", Noto, sans-serif;
 }
 
@@ -53,14 +44,14 @@ main {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  min-height: 100vh; /* Ensure it covers the full viewport height */
+  min-height: 100vh;
 }
 
 body {
   font-family: var(--font-body);
   margin: 0;
   position: relative;
-  z-index: 1; /* Ensure body content is above the background image */
+  z-index: 1;
 }
 
 body::before {
@@ -70,10 +61,9 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  /* background: url('image/background.jpg') no-repeat center center fixed; Correct path to the image */
   background-size: cover;
-  opacity: 0.2; /* Adjust opacity as needed */
-  z-index: -1; /* Ensure the pseudo-element is below the body content */
+  opacity: 0.2;
+  z-index: -1;
   pointer-events: none; /* Ensure the pseudo-element does not interfere with user interactions */
 }
 

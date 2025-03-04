@@ -64,8 +64,8 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
   const selectedStyles = {
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: state.isSelected ? '#b3f1be' : state.isFocused ? '#d3e8d3' : null,
-      color: state.isSelected ? '#181d18' : '#00210c',
+      backgroundColor: state.isSelected ? 'rgb(212 227 255)' : state.isFocused ? 'rgb(114, 163, 255)' : null,
+      color: state.isSelected ? 'rgb(25 28 32)' : 'rgb(33 72 118)',
     })
   };
 
@@ -84,8 +84,8 @@ export function CreateExpenseForm({ onSubmit, tripsDataArray, expensesData, high
     }),
     option: (provided, state) => ({
       ...provided,
-      backgroundColor: state.isSelected ? '#b3f1be' : state.isFocused ? '#d3e8d3' : null,
-      color: state.isSelected ? '#181d18' : '#00210c',
+      backgroundColor: state.isSelected ? 'rgb(212 227 255)' : state.isFocused ? 'rgb(114, 163, 255)' : null,
+      color: state.isSelected ? 'rgb(25 28 32)' : 'rgb(33 72 118)',
     })
   };
 
