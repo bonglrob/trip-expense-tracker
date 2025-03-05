@@ -3,9 +3,6 @@
 }
 
 .heroContainer {
-    display: flex;
-    flex-wrap: wrap;
     padding-top: 4rem;
     padding-bottom: 4rem;
-    background-color: rgb(238, 247, 255);
 }

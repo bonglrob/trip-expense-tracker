@@ -147,7 +147,7 @@ export default function App(props) {
   }
 
   return (
-    <div>
+    <>
       <Header />
       <main>
         <Routes>
@@ -162,6 +162,6 @@ export default function App(props) {
         </Routes>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }
