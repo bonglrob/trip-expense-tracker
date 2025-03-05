@@ -279,26 +279,6 @@ div.card {
   cursor: pointer;
 }
 
-
-/* Landing Page */
-.landing-cover {
-  display: block;
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-  background-image: url('../public/image/plane.jpg');
-  background-size: cover;
-  background-color: var(--color-background-white);
-  background-position: center;
-  justify-content: center;
-  text-align: center;
-}
-
-.about-section {
-  background-color: var(--color-background);
-  background-image: url('../public/image/about.avif');
-  padding: 1rem;
-}
-
 .cursor-pointer {
   cursor: pointer;
 }

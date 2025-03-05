@@ -1,25 +1,23 @@
 import { Link } from 'react-router-dom';
+import styles from '../styles/landing.module.css'
 
 export default function Landing(props) { 
     
     return (
         <>
-            {/* <!-- words with "Share Expenses with your Group" with a background image stuck to the top --> */}
-            {/* <!-- button underneath "Create New Trip" --> */}
-            <div className="landing-cover">
-                <div className="row justify-content-center">
-                    <h1 className="col-5 justify-content-center">Share Travel Expenses with Your Group</h1>
+            <div className={styles.heroBackground}>
+                <div className={`container ${styles.heroContainer}`}>
+                    <div className="row">
+                        <img className="col col-lg-6 img-fluid" src="/image/blue-japan-tourist.png" alt="a tourist sightseeing in Japan" />
+                        <div className="col pl-3 my-auto">
+                            <h1 className="mb-4">Travel Together, Split Expenses Effortlessly</h1>
+                            <p className="align-self-center">
+                                Just add your travel buddies, log expenses as you go, and let TripSplit handle the math. It even converts currencies, so setting up is easy—wherever you are. Spend less time sorting bills and more time making memories!                            </p>
+                            <Link to="/createtrip" className="btn btn-primary justify-content-center drop-shadow-btn">Create New Trip</Link>
+                        </div>
+                    </div>
                 </div>
-                <Link to="/createtrip" className="btn btn-primary justify-content-center drop-shadow-btn">Create New Trip</Link>
             </div>
-
-
-                <div className="about-section text-center">
-                    <h2>About</h2>
-                    <p>
-                        Managing expenses during your travels is made easy with TripSplit! Just add your friends and family who are travelling with you and add an expense. TripSplit will automatically keep track of who owes what and even convert the currency to whatever you decide to pay back in! Now, you can get back to living in the moment than time lost fussing over the bills.
-                    </p>
-                </div>
         </>
     ); 
 }
