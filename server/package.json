@@ -23,6 +23,7 @@
   "homepage": "https://github.com/bonglrob/trip-expense-tracker#readme",
   "description": "",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jest": "^29.7.0"
   }
